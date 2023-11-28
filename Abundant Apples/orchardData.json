@@ -1,0 +1,42 @@
+{
+    "O'Brien Farms": {
+      "lat-long": [46.28025734543195, -119.64109341314949],
+      "location": "Prosser, Washington",
+      "Breeds": "Fuji, Gala, Granny Smith, Red Delicious, Pink Lady, Koru, Cosmic Crisp"
+    },
+    "Lopez Orchards": {
+      "lat-long": [46.628486412788966, -120.61752802081268],
+      "location": "Cowiche, Washington",
+      "Breeds": "Red Delicious, Golden Delicious, Gala, Honeycrisp, Cosmic Crisp"
+    },
+    "MM Orchards": {
+      "lat-long": [47.26169587761203, -119.76834856415466],
+      "location": "Quincy, Washington",
+      "Breeds": "Gala, KIKU, Ambrosia, Fuji, Honeycrisp, Red Delicious, Cosmic Crisp"
+    },
+    "CMI Orchards": {
+      "lat-long": [47.40253871145277, -120.2168894497705],
+      "location": "Wenatchee, Washington",
+      "Breeds": "KIKU, Kanzi, Smitten, Honeycrisp, Gala"
+    },
+    "Orondo Orchards": {
+      "lat-long": [47.64894823648951, -120.2112153258481],
+      "location": "Orondo, Washington",
+      "Breeds": "Gala, Honeycrisp, Fuji, Envy, Sugarbee"
+    },
+    "Carleton Orchards": {
+      "lat-long": [47.91591124734381, -120.18478961563386],
+      "location": "Manson, Washington",
+      "Breeds": "Golden Delicious, Granny Smith, Fuji, Honeycrisp, Pink Lady, Cosmic Crisp, Gala"
+    },
+    "Stennes Orchards": {
+      "lat-long": [48.072853596587805, -119.91999929125791],
+      "location": "Pateros, Washington",
+      "Breeds": "Fuji, Honeycrisp, Gala, Granny Smith, Golden Delicious"
+    },
+    "Schoenwald Orchards": {
+      "lat-long": [48.10160403087789, -119.78816159736691],
+      "location": "Brewster, Washington",
+      "Breeds": "Cosmic Crisp, Pink Lady, Rockit, Sugarbee, Gala, Golden Delicious, Red Delicious, Granny Smith, Honeycrisp"
+    }
+  }

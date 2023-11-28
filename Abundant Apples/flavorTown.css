@@ -1,0 +1,120 @@
+.topLayer{
+    z-index: 1;
+    position: absolute;
+}
+
+.orchard{
+    color: #da70d6;
+}
+
+.ivory{
+    background-color: #faf9f6;
+}
+
+html, head, body{
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#mapContainer{
+    position: relative;
+    height: 100%;
+}
+
+#legendContainer{
+    right: 0;
+    width: 250px;
+    height: 60px;
+    background: #faf9f6;
+    margin-top: 12px;
+    margin-right: 65px;
+}
+
+#slideContainer{
+    position: absolute;
+    width: 350px;
+    height: 100%;
+}
+
+#actionTab {
+    height: 80%;
+    width: 100%;
+    margin-top: 70px;
+    margin-left: 10px;
+    background: #faf9f6; 
+    position: absolute;
+    left: 0;
+    z-index: 1; 
+    display: none;
+    border-color: orchid;
+    border-width: 5px;
+    border-style: solid;
+
+}
+
+#appleButton{
+    color: whitesmoke;
+    background-color: orchid;
+    position: absolute;
+    z-index: 1;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+}
+
+#clearButton{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    margin-left: 150px;
+    margin-top: 10px;
+    color: orchid;
+}
+
+#appleID{
+    margin-left: 30%;
+    margin-top: 15px;
+    width: 130px;
+}
+
+#legendIcon{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#legend{
+    height: 100%;
+}
+
+#legendText{
+    font-family: 'Times New Roman', Times, serif;
+    position: absolute;
+    top: 5px;
+    /* margin-left: 5px; */
+}
+
+#legendSource{
+    bottom: 5px;
+    margin-left: 25px;
+}
+
+#map{
+    height: 100%;
+    z-index: 0;
+}
+
+#orchardsContainer{
+    height: 90%;
+    width: 100%;
+    position: absolute;
+    margin-top: 15px;
+    overflow: auto;
+}
+
+.orchardPanel{
+    height: 125px;
+    width: 100%;
+}
