@@ -1,0 +1,149 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+ {
+   "type": "Feature",
+   "id": 0,
+   "geometry": {
+      "type": "Point",
+      "coordinates":  [ -119.6410934,46.28025735 ]
+   },
+   "properties": {
+   "orchardName":"O'Brien Farms",
+   "City":"Prosser",
+   "State":"Washington",
+   "Breeds":"Fuji, Gala, Granny Smith, Red Delicious, Pink Lady, Koru, Cosmic Crisp",
+   "Address":"",
+   "GMapsLink":""
+   }
+ },
+ {
+   "type": "Feature",
+   "id": 1,
+   "geometry": {
+      "type": "Point",
+      "coordinates":  [ -120.617528,46.62848641 ]
+   },
+   "properties": {
+   "orchardName":"Lopez Orchards",
+   "City":"Cowiche",
+   "State":"Washington",
+   "Breeds":"Red Delicious, Golden Delicious, Gala, Honeycrisp, Cosmic Crisp",
+   "Address":"",
+   "GMapsLink":""
+   }
+ },
+ {
+   "type": "Feature",
+   "id": 2,
+   "geometry": {
+      "type": "Point",
+      "coordinates":  [ -119.7683486,47.26169588 ]
+   },
+   "properties": {
+   "orchardName":"MM Orchards",
+   "City":"Quincy",
+   "State":"Washington",
+   "Breeds":"Gala, KIKU, Ambrosia, Fuji, Honeycrisp, Red Delicious, Cosmic Crisp",
+   "Address":"",
+   "GMapsLink":""
+   }
+ },
+ {
+   "type": "Feature",
+   "id": 3,
+   "geometry": {
+      "type": "Point",
+      "coordinates":  [ -120.2168894,47.40253871 ]
+   },
+   "properties": {
+   "orchardName":"CMI Orchards",
+   "City":"Wenatchee",
+   "State":"Washington",
+   "Breeds":"KIKU, Kanzi, Smitten, Honeycrisp, Gala",
+   "Address":"",
+   "GMapsLink":""
+   }
+ },
+ {
+   "type": "Feature",
+   "id": 4,
+   "geometry": {
+      "type": "Point",
+      "coordinates":  [ -120.2112153,47.64894824 ]
+   },
+   "properties": {
+   "orchardName":"Orondo Orchards",
+   "City":"Orondo",
+   "State":"Washington",
+   "Breeds":"Gala, Honeycrisp, Fuji, Envy, Sugarbee",
+   "Address":"",
+   "GMapsLink":""
+   }
+ },
+ {
+   "type": "Feature",
+   "id": 5,
+   "geometry": {
+      "type": "Point",
+      "coordinates":  [ -120.1847896,47.91591125 ]
+   },
+   "properties": {
+   "orchardName":"Carleton Orchards",
+   "City":"Manson",
+   "State":"Washington",
+   "Breeds":"Golden Delicious, Granny Smith, Fuji, Honeycrisp, Pink Lady, Cosmic Crisp, Gala",
+   "Address":"",
+   "GMapsLink":""
+   }
+ },
+ {
+   "type": "Feature",
+   "id": 6,
+   "geometry": {
+      "type": "Point",
+      "coordinates":  [ -119.9199993,48.0728536 ]
+   },
+   "properties": {
+   "orchardName":"Stennes Orchards",
+   "City":"Pateros",
+   "State":"Washington",
+   "Breeds":"Fuji, Honeycrisp, Gala, Granny Smith, Golden Delicious",
+   "Address":"",
+   "GMapsLink":""
+   }
+ },
+ {
+   "type": "Feature",
+   "id": 7,
+   "geometry": {
+      "type": "Point",
+      "coordinates":  [ -119.7881616,48.10160403 ]
+   },
+   "properties": {
+   "orchardName":"Schoenwald Orchards",
+   "City":"Brewster",
+   "State":"Washington",
+   "Breeds":"Cosmic Crisp, Pink Lady, Rockit, Sugarbee, Gala, Golden Delicious, Red Delicious, Granny Smith, Honeycrisp",
+   "Address":"",
+   "GMapsLink":""
+   }
+ },
+ {
+   "type": "Feature",
+   "id": 8,
+   "geometry": {
+      "type": "Point",
+      "coordinates":  [ -123.005628,44.011659 ]
+   },
+   "properties": {
+   "orchardName":"ME & Moore Farm",
+   "City":"Eugene",
+   "State":"Oregon",
+   "Breeds":["Gravenstein", "Akane", "Gala", "Honeycrisp", "Jonagold", "Empire", "Rome Beauty", "Golden Delicious", "Spitzenberg", "Braeburn", "Fuji"],
+   "Address":"34137 Seavey Loop Rd, Eugene, OR 97405",
+   "GMapsLink":"https://www.google.com/maps/place/ME+%26+Moore+and+Evenfall/@44.0117443,-123.0103962,15z/data=!4m6!3m5!1s0x54c0e000e73d521b:0xa1e25b4b59fb98f1!8m2!3d44.0119277!4d-123.0055971!16s%2Fg%2F1ptxq5jg_?authuser=0&entry=ttu"
+   }
+ }
+]
+}

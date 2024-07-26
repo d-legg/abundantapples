@@ -1,0 +1,122 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -119.6410934,46.28025735 ]
+    },
+    "properties": {
+    "orchardName":"O'Brien Farms",
+    "City":"Prosser",
+    "State":"Washington",
+    "Breeds":"Fuji, Gala, Granny Smith, Red Delicious, Pink Lady, Koru, Cosmic Crisp"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -120.617528,46.62848641 ]
+    },
+    "properties": {
+    "orchardName":"Lopez Orchards",
+    "City":"Cowiche",
+    "State":"Washington",
+    "Breeds":"Red Delicious, Golden Delicious, Gala, Honeycrisp, Cosmic Crisp"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -119.7683486,47.26169588 ]
+    },
+    "properties": {
+    "orchardName":"MM Orchards",
+    "City":"Quincy",
+    "State":"Washington",
+    "Breeds":"Gala, KIKU, Ambrosia, Fuji, Honeycrisp, Red Delicious, Cosmic Crisp"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -120.2168894,47.40253871 ]
+    },
+    "properties": {
+    "orchardName":"CMI Orchards",
+    "City":"Wenatchee",
+    "State":"Washington",
+    "Breeds":"KIKU, Kanzi, Smitten, Honeycrisp, Gala"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -120.2112153,47.64894824 ]
+    },
+    "properties": {
+    "orchardName":"Orondo Orchards",
+    "City":"Orondo",
+    "State":"Washington",
+    "Breeds":"Gala, Honeycrisp, Fuji, Envy, Sugarbee"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -120.1847896,47.91591125 ]
+    },
+    "properties": {
+    "orchardName":"Carleton Orchards",
+    "City":"Manson",
+    "State":"Washington",
+    "Breeds":"Golden Delicious, Granny Smith, Fuji, Honeycrisp, Pink Lady, Cosmic Crisp, Gala"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -119.9199993,48.0728536 ]
+    },
+    "properties": {
+    "orchardName":"Stennes Orchards",
+    "City":"Pateros",
+    "State":"Washington",
+    "Breeds":"Fuji, Honeycrisp, Gala, Granny Smith, Golden Delicious"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -119.7881616,48.10160403 ]
+    },
+    "properties": {
+    "orchardName":"Schoenwald Orchards",
+    "City":"Brewster",
+    "State":"Washington",
+    "Breeds":"Cosmic Crisp, Pink Lady, Rockit, Sugarbee, Gala, Golden Delicious, Red Delicious, Granny Smith, Honeycrisp"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  { }
+    },
+    "properties": {
+    "orchardName":"Thornton's Farms",
+    "City":"Tonasket",
+    "State":"Washington",
+    "Breeds":"SugarBee, Cosmic Crisp, Honeycrisp, Fuji, Granny Smith, Pink Lady"
+    }
+  }
+]
+}

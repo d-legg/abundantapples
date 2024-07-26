@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Abundant Apples</title>
+    <link rel="stylesheet" href="flavorTown.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+
+<body>    
+
+    <div id="mapContainer">
+        <div id="greyMask"></div>
+        
+        <!-- Popup how to on load -->
+        <div id="howTo">
+            <button id="exitButton" class="w3-button" onclick="closeHelp()">Close</button>
+            <p class="howToTitle">it's apple time!</p>
+            <div id="text1">
+                <p class="howToText">hover over an orchard to display it's information in the panel!</p>
+                <br>
+                <p class="howToText">click an orchard hold the panel in place with that orchard's info.</p>
+            </div>
+            <div id="text2">
+                <p class="howToText">click the downward arrows to open the orchard directory.</p>
+                <br><br>
+                <p class="howToText">click the question mark to reopen this help window.</p>
+            </div>
+            <div id="img1">
+                <img class="tutorialImage" src="img/img1.png" title="Hover or click point to highlight it!">
+            </div>
+            <div id="img2">
+                <img class="tutorialImage" src="img/img2.png" title="Orchard list!">
+            </div>
+            <div id="img3">
+                <img class="tutorialImage" src="img/img3.png" title="Abundant directory">
+            </div>
+            <!-- <p class="howToText">Each circle point on this map is the location of an apple orchard. Hover over the points to display the orchard's information in the top right info panel. </p>
+            <p class="howToText">Clicking on a point will hold it's information in the panel. To clear the panel, hit the exit button or click on the map.</p> -->
+        </div>
+
+
+        <!-- Top left elements -->
+        <div id="map"></div>
+
+        <div id="mapTitle">
+            <p class="mainTitle">Abundant Apples</p>
+        </div>
+
+        <img id="openTutorial" src="img/openHowTo.png" title="open help panel" onclick="openHelp()">
+
+        <div id="orchardContainer">
+            <div id="filterTab">
+                <div onclick="oregonFilter()" id="oregonButton" class="stateFilter">Oregon</div>
+                <div onclick="washingtonFilter()" id="washingtonButton" class="stateFilter">Washington</div>
+                <input id="resetButton" type="reset" value="Reset" onclick="resetButton()">
+                <i id="expandButton" onclick="changeOrchardContainer()" class='fas fa-angle-double-down' style='font-size:36px'></i>
+                <div id="searchBar" style="display: none;">
+                    <input type="text" id="searchInput" placeholder="Search Orchards">
+                </div>
+            </div>
+            <!-- putting new divs in here -->
+            <div id="orchardGrouped"></div>
+        </div>
+
+
+
+        <!-- Top right elements -->
+        <img id="clearPanel" src="img/clear.png" title="Clear info panel" onclick="clearPanel()">
+        <div id="infoPanel"></div>
+    </div>
+
+
+</body>
+    <script src="appleTime.js"></script>
+</html>
+
