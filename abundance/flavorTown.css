@@ -38,17 +38,21 @@ html, head, body{
         height: 50vh !important;
     }
 
-    #orchardContainer{
+    /* #orchardContainer{
         margin-top: 20vh !important;
-    }
+    } */
 
-    #openTutorial{
+    /* #openTutorial{
         margin-top: 21vh !important;
         margin-left: 35.5vw !important;
 
-    }
+    } */
     
 }
+
+/* @media only screen and (max-height: 600px){
+    
+} */
 
 .mapboxgl-popup-tip{
     /* background-color: wheat !important; */
@@ -85,17 +89,17 @@ p{
 #mapTitle{
     left: 0;
     top: 0;
-    margin: 25px;
+    margin-left: 2em;
+    margin-top: 2em;
     height: fit-content;
     width: 30vw;
     max-width: 600px;
-    min-width: 350px;
+    min-width: 300px;
     position: absolute;
     background-color: #785BBC;
     border: 8px;
     border-color: #321479;
     border-style: solid;
-    font-size: 1.5vw;
 }
 
 .mainTitle{
@@ -136,8 +140,8 @@ p{
 #openTutorial{
     position: absolute;
     top: 0;
-    margin-left: 36.5vw;
-    margin-top: 19vh;
+    margin-left: calc(2em + 30vw + 36px);
+    margin-top: 8em;
     cursor: pointer;
 }
 
@@ -251,12 +255,12 @@ p{
     background-color: #9F87D6;
     border-color: #321479;
     border-style: solid;
-    margin-left: 25px;
-    margin-top: 18vh;
-    height: 5vw;
+    margin-left: 2em;
+    margin-top: 8em;
+    height: 4em;
     /* max-height: 70px; */
     width: 30vw;
-    min-width: 350px;
+    min-width: 300px;
     max-width: 600px;
     display: flex;
     flex-direction: column;

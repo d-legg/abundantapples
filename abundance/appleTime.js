@@ -860,14 +860,21 @@ function changeOrchardContainer(){
     // console.log('oh yeah')
     expandButton.classList.remove('fa-angle-double-down')
     expandButton.classList.add('fa-angle-double-up')
-    orchardContainer.style.height = '70%'
+
+    if(window.innerHeight <= 600 ){
+      console.log('low height')
+      orchardContainer.style.height = '50%'
+    }
+    else{
+      orchardContainer.style.height = '75%'
+    }
   }
 
   // this will shrink the div
   else if(expandButton.classList.contains('fa-angle-double-up')){
     expandButton.classList.remove('fa-angle-double-up')
     expandButton.classList.add('fa-angle-double-down')
-    orchardContainer.style.height = '5vw'
+    orchardContainer.style.height = '4em'
 
   }
 }
