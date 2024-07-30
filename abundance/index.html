@@ -54,13 +54,22 @@
             <p class="mainTitle">Abundant Apples</p>
         </div>
 
+        <input id="resetButton" type="reset" value="Reset" onclick="resetButton()">
+
         <img id="openTutorial" src="img/openHowTo.png" title="open help panel" onclick="openHelp()">
 
         <div id="orchardContainer">
             <div id="filterTab">
-                <div onclick="oregonFilter()" id="oregonButton" class="stateFilter">Oregon</div>
-                <div onclick="washingtonFilter()" id="washingtonButton" class="stateFilter">Washington</div>
-                <input id="resetButton" type="reset" value="Reset" onclick="resetButton()">
+                <div id='expandSeperator'></div>
+                <div onclick="oregonFilter()" id="oregonButton" class="stateFilter">
+                    <img id="oregonDark" style="display: none;" src="img/oregonDark.png">
+                    <img id="oregonImage" src="img/oregonOutline.png">
+                </div>
+                <div onclick="washingtonFilter()" id="washingtonButton" class="stateFilter">
+                    <img id="washDark" style="display: none;" src="img/washDark.png">
+                    <img id="washImage" src="img/washOutline.png">
+                </div>
+                <div id="breedFilter">Apple Time!</div>
                 <i id="expandButton" onclick="changeOrchardContainer()" class='fas fa-angle-double-down' style='font-size:36px'></i>
                 <div id="searchBar" style="display: none;">
                     <input type="text" id="searchInput" placeholder="Search Orchards">

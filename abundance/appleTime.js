@@ -893,7 +893,10 @@ function resetButton(){
   d3.selectAll('.oregon').style('display', 'block')
   d3.selectAll('.washington').style('display', 'block')
 
-
+  document.getElementById("washImage").src="img/washOutline.png"
+  document.getElementById("oregonImage").src="img/oregonOutline.png"
+  d3.select('#oregonDark').style('display', 'none')
+  d3.select('#washDark').style('display', 'none')
 }
 
 //handles oregon and washington buttons
@@ -914,6 +917,9 @@ function oregonFilter(){
   d3.select('#washingtonButton').style('border-style', 'outset')
   d3.selectAll('.washington').style('display', 'none')
 
+  document.getElementById("oregonImage").src="img/oregonFilled.png"
+  d3.select('#oregonDark').style('display', 'inline')
+
 }
 
 function washingtonFilter(){
@@ -932,6 +938,11 @@ function washingtonFilter(){
   d3.select('#washingtonButton').style('border-style', 'inset')
   d3.select('#oregonButton').style('border-style', 'outset')
   d3.selectAll('.oregon').style('display', 'none')
+
+  document.getElementById("washImage").src="img/washFilled.png"
+  d3.select('#washDark').style('display', 'inline')
+
+
 }
 
 function resetFilters(){
