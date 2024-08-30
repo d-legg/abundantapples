@@ -26,32 +26,34 @@ html, head, body{
     margin-top: 2em;
 }
 
-/* big screen handlers */
-@media only screen and (max-width: 1000px){
+.mapboxgl-ctrl-bottom-left{
+    display: none;
+}
 
-    .mapboxgl-ctrl-top-left{
-        margin: 2em 0px 0px 360px !important;
-    }
-
-    /* #infoPanel{
-        height: 50vh !important;
-    } */
-
-    #resetButton{
-        margin: 186px 0px 0px 364px !important;
-    }
-
-
-    #openTutorial{
-       margin: 128px 0px 0px 368px !important;
-
-    }
-    
+#homeButton{
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    margin-left: calc(2em + 30vw + 36px);
+    margin-top: 8em;
+    cursor: pointer;
 }
 
 
-@media only screen and (max-width: 1350px){
-    #breedFilter {
+@media only screen  and (max-width: 1200px){
+    #resetButton{
+        margin: 14em 0px 0px 422px !important
+    }
+
+    #openTutorial{
+        margin: 32px 0px 0px 468px !important;
+     }
+
+    .mapboxgl-ctrl-top-left{
+        margin: 2em 0px 0px 420px !important;
+    }
+
+    #expandDataButton{
         border-radius: 15px;
         font-size: 1.25em !important;
         position: absolute;
@@ -65,20 +67,139 @@ html, head, body{
         color: ivory;
         position: absolute;
         margin-top: .1em !important;
-        margin-left: 7.5em;
-    }
-
-
-    #washingtonButton {
-        margin-left: 3.1em !important;
+        margin-left: 10.85em;
         cursor: pointer;
     }
 
-    #oregonButton {
-        margin-left: .1em !important;
-        cursor: pointer;
+    #homeButton{
+        margin: 128px 0px 0px 428px !important;
     }
 }
+
+/* MOBILE VERSION */
+@media only screen and (max-width: 800px){
+    #mapTitle{
+        display: none;
+    }
+    #infoPanel{
+        display: none !important;
+    }
+    #orchardContainer {
+        bottom: 0 !important;
+        right: 0 !important;
+        top: auto !important;
+        left: auto !important;
+        margin-bottom: 2em !important;
+        margin-right: 2em !important;
+        position: absolute !important;
+        border: .5em solid #321479 !important;
+        background-color: #9F87D6 !important;
+        height: 20em !important;
+        width: 5em !important;
+        min-width: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        transition: height 0.3s ease !important;
+        overflow: hidden !important;
+    }
+
+    #filterTab {
+        height: 20em !important;
+        position: absolute !important;
+        width: 100% !important;
+        background-color: #9F87D6 !important;
+        display: flex !important;
+        flex-direction: column !important; 
+    }
+
+    #orchardGrouped{
+        display: none !important;
+    }
+
+    #expandSeperator{
+        display: none !important;
+    }
+
+    .mapboxgl-ctrl-top-left{
+        display: none;
+    }
+
+    .mapboxgl-ctrl-bottom-left{
+        display: block;
+    }
+
+    #resetButton {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        top: auto !important;
+        left: auto !important;
+        margin-right: 4em !important;
+        margin-bottom: 28em !important;
+        background-color: #5D3DA8;
+        color: ivory;
+        cursor: pointer;
+        z-index: 15;
+    }
+
+    #homeButton{
+        z-index: 99;
+        position: absolute;
+        bottom: 0;
+        top: auto !important;
+        margin-left: 3.5em !important;
+        margin-bottom: 2.5em !important;
+        cursor: pointer;
+    }
+
+    #openTutorial {
+        position: absolute;
+        bottom: 0;
+        top: auto !important;
+        margin-left: 3.5em !important;
+        margin-bottom: 5.75em !important;
+        cursor: pointer;
+    }
+    
+}
+
+
+@media only screen and (max-width: 1000px){
+
+
+    #breedContent{
+        height: 26.5em !important;
+        width: 100%;
+        margin-top: 1.75em;
+    }
+
+    #infoPanel {
+        right: 0;
+        top: 0;
+        position: absolute;
+        margin: 25px;
+        width: 16em !important;
+        height: 16em !important;
+        background-color: #785BBC;
+        border: 8px #321479 solid;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #breedSelector{
+        position: fixed;
+        z-index: 999;
+        border: 8px solid #321479;
+        background-color: #9F87D6;
+        display: flex;
+        width: 35em !important;
+        height: 30em !important;
+        margin-top: 2em;
+        max-width: 800px;
+        max-height: 560px; 
+    }
+}
+
 
 /* @media only screen and (max-height: 600px){
     
@@ -124,7 +245,7 @@ p{
     height: fit-content;
     width: 30vw;
     max-width: 600px;
-    min-width: 300px;
+    min-width: 360px;
     position: absolute;
     background-color: #785BBC;
     border: 8px;
@@ -157,6 +278,142 @@ p{
     z-index: 999;
 }
 
+.largePopup {
+    position: fixed;
+    z-index: 999;
+    border: 8px solid #321479;
+    background-color: hsl(258, 49%, 68%);
+    display: flex;
+    width: 50em;
+    height: 35em;
+    margin-top: 2em;
+    max-width: 800px;
+    max-height: 560px;
+}
+
+/* #breedSelectContainer{
+    display: flex;
+    justify-content: center;
+} */
+
+.flexContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.breedName{
+    color: ivory;
+    right: 0;
+    position: absolute;
+    /* font-size: 1.25em; */
+    top: 25%;
+    cursor: pointer
+}
+
+
+.breedItem {
+    flex: 0 0 32.25%;
+    height: 4em;
+    border-bottom: 2px ivory solid;
+    border-radius: 0%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Customize the label (the container) */
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: ivory;
+    right: 0;
+    font-size: 1.25em;
+    top: 25%;
+    cursor: pointer
+}
+  
+/* Hide the browser's default checkbox */
+.breedItem input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    margin-left: .5em;
+}
+
+/* On mouse-over, add a grey background color */
+.breedItem:hover input ~ .checkBox {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.breedItem input:checked ~ .checkBox {
+    background-color: #5D3DA8;
+}
+
+/* Create the checkBox/indicator (hidden when not checked) */
+.checkBox:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+/* Show the checkBox when checked */
+.breedItem input:checked ~ .checkBox:after {
+    display: block;
+}
+  
+/* Style the checkBox/indicator */
+.breedItem .checkBox:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#breedContent {
+    height: 31.5em;
+    width: 100%;
+    margin-top: 1.75em;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    column-gap: 8px;
+    box-sizing: border-box;
+}
+
+#dataContent {
+    height: 31.5em;
+    width: 100%;
+    margin-top: 1.75em;
+    display: flex;
+    flex-wrap: wrap;
+    /* overflow-y: scroll; */
+    column-gap: 8px;
+    box-sizing: border-box;
+
+}
+
 #exitButton{
     height: 2em;
     width: 4em;
@@ -167,13 +424,72 @@ p{
     margin-right: 10px;
 }
 
+.closeButton{
+    right: 0;
+    position: absolute;
+    background-color: #9F87D6;
+    color: ivory;
+    height: 2em;
+}
+
+#clearBreed{
+    position: absolute;
+    right: 0;
+    margin-right: 5em;
+    height: 2em;
+    background-color: #9F87D6;
+    color: ivory;
+}
+
+
+#applyBreed{
+    position: absolute;
+    right: 0;
+    height: 2em;
+    background-color: #9F87D6;
+    color: ivory;
+}
+
+#closeContainer{
+    height: 1.75em;
+    width: 100%;
+    background-color: #321479;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+#counterContainer{
+    height: 1.5em;
+    width: 15em;
+    position: absolute;
+    text-align: center;
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+}
+
+#count, #countText{
+    color: ivory;
+}
+
+#commandsContainer{
+    height: 1.75em;
+    width: 100%;
+    bottom: 0;
+    background-color: #321479;
+    position: absolute;
+}
+
 #openTutorial{
     position: absolute;
     top: 0;
-    margin-left: calc(2em + 30vw + 36px);
-    margin-top: 8em;
+    margin-left: calc(4.5em + 30vw + 36px);
+    margin-top: 2em;
     cursor: pointer;
 }
+
 
 .tutorialImage{
     height: 100%;
@@ -245,16 +561,14 @@ p{
     right: 0;
     top: 0;
     position: absolute;
-    margin: 25px;
-    width: 25vw;
-    min-width: 300px;
-    max-width: 500px;
-    height: 40vh;
-    max-height: 450px;
+    margin-top: 2em;
+    margin-right: 2em;
+    width: 25em ;
+    height: 20em;
     background-color: #785BBC;
-    border: 8px;
-    border-color: #321479;
-    border-style: solid;
+    border: 8px #321479 solid;
+    display: flex;
+    flex-direction: column;
 }
 
 #clearPanel{
@@ -269,28 +583,37 @@ p{
 
 #expandButton{
     font-size: 36px;
-    right: 0;
-    position: absolute;
     color: ivory;
-    margin-right: .6em;
-    margin-top: .4em;
     cursor: pointer;
+    margin: auto;
+}
+
+#exportDataButton{
+    border-radius: 15px;
+    font-size: 1.25em !important;
+    text-align: center;
+    border-color: #321479;
+    background-color: #785BBC;
+    width: 3em !important;
+    border-style: solid;
+    height: 2.5em !important;
+    border-width: thick;
+    color: ivory;
+    cursor: pointer;
+    margin: auto;
 }
 
 #orchardContainer{
     top: 0;
     left: 0;
     position: absolute;
-    border: 8px;
+    border: .5em solid #321479;
     background-color: #9F87D6;
-    border-color: #321479;
-    border-style: solid;
     margin-left: 2em;
     margin-top: 8em;
     height: 4em;
-    /* max-height: 70px; */
     width: 30vw;
-    min-width: 300px;
+    min-width: 360px;
     max-width: 600px;
     display: flex;
     flex-direction: column;
@@ -322,6 +645,9 @@ p{
     margin-top: 4em;
     border-top: solid 8px;
     border-color: #321479;
+    display: flex;
+    flex-direction: column;
+    row-gap: .10em;
 }
 
 .orchardPanel{
@@ -366,13 +692,14 @@ p{
 .scrollInfo{
     border-color: #321479;
     border-style: outset;
-    border-width: 5px;
+    border-width: .25em;
     border-radius: 10px;
-    height: 160px;
-    margin-bottom: 5px;
-    margin-top: 2px;
-    margin-left: 1px;
     background-color: #785BBC;
+    display: flex;
+    flex-direction: column;
+    max-height: 10em;
+    min-height: 10em;
+    overflow: hidden;
 }
 
 .selectedOrchard{
@@ -384,22 +711,26 @@ p{
 .containerOrchardName{
     color: ivory;
     direction: ltr;
-    padding-left: 10px;
+    margin-left: .5em;
 }
 
 .containerOrchardText{
     color: ivory;
     direction: ltr;
-    padding-left: 10px;
-    padding-top: 10px;
     font-size: 1.15em;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5em;
+    margin-top: .25em;
+    gap: .5em;
 }
 
 #filterTab{
-    height: 100%;
+    height: 4em;
     position: absolute;
     width: 100%;
     background-color: #9F87D6;
+    display: flex;
 }
 
 #searchBar{
@@ -420,18 +751,9 @@ p{
     height: 2em;
     border-width: thick;
     color: ivory;
-    position: absolute;
-    margin-top: .15em;
     overflow: hidden;
-}
-#washingtonButton{
-    margin-left: 4em;
     cursor: pointer;
-}
-
-#oregonButton{
-    margin-left: .5em;
-    cursor: pointer;
+    margin: auto;
 }
 
 #oregonDark{
@@ -446,20 +768,20 @@ p{
 
 #breedFilter {
     border-radius: 15px;
-    font-size: 1.5em;
-    position: absolute;
+    font-size: 1.25em !important;
     text-align: center;
     border-color: #321479;
     background-color: #785BBC;
-    width: 5.5em;
+    width: 3em !important;
     border-style: solid;
-    height: 1.4em;
+    height: 2.5em !important;
     border-width: thick;
     color: ivory;
-    position: absolute;
-    margin-top: .40em;
-    margin-left: 7.5em;
+    cursor: pointer;
+    margin: auto;
 }
+
+
 #resetButton {
     position: absolute;
     left: 0;
@@ -473,17 +795,21 @@ p{
 }
 
 #expandSeperator{
-    position: absolute;
-    right: 0;
-    margin-right: 4em;
     height: 4em;
-    width: 8px;
+    width: .5em;
     background-color: #321479;
     z-index: 14;
+    margin: auto;
 }
 
 .infoAddress{
     color: ivory;
+}
+
+.inactiveButton{
+    background-color: gray !important;
+    border-color: darkslategray !important;
+    cursor: not-allowed !important;
 }
 
 #searchInput{
@@ -498,3 +824,54 @@ p{
 ::placeholder {
     color: ivory;
   }
+
+.htmlBreeds {
+    color: ivory;
+    margin-left: .5em;
+    font-size: 1.25em;
+    flex-grow: 1;
+    overflow-y: hidden;
+    margin-bottom: 1em;
+}
+
+.containerBreeds{
+    cursor: pointer;
+}
+
+#closeList{
+    position: absolute;
+}
+
+#breedListContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#breedList{
+    color: ivory;
+    margin-top: 1.5em;
+    margin-left: 1em;
+    font-size: 1.25em;
+    padding-bottom: 1em;
+}
+
+#listContent{
+    z-index: 999;
+    display: flex;
+    position: fixed;
+    border: 8px solid #321479;
+    background-color: #9F87D6;
+    width: 40em;
+    height: fit-content;
+    margin-top: 2em;
+    max-width: 800px;
+    max-height: 560px;
+}
+
+#closeList{
+    color: ivory;
+    background-color: #9F87D6;
+    top: 0;
+    right: 0;
+    position: absolute;
+}

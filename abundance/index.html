@@ -19,7 +19,7 @@
     <div id="mapContainer">
         <div id="greyMask"></div>
         
-        <!-- Popup how to on load test -->
+        <!-- Popup how to on load -->
         <div id="howTo">
             <button id="exitButton" class="w3-button" onclick="closeHelp()">Close</button>
             <p class="howToTitle">it's apple time!</p>
@@ -46,9 +46,51 @@
             <p class="howToText">Clicking on a point will hold it's information in the panel. To clear the panel, hit the exit button or click on the map.</p> -->
         </div>
 
+        <div id="breedListContainer">
+            <div id="listContent" style="display: none;">
+                <div id="breedList"> </div>
+                <button id="closeList" class="w3-button" onclick="closeHelp()">Close</button>
+            </div>
+        </div>
+
+        <div id="breedSelectContainer" class="flexContainer">
+            <div id="breedSelector" class="largePopup" style="display: none;">
+                <div id="closeContainer">
+                    <button id="closeBreed" class="w3-button closeButton" onclick="closeHelp()">Close</button>
+                    <div id="counterContainer">
+                        <div id="count">0</div>
+                        <div id="countText">breed(s) selected!</div>
+                    </div>
+                </div>
+                <div id="commandsContainer">
+                    <button id="clearBreed" class="w3-button" onclick="clearBreeds()">Clear</button>
+                    <button id="applyBreed" class="w3-button" onclick="applyBreeds()">Apply</button>
+                </div>
+                <div id="breedContent">
+                    <!-- filling in new divs here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="exportDataContainer" class="flexContainer">
+            <div id="dataViewer" class="largePopup" style="display: none;">
+                <div id="closeContainer">
+                    <button id="closeData" class="w3-button closeButton" onclick="closeHelp()">Close</button>
+                </div>
+                <!-- <div id="commandsContainer">
+                    <button id="clearBreed" class="w3-button" onclick="clearBreeds()">Clear</button>
+                    <button id="applyBreed" class="w3-button" onclick="applyBreeds()">Apply</button>
+                </div> -->
+                <div id="dataContent">
+                    <!-- filling in new divs here -->
+                </div>
+            </div>
+        </div>
+
 
         <!-- Top left elements -->
-        <div id="map"></div>
+        <div id="map">
+        </div>
 
         <div id="mapTitle">
             <p class="mainTitle">Abundant Apples</p>
@@ -58,31 +100,32 @@
 
         <img id="openTutorial" src="img/openHowTo.png" title="open help panel" onclick="openHelp()">
 
+        <img id="homeButton" src="img/home2.png" title="Return to home view" onclick="returnHome()">
+
         <div id="orchardContainer">
             <div id="filterTab">
-                <div id='expandSeperator'></div>
-                <div onclick="oregonFilter()" id="oregonButton" class="stateFilter">
+                <div id="oregonButton" onclick="oregonFilter()" class="stateFilter intButton">
                     <img id="oregonDark" style="display: none;" src="img/oregonDark.png">
                     <img id="oregonImage" src="img/oregonOutline.png">
                 </div>
-                <div onclick="washingtonFilter()" id="washingtonButton" class="stateFilter">
+                <div id="washingtonButton" onclick="washingtonFilter()" class="stateFilter intButton">
                     <img id="washDark" style="display: none;" src="img/washDark.png">
                     <img id="washImage" src="img/washOutline.png">
                 </div>
-                <div id="breedFilter">Apple Time!</div>
-                <i id="expandButton" onclick="changeOrchardContainer()" class='fas fa-angle-double-down' style='font-size:36px'></i>
-                <div id="searchBar" style="display: none;">
-                    <input type="text" id="searchInput" placeholder="Search Orchards">
+                <div id="breedFilter" class="intButton" onclick="openBreedSelector()">Apple Time!</div>
+                <div id="exportDataButton" class="intButton" style="display: none;" onclick="exportData()">
+                    <img id="exportImage" src="img/download.png">
                 </div>
+
+                <div id='expandSeperator'></div>
+                <i id="expandButton" onclick="changeOrchardContainerSize()" class='fas fa-angle-double-down' style='font-size:36px'></i>
             </div>
             <!-- putting new divs in here -->
             <div id="orchardGrouped"></div>
         </div>
 
-
-
         <!-- Top right elements -->
-        <img id="clearPanel" src="img/clear.png" title="Clear info panel" onclick="clearPanel()">
+        <!-- <img id="clearPanel" src="img/clear.png" title="Clear info panel" onclick="clearPanel()" style="display: none;"> -->
         <div id="infoPanel"></div>
     </div>
 
