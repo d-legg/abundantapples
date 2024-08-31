@@ -926,10 +926,11 @@ function clearOrchardContainer(){
 }
 
 function collapseMobileOrchard(){
+  console.log('collapseMobileOrchard()')
   d3.select('#oregonButton').style('display', 'none')
   d3.select('#washingtonButton').style('display', 'none')
   d3.select('#breedFilter').style('display', 'none')
-  d3.select('filterTab').classed('mobileFilterTab', false)
+  d3.select('#filterTab').classed('mobileFilterTab', false)
   d3.select('#filterTab').classed('mobileFilterTabCollapsed', true)
   d3.select('#orchardContainer').classed('mobileOrchard', false)
   d3.select('#orchardContainer').classed('collapsedOrchardContainer', true)
