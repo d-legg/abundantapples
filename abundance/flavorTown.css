@@ -321,7 +321,7 @@ html, head, body{
         height: 80% !important;
         max-height: none !important;
         max-width: none !important;
-        overflow: hidden;
+        overflow: auto;
     }
     
 }
