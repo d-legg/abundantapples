@@ -81,13 +81,13 @@ html, head, body{
 
 #mobileOrchardGrouped{
     display: flex;
-    width: 90%;
-    height: 90%;
+    width: 90% !important;
+    height: 90% !important;
     bottom: auto;
     margin-top: 2em;
     margin: auto;
     z-index: 999;
-    border: 8px solid #321479;
+    border: 8px solid #321479 !important;
     background-color: hsl(258, 49%, 68%);
     position: fixed;
     inset: 0px;
@@ -107,8 +107,68 @@ html, head, body{
     z-index: 9999;
 }
 
+.mobileOrchard{
+    bottom: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    left: auto !important;
+    margin-bottom: 2em !important;
+    margin-right: 2em !important;
+    position: absolute !important;
+    border: .5em solid #321479 !important;
+    background-color: #9F87D6 !important;
+    height: 20em !important;
+    width: 5em !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: height 0.3s ease !important;
+    overflow: hidden !important;
+
+}
+
+.collapsedOrchardContainer {
+    bottom: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    left: auto !important;
+    margin-bottom: 2em !important;
+    margin-right: 2em !important;
+    position: absolute !important;
+    border: .5em solid #321479 !important;
+    background-color: #9F87D6 !important;
+    height: 4em !important;
+    width: 5em !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: height 0.3s ease !important;
+    overflow: hidden !important;
+}
+
+.mobileFilterTab{
+    height: 20em !important;
+    position: absolute !important;
+    width: 100% !important;
+    background-color: #9F87D6 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.mobileFilterTabCollapsed{
+    height: 4em !important;
+    position: absolute !important;
+    width: 100% !important;
+    background-color: #9F87D6 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+
+
 /* MOBILE VERSION */
 @media (max-width: 800px){
+
     #mapTitle{
         position: fixed !important;
         margin: auto !important;
@@ -125,7 +185,7 @@ html, head, body{
     #infoPanel{
         display: none !important;
     }
-    #orchardContainer {
+    /* #orchardContainer {
         bottom: 0 !important;
         right: 0 !important;
         top: auto !important;
@@ -142,16 +202,16 @@ html, head, body{
         flex-direction: column !important;
         transition: height 0.3s ease !important;
         overflow: hidden !important;
-    }
+    } */
 
-    #filterTab {
+    /* #filterTab {
         height: 20em !important;
         position: absolute !important;
         width: 100% !important;
         background-color: #9F87D6 !important;
         display: flex !important;
         flex-direction: column !important; 
-    }
+    } */
 
     #orchardGrouped{
         display: none !important;
@@ -169,31 +229,16 @@ html, head, body{
         display: block;
     }
 
-    /* #resetButton {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        top: auto !important;
-        left: auto !important;
-        margin-right: 5em !important;
-        margin-bottom: 35em !important;
-        background-color: #5D3DA8;
-        color: ivory;
-        cursor: pointer;
-        z-index: 15;
-    } */
-
     #resetButton {
         position: absolute;
+        font-size: 1em;
+        height: fit-content;
         right: 0;
         bottom: 0;
         left: auto !important;
-        /* margin-left: .75em !important; */
-        /* margin-bottom: 12em; */
         top: auto !important;
-        /* left: auto !important; */
-        margin-right: 12em !important;
-        margin-bottom: 2.5em !important;
+        margin-right: 10em !important;
+        margin-bottom: 2em !important;
         background-color: #5D3DA8;
         color: ivory;
         cursor: pointer;
@@ -229,7 +274,7 @@ html, head, body{
     }
 
     #breedContent{
-        height: 38.5em !important;
+        height: 36.75em !important;
         width: 100% !important;
         margin-top: 1.75em !important;
         display: flex !important;

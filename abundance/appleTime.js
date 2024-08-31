@@ -561,6 +561,9 @@ var panel = document.getElementById('infoPanel')
 const appleLayerName = 'orchardsLayer'
 const mapboxSourceName = 'orchardsSource'
 
+var baseZoom = 5
+var baseCenter = [-120.324262, 45.468905]
+
 var currentID = 0
 var currentDiv 
 var pointID
@@ -653,6 +656,12 @@ for (var orchardIDX in orchardsData.features){
 
 }
 // –––––––––––––––––––––––––––––––––––––––– END –––––––––––––––––––––––––––––––––––––––– 
+
+
+if (window.innerWidth <= 800){
+  d3.select('#orchardContainer').classed('mobileOrchard', true)
+  d3.select('#filterTab').classed('mobileFilterTab', true)
+}
 
 
 // –––––––––––––––––––––––––––––––––––––––– START MAP.LOAD ––––––––––––––––––––––––––––––––––––––––
@@ -897,36 +906,56 @@ function clearOrchardContainer(){
 
 }
 
+function collapseMobileOrchard(){
+  d3.select('#oregonButton').style('display', 'none')
+  d3.select('#washingtonButton').style('display', 'none')
+  d3.select('#breedFilter').style('display', 'none')
+  d3.select('filterTab').classed('mobileFilterTab', false)
+  d3.select('#filterTab').classed('mobileFilterTabCollapsed', true)
+  d3.select('#orchardContainer').classed('mobileOrchard', false)
+  d3.select('#orchardContainer').classed('collapsedOrchardContainer', true)
+}
+
+function expandMobileOrchard(){
+  d3.select('#oregonButton').style('display', 'block')
+  d3.select('#washingtonButton').style('display', 'block')
+  d3.select('#breedFilter').style('display', 'block')
+  d3.select('filterTab').classed('mobileFilterTab', true)
+  d3.select('#filterTab').classed('mobileFilterTabCollapsed', false)
+  d3.select('#orchardContainer').classed('mobileOrchard', true)
+  d3.select('#orchardContainer').classed('collapsedOrchardContainer', false)
+}
+
 // expands div
 function changeOrchardContainerSize(){
   if(window.innerWidth <= 800){
     console.log('mobile time!')
-    document.getElementById('mobileOrchardGrouped').style.display = 'block'
+    d3.select('#mobileOrchardGrouped').style('display', 'block')
     d3.select('#greyMask').style('display', 'block')
     d3.select('#closeMobileOrchards').style('display', 'block')
-  }
+  } else  {
+    // this expands the div
+    if(expandButton.classList.contains('fa-angle-double-down')){
+      // console.log('oh yeah')
+      expandButton.classList.remove('fa-angle-double-down')
+      expandButton.classList.add('fa-angle-double-up')
 
-  // this expands the div
-  if(expandButton.classList.contains('fa-angle-double-down')){
-    // console.log('oh yeah')
-    expandButton.classList.remove('fa-angle-double-down')
-    expandButton.classList.add('fa-angle-double-up')
-
-    if(window.innerHeight <= 600 ){
-      console.log('low height')
-      orchardContainer.style.height = '50%'
+      if(window.innerHeight <= 600 ){
+        console.log('low height')
+        orchardContainer.style.height = '50%'
+      }
+      else{
+        orchardContainer.style.height = '75%'
+      }
     }
-    else{
-      orchardContainer.style.height = '75%'
+
+    // this will shrink the div
+    else if(expandButton.classList.contains('fa-angle-double-up')){
+      expandButton.classList.remove('fa-angle-double-up')
+      expandButton.classList.add('fa-angle-double-down')
+      orchardContainer.style.height = '4em'
+
     }
-  }
-
-  // this will shrink the div
-  else if(expandButton.classList.contains('fa-angle-double-up')){
-    expandButton.classList.remove('fa-angle-double-up')
-    expandButton.classList.add('fa-angle-double-down')
-    orchardContainer.style.height = '4em'
-
   }
 }
 
@@ -1205,8 +1234,8 @@ function showBreedList(){
   d3.select('#breedList').html(currentBreeds)
 }
 
-var oldCenter
-var oldZoom
+// var oldCenter
+// var oldZoom
 
 function updateOrchards(load=0){
   console.log('updateOrchards()')
@@ -1214,13 +1243,13 @@ function updateOrchards(load=0){
   document.getElementById('mobileOrchardGrouped').innerHTML = null
   // document.getElementById('mobileOrchardGrouped').innerHTML += `<button id="closeMobileOrchards" class="w3-button" onclick="closeHelp()">Close</button>
   // `
-  oldCenter = map.getCenter()
-  oldZoom = map.getZoom()
-  console.log(oldCenter, oldZoom)
+  // oldCenter = map.getCenter()
+  // oldZoom = map.getZoom()
+  // console.log(oldCenter, oldZoom)
 
   map.flyTo({
-    center: [-120.324262, 45.468905], 
-    zoom: 5
+    center: baseCenter, 
+    zoom: baseZoom
   })
 
   // to go off on load immediately
@@ -1371,52 +1400,52 @@ function updateOrchards(load=0){
 
 var activeOrchards = []
 
-function exportData(){
-  console.log('exportData()')
+// function exportData(){
+//   console.log('exportData()')
 
-  activeOrchards = []
+//   activeOrchards = []
 
-  map.flyTo({
-    center: [-120.324262, 45.468905], 
-    zoom: 5
-  })
+//   map.flyTo({
+//     center: baseCenter, 
+//     zoom: baseZoom
+//   })
 
-  setTimeout(function(){
-    for(layer of map.queryRenderedFeatures()){
-      // console.log(layer)
-      if(layer.layer.id === 'orchardsLayer'){
-        activeOrchards.push(layer)
-      }
-      if(layer.layer.id != 'orchardsLayer'){
-        break
-      }
-    }
-  }, 1000)
+//   setTimeout(function(){
+//     for(layer of map.queryRenderedFeatures()){
+//       // console.log(layer)
+//       if(layer.layer.id === 'orchardsLayer'){
+//         activeOrchards.push(layer)
+//       }
+//       if(layer.layer.id != 'orchardsLayer'){
+//         break
+//       }
+//     }
+//   }, 1000)
 
-  console.log(activeOrchards)
-  console.log(document.getElementById('orchardGrouped'))
-  d3.select('#greyMask').style('display', 'block')
-  d3.select('#dataViewer').style('display', 'block')
+//   console.log(activeOrchards)
+//   console.log(document.getElementById('orchardGrouped'))
+//   d3.select('#greyMask').style('display', 'block')
+//   d3.select('#dataViewer').style('display', 'block')
 
 
-  for(orchard of activeOrchards){
-    var orchardName = orchard.properties.orchardName
-    var orchardAddress = orchard.properties.Address
-    var orchardNumber = orchard.properties.PhoneNumber
-    var orchardBreeds = orchard.properties.Breeds
+//   for(orchard of activeOrchards){
+//     var orchardName = orchard.properties.orchardName
+//     var orchardAddress = orchard.properties.Address
+//     var orchardNumber = orchard.properties.PhoneNumber
+//     var orchardBreeds = orchard.properties.Breeds
     
-    var rowHtml = 
-    `
-      <div class="orchardRow">
-        <div>${orchardName}</div>
-        <div>${orchardAddress}</div>
-        <div>${orchardNumber}</div>
-        <div>${orchardBreeds}</div>
-      </div>
-    `
-  }
+//     var rowHtml = 
+//     `
+//       <div class="orchardRow">
+//         <div>${orchardName}</div>
+//         <div>${orchardAddress}</div>
+//         <div>${orchardNumber}</div>
+//         <div>${orchardBreeds}</div>
+//       </div>
+//     `
+//   }
 
-}
+// }
 
 function getOrchardIdx(name){
   console.log('getOrchardIdx()',name)
@@ -1432,18 +1461,25 @@ function getOrchardIdx(name){
 }
 
 
-// map.on('zoomend', function() {
-//   var currentZoom = map.getZoom();
-//   console.log('Current zoom level:', currentZoom);
+map.on('zoomend', function() {
+  var currentZoom = map.getZoom();
+  var currentCenter = map.getCenter()
+  console.log('Current zoom level:', currentZoom);
 
-//   if(currentZoom > 5.75){
-//     console.log('disable functions')
-//     disableInteraction()
-//   }
-//   else{
-//     enableInteraction()
-//   }
-// });
+  if((currentZoom > baseZoom) && (currentCenter !== baseCenter)){
+    if(window.innerWidth <= 800){
+      collapseMobileOrchard()
+    } else{
+      disableInteraction()
+    }
+  } else{
+      if(window.innerWidth <=800){
+        expandMobileOrchard()
+      } else {
+        enableInteraction()
+      }
+  }
+});
 
 function disableInteraction(){
   d3.selectAll(".intButton").classed('inactiveButton', true)
@@ -1465,7 +1501,7 @@ function enableInteraction(){
 
 function returnHome(){
   map.flyTo({
-    center: [-120.324262, 45.468905], 
-    zoom: 5
+    center: baseCenter, 
+    zoom: baseZoom
   })
 }
