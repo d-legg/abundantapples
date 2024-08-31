@@ -321,7 +321,7 @@ html, head, body{
         height: 80% !important;
         max-height: none !important;
         max-width: none !important;
-        overflow: auto;
+        overflow: hidden;
     }
     
 }
@@ -884,6 +884,7 @@ p{
     color: ivory;
     direction: ltr;
     margin-left: .5em;
+    margin-top: .5em;
 }
 
 .containerOrchardText{
@@ -1004,12 +1005,16 @@ p{
     flex-grow: 1;
     overflow-y: hidden;
     margin-bottom: 1em;
-}
-
-.containerBreeds{
     cursor: pointer;
 }
 
+.containerBreeds {
+    cursor: pointer;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
 #closeList{
     position: absolute;
 }
