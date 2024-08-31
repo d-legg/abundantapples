@@ -104,6 +104,7 @@ html, head, body{
     color: ivory;
     height: 2em;
     right: 0;
+    z-index: 9999;
 }
 
 /* MOBILE VERSION */
