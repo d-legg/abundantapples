@@ -1199,7 +1199,8 @@ function closeHelp(){
   //   // console.log('here', matchFilter)
   //   // console.log('also', filterBreeds)
   // }
-  if(d3.select('#infoPanel').classed('showMobileInfoPanel', true)){
+  if(window.innerWidth <= 800){
+    console.log('mobile info panel')
     clearPanel()
     d3.select('#infoPanel').classed('showMobileInfoPanel', false)
     d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
@@ -1228,7 +1229,7 @@ function closeHelp(){
 
 function openHelp(){
   d3.select('#greyMask').style('display', 'block')
-  d3.select('#howTo').style('display', 'block')
+  d3.select('#howTo').style('display', 'flex')
 }
 
 function openBreedSelector(){

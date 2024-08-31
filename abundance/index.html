@@ -25,28 +25,76 @@
         <!-- Popup how to on load -->
         <div id="howTo">
             <button id="exitButton" class="w3-button" onclick="closeHelp()">Close</button>
-            <p class="howToTitle">it's apple time!</p>
-            <div id="text1">
-                <p class="howToText">hover over an orchard to display it's information in the panel!</p>
-                <br>
-                <p class="howToText">click an orchard hold the panel in place with that orchard's info.</p>
+            <div id="title">
+                <p class="howToTitle">It's apple time!</p>
             </div>
-            <div id="text2">
-                <p class="howToText">click the downward arrows to open the orchard directory.</p>
-                <br><br>
-                <p class="howToText">click the question mark to reopen this help window.</p>
+            <div id="contentContainer">
+                <div id="leftContent" class="howToSection">
+                    <div id="oregonDesc" class="descContainer">
+                        <img id="oregonButton" class="howToButtonImage" src="img/howToOregon.png" alt="Oregon button">
+                        <div class="howToText">Display orchards in Oregon.</div>
+                    </div>
+                    <div id="washDesc" class="descContainer">
+                        <img id="washButton" class="howToButtonImage" src="img/howToWashington.png" alt="Washington button">
+                        <div class="howToText">Display orchards in Washington.</div>
+                    </div>
+                    <div id="appleTimeDesc" class="descContainer">
+                        <img id="appleTimeButton" class="howToButtonImage" src="img/howToAppleTime.png" alt="Breed filter button">
+                        <div class="howToText">Filter apples by breed.</div>
+                    </div>
+                    <div id="menuDesc" class="descContainer">
+                        <img id="menuButton" class="howToButtonImage" src="img/howToMenu.png" alt="Open orchard directory">
+                        <div class="howToText">Open orchard directory.</div>
+                    </div>
+                    <div id="homeDesc" class="descContainer">
+                        <div class="imageContainer">
+                            <img id="homeHowTo" class="howToButtonImage" src="img/home2.png" alt="Return to starting view">
+                        </div>
+                        <div class="howToText">Fly to starting view and enable interactive features.</div>
+                    </div>
+                    <div id="resetDesc" class="descContainer">
+                        <div class="imageContainer">
+                            <img id="resetHowTo" class="howToButtonImage" src="img/howToReset.png" alt="Reset filters">
+                        </div>
+                        <div class="howToText">Clear all filters.</div>
+                    </div>
+                    <div id="returnHowTo" class="descContainer">
+                        <img id="helpHowTo" class="howToButtonImage" src="img/openHowTo.png" alt="Reset filters">
+                        <div class="howToText">Reopen this help panel.</div>
+                    </div>
+                </div>
+                <div id="rightContent" class="howToSection">
+                    <div id="activeContent" class="imageInfo">
+                        <div class="howToText rightContent">On load, interactive features are enabled</div>
+                        <img src="img/activeInteraction.png" alt="Active breed tab" class="rightContent" style="width: 95%;">
+                    </div>
+                    <div id="inactiveContent">
+                        <div class="howToText rightContent" rightContent>On change of zoom level, interactive features are disabled</div>
+                        <img src="img/inactiveInteraction.png" alt="Active breed tab" class="rightContent" style="width: 95%;">
+                    </div>
+                    <div id="pointHover">
+                        <div class="howToText rightContent">Hovering  or clicking a point will highlight it and display that orchard's information in the panel. Click on the breeds list to see all of that orchard's breeds!</div>
+                        <img src="img/pointHighlight.png" alt="Active breed tab" class="rightContent" style="width: 95%;">
+                    </div>
+                    <div id="dataSources">
+                        <div id="dataTitle" class="howToText rightContent">
+                            Data Sources:
+                        </div>
+                        <div id="source" class="howToText rightContent">
+                            <a href="https://www.allthefarms.com/" target="_blank">Allthefarms</a>
+                        </div>
+                        <div class="howToText rightContent">
+                            <a href="https://www.orangepippin.com/orchards/united-states/oregon" target="_blank">Orange Pippin</a>
+                        </div>
+                        <div class="howToText rightContent">
+                            <a href="https://waapple.org/regions/" target="_blank">Washington Apple</a>
+                        </div>
+                    </div>
             </div>
-            <div id="img1">
-                <img class="tutorialImage" src="img/img1.png" title="Hover or click point to highlight it!">
-            </div>
-            <div id="img2">
-                <img class="tutorialImage" src="img/img2.png" title="Orchard list!">
-            </div>
-            <div id="img3">
-                <img class="tutorialImage" src="img/img3.png" title="Abundant directory">
-            </div>
-            <!-- <p class="howToText">Each circle point on this map is the location of an apple orchard. Hover over the points to display the orchard's information in the top right info panel. </p>
-            <p class="howToText">Clicking on a point will hold it's information in the panel. To clear the panel, hit the exit button or click on the map.</p> -->
+        </div>
+            
+
+
         </div>
 
         <div id="breedListContainer">
@@ -74,21 +122,20 @@
                 </div>
             </div>
         </div>
-
+<!-- 
         <div id="exportDataContainer" class="flexContainer">
             <div id="dataViewer" class="largePopup" style="display: none;">
                 <div id="closeContainer">
                     <button id="closeData" class="w3-button closeButton" onclick="closeHelp()">Close</button>
                 </div>
-                <!-- <div id="commandsContainer">
+                <div id="commandsContainer">
                     <button id="clearBreed" class="w3-button" onclick="clearBreeds()">Clear</button>
                     <button id="applyBreed" class="w3-button" onclick="applyBreeds()">Apply</button>
-                </div> -->
+                </div>
                 <div id="dataContent">
-                    <!-- filling in new divs here -->
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <button id="closeMobileOrchards" class="w3-button" style="display: none;" onclick="closeHelp()">Close</button>
         <div id="mobileOrchardGrouped" style="display: none;"></div>
@@ -118,7 +165,9 @@
                     <img id="washDark" style="display: none;" src="img/washDark.png">
                     <img id="washImage" src="img/washOutline.png">
                 </div>
-                <div id="breedFilter" class="intButton" onclick="openBreedSelector()">Apple Time!</div>
+                <div id="breedFilter" class="intButton" onclick="openBreedSelector()">
+                    <img id="breedImage" src="img/appleTime.png">
+                </div>
                 <div id="exportDataButton" class="intButton" style="display: none;" onclick="exportData()">
                     <img id="exportImage" src="img/download.png">
                 </div>
