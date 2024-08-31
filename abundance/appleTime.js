@@ -940,7 +940,7 @@ function expandMobileOrchard(){
   d3.select('#oregonButton').style('display', 'block')
   d3.select('#washingtonButton').style('display', 'block')
   d3.select('#breedFilter').style('display', 'block')
-  d3.select('filterTab').classed('mobileFilterTab', true)
+  d3.select('#filterTab').classed('mobileFilterTab', true)
   d3.select('#filterTab').classed('mobileFilterTabCollapsed', false)
   d3.select('#orchardContainer').classed('mobileOrchard', true)
   d3.select('#orchardContainer').classed('collapsedOrchardContainer', false)
