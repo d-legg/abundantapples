@@ -567,7 +567,7 @@ var baseCenter = [-120.324262, 45.468905]
 var currentID = 0
 var currentDiv 
 var pointID
-const expandButton = document.getElementById('expandButton')
+// const expandButton = document.getElementById('expandButton')
 const orchardContainer = document.getElementById('orchardContainer')
 
 var breedList = []
@@ -620,7 +620,12 @@ map.on('click', 'landcover', () => {
     noHover(currentID)
     clearOrchardContainer()
     d3.selectAll('.selectedOrchard').classed('selectedOrchard', false)
-
+    if (window.innerWidth <= 800){
+      d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
+      d3.select('#infoPanel').classed('showMobileInfoPanel', false)
+      d3.select('#closeMobileOrchards').style('display', 'none')
+      d3.select('#greyMask').style('display', 'none')
+    }
   }
 })
 map.on('click', 'water', () => {
@@ -629,6 +634,12 @@ map.on('click', 'water', () => {
     noHover(currentID)
     clearOrchardContainer()
     d3.selectAll('.selectedOrchard').classed('selectedOrchard', false)
+    if (window.innerWidth <= 800){
+      d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
+      d3.select('#infoPanel').classed('showMobileInfoPanel', false)
+      d3.select('#closeMobileOrchards').style('display', 'none')
+      d3.select('#greyMask').style('display', 'none')
+    }
 
   }
 })
@@ -657,10 +668,17 @@ for (var orchardIDX in orchardsData.features){
 }
 // –––––––––––––––––––––––––––––––––––––––– END –––––––––––––––––––––––––––––––––––––––– 
 
-
+// mobile version
 if (window.innerWidth <= 800){
   d3.select('#orchardContainer').classed('mobileOrchard', true)
   d3.select('#filterTab').classed('mobileFilterTab', true)
+  d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
+  d3.select('#listContent').classed('hideMobileListContent', true)
+}
+
+// medium containers
+if(window.innerWidth <= 1000 && window.innerWidth > 800){
+  d3.select('#infoPanel').classed('mediumInfoPanel', true)
 }
 
 
@@ -683,8 +701,8 @@ map.on('load', () => {
     'paint': {
         'circle-radius': [
           'interpolate', ['linear'], ['zoom'],
-          5.5, 4, 
-          10, 10
+          5, 5, 
+          9, 12
         ],
         'circle-stroke-width': 2,
         'circle-color': '#5d3da8',
@@ -742,11 +760,6 @@ map.on('load', () => {
       </label>
     `
 
-  //   divContent.innerHTML = `
-  //   <input type="checkbox">
-  //   <span class=checkBox></span>
-  //   <p class=breedName>${breed}</p>
-  // `
     document.getElementById('breedContent').appendChild(divContent)
 
   }
@@ -782,6 +795,12 @@ map.on('click', appleLayerName, (e) => {
   setInfoPanel(e)
   currentID=id
   yesHover(currentID)
+  if(window.innerWidth <= 800){
+    d3.select('#infoPanel').classed('hiddenMobileInfoPanel', false)
+    d3.select('#infoPanel').classed('showMobileInfoPanel', true)
+    d3.select('#closeMobileOrchards').style('display', 'block')
+    d3.select('#greyMask').style('display', 'block')
+  }
 })
 // –––––––––––––––––––––––––––––––––––––––– END ––––––––––––––––––––––––––––––––––––––––
 
@@ -928,33 +947,28 @@ function expandMobileOrchard(){
 
 // expands div
 function changeOrchardContainerSize(){
+  // mobile handler
   if(window.innerWidth <= 800){
     console.log('mobile time!')
     d3.select('#mobileOrchardGrouped').style('display', 'block')
+    d3.select('#mobileOrchardGrouped').style('z-index', '10')
+
     d3.select('#greyMask').style('display', 'block')
     d3.select('#closeMobileOrchards').style('display', 'block')
-  } else  {
-    // this expands the div
-    if(expandButton.classList.contains('fa-angle-double-down')){
-      // console.log('oh yeah')
-      expandButton.classList.remove('fa-angle-double-down')
-      expandButton.classList.add('fa-angle-double-up')
-
-      if(window.innerHeight <= 600 ){
-        console.log('low height')
-        orchardContainer.style.height = '50%'
-      }
-      else{
-        orchardContainer.style.height = '75%'
-      }
-    }
-
-    // this will shrink the div
-    else if(expandButton.classList.contains('fa-angle-double-up')){
-      expandButton.classList.remove('fa-angle-double-up')
-      expandButton.classList.add('fa-angle-double-down')
-      orchardContainer.style.height = '4em'
-
+  } else  { // desktop handler
+    console.log('desktop handler height', orchardContainer.style.height)
+      // this expands the div
+      if(window.getComputedStyle(orchardContainer).height === '64px'){
+        console.log('expand container desktop')
+        if(window.innerHeight <= 600 ){
+          orchardContainer.style.height = '50%'
+        }
+        else{
+          orchardContainer.style.height = '75%'
+        }
+      } else if (orchardContainer.style.height === '75%'){ // shrink the div
+        console.log('shrink container desktop')
+        orchardContainer.style.height = '4em'
     }
   }
 }
@@ -1151,6 +1165,31 @@ function clearBorders(){
   ));
 }
 
+function closeBreedList(){
+  d3.select('#listContent').style('display', 'none')
+  if(!window.innerWidth <= 800){
+    d3.select('#greyMask').style('display', 'none')
+  }
+}
+
+function showBreedList(){
+  // d3.select('#breedList').html('')
+  if(window.innerWidth <= 800){
+    d3.select('#listContent').classed('hideMobileListContent', false)
+    d3.select('#listContent').classed('mobileListContent', true)
+    d3.select('#infoPanel').style('z-index', '9')
+    d3.select('#closeMobileOrchards').style('z-index', '9')
+    d3.select('#mobileOrchardGrouped').style('z-index', '9')
+
+  }
+  // document.getElementById('breedList').innerHTML = ""
+  d3.select('#greyMask').style('display', 'block')
+  d3.select('#listContent').style('display', 'block')
+  // console.log('currentBreeds at showBreedList()', currentBreeds)
+  d3.select('#breedList').html(currentBreeds)
+
+}
+
 function closeHelp(){
   console.log('closeHelp()')
   d3.select('#greyMask').style('display', 'none')
@@ -1160,6 +1199,15 @@ function closeHelp(){
   //   // console.log('here', matchFilter)
   //   // console.log('also', filterBreeds)
   // }
+  if(d3.select('#infoPanel').classed('showMobileInfoPanel', true)){
+    clearPanel()
+    d3.select('#infoPanel').classed('showMobileInfoPanel', false)
+    d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
+    d3.select('#infoPanel').style('z-index', '10')
+    d3.select('#closeMobileOrchards').style('z-index', '10')
+  
+  }
+
   if(!d3.select('#breedSelector').style('display', 'none')){
     d3.select('#breedSelector').style('display', 'none')
   }
@@ -1225,15 +1273,6 @@ function clearBreeds(){
   filterBreeds = []
 }
 
-function showBreedList(){
-  // d3.select('#breedList').html('')
-  // document.getElementById('breedList').innerHTML = ""
-  d3.select('#greyMask').style('display', 'block')
-  d3.select('#listContent').style('display', 'block')
-  console.log('currentBreeds at showBreedList()', currentBreeds)
-  d3.select('#breedList').html(currentBreeds)
-}
-
 // var oldCenter
 // var oldZoom
 
@@ -1247,10 +1286,10 @@ function updateOrchards(load=0){
   // oldZoom = map.getZoom()
   // console.log(oldCenter, oldZoom)
 
-  map.flyTo({
-    center: baseCenter, 
-    zoom: baseZoom
-  })
+  // map.flyTo({
+  //   center: baseCenter, 
+  //   zoom: baseZoom
+  // })
 
   // to go off on load immediately
   if(load==1){
@@ -1315,7 +1354,7 @@ function updateOrchards(load=0){
         document.getElementById('orchardGrouped').appendChild(div)      
     }
     let $el = $('#orchardGrouped').children().clone()
-    console.log('YEAHHHHHHH', $el)
+    // console.log('YEAHHHHHHH', $el)
     $('#mobileOrchardGrouped').append($el)
   
   } else {
@@ -1467,17 +1506,22 @@ map.on('zoomend', function() {
   console.log('Current zoom level:', currentZoom);
 
   if((currentZoom > baseZoom) && (currentCenter !== baseCenter)){
+    // mobile disable menus
     if(window.innerWidth <= 800){
       collapseMobileOrchard()
-    } else{
+      // document.getElementById("homeButton").src="img/homeDark.png";
+    } else{ // desktop disable menues
       disableInteraction()
     }
+    document.getElementById("homeButton").src="img/home2.png";
   } else{
+      // mobile enable menus
       if(window.innerWidth <=800){
         expandMobileOrchard()
-      } else {
+      } else { // desktop enable menus
         enableInteraction()
       }
+      document.getElementById("homeButton").src="img/homeDark.png";
   }
 });
 

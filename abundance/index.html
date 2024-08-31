@@ -52,7 +52,7 @@
         <div id="breedListContainer">
             <div id="listContent" style="display: none;">
                 <div id="breedList"> </div>
-                <button id="closeList" class="w3-button" onclick="closeHelp()">Close</button>
+                <button id="closeList" class="w3-button" onclick="closeBreedList()">Close</button>
             </div>
         </div>
 
@@ -106,7 +106,7 @@
 
         <img id="openTutorial" src="img/openHowTo.png" title="open help panel" onclick="openHelp()">
 
-        <img id="homeButton" src="img/home2.png" title="Return to home view" onclick="returnHome()">
+        <img id="homeButton" src="img/homeDark.png" title="Return to home view" onclick="returnHome()">
 
         <div id="orchardContainer">
             <div id="filterTab">
@@ -124,7 +124,8 @@
                 </div>
 
                 <div id='expandSeperator'></div>
-                <i id="expandButton" onclick="changeOrchardContainerSize()" class='fas fa-angle-double-down' style='font-size:36px'></i>
+                <!-- <i id="expandButton" onclick="changeOrchardContainerSize()" class='fas fa-angle-double-down' style='font-size:36px'></i> -->
+                <img id="openMenu" src="img/openOrchards.png" alt="Open orchard list!" onclick="changeOrchardContainerSize()">
             </div>
             <!-- putting new divs in here -->
             <div id="orchardGrouped" class="orchardGrouped"></div>
