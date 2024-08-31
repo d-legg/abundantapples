@@ -75,12 +75,52 @@ html, head, body{
         margin: 128px 0px 0px 428px !important;
     }
 }
+@keyframes fade {
+    to { opacity: 0;}
+}
+
+#mobileOrchardGrouped{
+    display: flex;
+    width: 90%;
+    height: 90%;
+    bottom: auto;
+    margin-top: 2em;
+    margin: auto;
+    z-index: 999;
+    border: 8px solid #321479;
+    background-color: hsl(258, 49%, 68%);
+    position: fixed;
+    inset: 0px;
+    flex-direction: column;
+    overflow: auto;
+}
+
+#closeMobileOrchards{
+    position: fixed;
+    top: 0;
+    margin-right: 1em;
+    margin-top: 1.25em;
+    background-color: #9F87D6;
+    color: ivory;
+    height: 2em;
+    right: 0;
+}
 
 /* MOBILE VERSION */
 @media (max-width: 800px){
     #mapTitle{
-        display: none;
+        position: fixed !important;
+        margin: auto !important;
+        inset: 0px !important;
+        bottom: auto !important;
+        margin-top: 1em !important;
+        height: fit-content !important;
+        width: 90% !important;
+        border: .5em #321479 solid !important; 
+        background-color: #785BBC !important;
+        animation: fade 5s linear;
     }
+
     #infoPanel{
         display: none !important;
     }
@@ -135,7 +175,7 @@ html, head, body{
         top: auto !important;
         left: auto !important;
         margin-right: 5em !important;
-        margin-bottom: 40em !important;
+        margin-bottom: 35em !important;
         background-color: #5D3DA8;
         color: ivory;
         cursor: pointer;
@@ -201,9 +241,6 @@ html, head, body{
 }
 
 
-/* @media only screen and (max-height: 600px){
-    
-} */
 
 .mapboxgl-popup-tip{
     /* background-color: wheat !important; */
@@ -622,7 +659,7 @@ p{
 }
 
 
-#orchardGrouped::-webkit-scrollbar {
+#orchardGrouped, #mobileOrchardGrouped::-webkit-scrollbar {
     width: 12px; /* Width of the scrollbar */
     height: 100%; /* Height of the scrollbar */
     background: #785BBC; /* Color of the track */
@@ -630,14 +667,14 @@ p{
 
 }
 
-#orchardGrouped::-webkit-scrollbar-thumb {
+#orchardGrouped, #mobileOrchardGrouped::-webkit-scrollbar-thumb {
     background-color: #9F87D6; /* Color of the thumb */
     border-radius: 6px; /* Rounded corners */
     border: 3px solid #785BBC; /* Border around the thumb */
     height: 10px;
 }
 
-#orchardGrouped{
+.orchardGrouped{
     overflow-y: scroll; 
     height: 100%;
     width: 100%;

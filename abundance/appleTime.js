@@ -602,13 +602,14 @@ var map = new mapboxgl.Map({
 map.getCanvas().style.cursor = 'auto';
 map.dragRotate.disable()
 map.touchZoomRotate.disableRotation();
-// if (window.innerWidth <= 800){
-//   console.log('MOBILE, bottom left')
 map.addControl(new mapboxgl.NavigationControl({}), 'bottom-left');
-// } else {
-  // console.log('top left')
 map.addControl(new mapboxgl.NavigationControl({}), 'top-left');
-// }
+
+const mapTitle = document.getElementById("mapTitle")
+mapTitle.addEventListener("animationend", function() {
+  mapTitle.style.display = "none";
+});
+
 
 map.on('click', 'landcover', () => {
   if ((panel.classList.contains('clicked')) || (currentDiv!=undefined && (currentDiv.classList.contains('clicked')))) {
@@ -898,6 +899,12 @@ function clearOrchardContainer(){
 
 // expands div
 function changeOrchardContainerSize(){
+  if(window.innerWidth <= 800){
+    console.log('mobile time!')
+    document.getElementById('mobileOrchardGrouped').style.display = 'block'
+    d3.select('#greyMask').style('display', 'block')
+
+  }
 
   // this expands the div
   if(expandButton.classList.contains('fa-angle-double-down')){
@@ -1132,6 +1139,10 @@ function closeHelp(){
     d3.select('#dataViewer').style('display', 'none')
   }
 
+  if(!d3.select('#mobileOrchardGrouped').style('display', 'none')){
+    d3.select('#mobileOrchardGrouped').style('display', 'none')
+  }
+
 
 
 }
@@ -1198,6 +1209,9 @@ var oldZoom
 function updateOrchards(load=0){
   console.log('updateOrchards()')
   document.getElementById('orchardGrouped').innerHTML = null
+  document.getElementById('mobileOrchardGrouped').innerHTML = null
+  document.getElementById('mobileOrchardGrouped').innerHTML += `<button id="closeMobileOrchards" class="w3-button" onclick="closeHelp()">Close</button>
+  `
   oldCenter = map.getCenter()
   oldZoom = map.getZoom()
   console.log(oldCenter, oldZoom)
@@ -1207,6 +1221,7 @@ function updateOrchards(load=0){
     zoom: 5
   })
 
+  // to go off on load immediately
   if(load==1){
     console.log('on load here')
     for(var loadOrchard of orchardsData.features){
@@ -1266,10 +1281,12 @@ function updateOrchards(load=0){
             </p>
         `;
         }
-        document.getElementById('orchardGrouped').appendChild(div)
-      
-      
+        document.getElementById('orchardGrouped').appendChild(div)      
     }
+    let $el = $('#orchardGrouped').children().clone()
+    console.log('YEAHHHHHHH', $el)
+    $('#mobileOrchardGrouped').append($el)
+  
   } else {
     setTimeout(function(){    
       for(orchard of map.queryRenderedFeatures()){
@@ -1337,21 +1354,16 @@ function updateOrchards(load=0){
         
         }
       }
-
-      // fly back to original position?
-      // map.flyTo({
-      //   center:[oldCenter.lng, oldCenter.lat],
-      //   zoom: oldZoom
-      // })
-
-      
+      let $el = $('#orchardGrouped').children().clone()
+      console.log('YEAHHHHHHH', $el)
+      $('#mobileOrchardGrouped').append($el)
     },1000)
   }
 
-  // map.flyTo({
-  //   center:[oldCenter.lng, oldCenter.lat],
-  //   zoom: oldZoom
-  // })
+  // let $el = $('#orchardGrouped').children().clone()
+  // console.log('YEAHHHHHHH', $el)
+  // $('#mobileOrchardGrouped').append($el)
+
   
 }
 
