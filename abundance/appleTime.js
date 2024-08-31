@@ -903,7 +903,7 @@ function changeOrchardContainerSize(){
     console.log('mobile time!')
     document.getElementById('mobileOrchardGrouped').style.display = 'block'
     d3.select('#greyMask').style('display', 'block')
-
+    d3.select('#closeMobileOrchards').style('display', 'block')
   }
 
   // this expands the div
@@ -1139,9 +1139,11 @@ function closeHelp(){
     d3.select('#dataViewer').style('display', 'none')
   }
 
-  if(!d3.select('#mobileOrchardGrouped').style('display', 'none')){
+  // if(!d3.select('#mobileOrchardGrouped').style('display', 'none')){
+  //   console.log('here')
     d3.select('#mobileOrchardGrouped').style('display', 'none')
-  }
+    d3.select('#closeMobileOrchards').style('display', 'none')
+  // }
 
 
 
@@ -1210,8 +1212,8 @@ function updateOrchards(load=0){
   console.log('updateOrchards()')
   document.getElementById('orchardGrouped').innerHTML = null
   document.getElementById('mobileOrchardGrouped').innerHTML = null
-  document.getElementById('mobileOrchardGrouped').innerHTML += `<button id="closeMobileOrchards" class="w3-button" onclick="closeHelp()">Close</button>
-  `
+  // document.getElementById('mobileOrchardGrouped').innerHTML += `<button id="closeMobileOrchards" class="w3-button" onclick="closeHelp()">Close</button>
+  // `
   oldCenter = map.getCenter()
   oldZoom = map.getZoom()
   console.log(oldCenter, oldZoom)
