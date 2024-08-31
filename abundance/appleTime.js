@@ -1514,6 +1514,7 @@ map.on('zoomend', function() {
       disableInteraction()
     }
     document.getElementById("homeButton").src="img/home2.png";
+    d3.select('#resetButton').style('display', 'none')
   } else{
       // mobile enable menus
       if(window.innerWidth <=800){
@@ -1522,6 +1523,8 @@ map.on('zoomend', function() {
         enableInteraction()
       }
       document.getElementById("homeButton").src="img/homeDark.png";
+      d3.select('#resetButton').style('display', 'block')
+
   }
 });
 
@@ -1530,7 +1533,7 @@ function disableInteraction(){
   document.getElementById("oregonButton").onclick = null;
   document.getElementById("washingtonButton").onclick = null;
   document.getElementById("breedFilter").onclick = null;
-  document.getElementById("exportDataButton").onclick = null;
+  // document.getElementById("exportDataButton").onclick = null;
 
   // add mobile logic here with screen width on collapsing container
 }
@@ -1540,7 +1543,7 @@ function enableInteraction(){
   document.getElementById("oregonButton").onclick = oregonFilter;
   document.getElementById("washingtonButton").onclick = washingtonFilter;
   document.getElementById("breedFilter").onclick = openBreedSelector;
-  document.getElementById("exportDataButton").onclick = exportData;
+  // document.getElementById("exportDataButton").onclick = exportData;
 }
 
 function returnHome(){
