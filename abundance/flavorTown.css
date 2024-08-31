@@ -274,7 +274,7 @@ html, head, body{
     }
 
     #breedContent{
-        height: 36.75em !important;
+        height: 90% !important;
         width: 100% !important;
         margin-top: 1.75em !important;
         display: flex !important;
