@@ -300,7 +300,7 @@ html, head, body{
     }
 
     #breedContent{
-        height: 36.75em !important;
+        height: 100% !important;
         width: 100% !important;
         margin-top: 1.75em !important;
         display: flex !important;
@@ -321,6 +321,7 @@ html, head, body{
         height: 80% !important;
         max-height: none !important;
         max-width: none !important;
+        overflow: hidden;
     }
     
 }
@@ -650,6 +651,7 @@ p{
     bottom: 0;
     background-color: #321479;
     position: absolute;
+    z-index: 99;
 }
 
 #openTutorial{
