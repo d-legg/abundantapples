@@ -844,14 +844,29 @@ function setInfoPanel(point, idx=0){
   }
   currentBreeds = htmlBreeds
   // console.log('currentBreeds at setPanel()', currentBreeds)
+//   panel.innerHTML = `
+//   <h1 class=panelName>${orchardName}</h1>
+//   <p class="panelText kanitMedium">
+//   Address: <a class="infoAddress" href=${orchardGMaps} target="_blank">${orchardAddress}</a>
+//   Phone Number: ${phone}<br><br>
+//   </p>
+//   <div class="htmlBreeds kanitMedium" onclick="showBreedList()">
+//   Breeds: ${htmlBreeds}
+//   </div>
+// `;
+
   panel.innerHTML = `
-    <h1 class=panelName>${orchardName}</h1>
-    <p class=panelText>
-    Address: <a class="infoAddress" href=${orchardGMaps} target="_blank">${orchardAddress}</a><br><br>
-    Phone Number: ${phone}<br><br>
-    </p>
-    <div class=htmlBreeds onclick="showBreedList()">
-    Breeds: ${htmlBreeds}
+    <div class="panelContentContainer">
+      <h1 class=panelName>${orchardName}</h1>
+      <p class="panelText kanitMedium">
+        Address: <a class="infoAddress" href=${orchardGMaps} target="_blank">${orchardAddress}</a>
+      </p>
+      <p class="panelText kanitMedium">
+        Phone Number: ${phone}
+      </p>
+      <div class="htmlBreeds kanitMedium" onclick="showBreedList()">
+        Breeds: ${htmlBreeds}
+      </div>
     </div>
   `;
 
@@ -1255,11 +1270,28 @@ function deleteBreed(breedName){
 }
 
 function applyBreeds(){
+  console.log(matchFilter.length)
+  if(matchFilter.length >= 2){
+    console.log('gotta pop one')
+    for(var item of matchFilter){
+      // console.log(item.toString())
+      itemStr = item.toString()
+      if(itemStr.substring(0,3) === 'any'){
+        var idx = matchFilter.indexOf(item)
+        console.log('any idx', idx, 'popping', matchFilter[idx])
+        matchFilter.splice(idx, 1)
+      }
+    }
+  }
 
-  // matchFilter=['any']
+  breedSelection=['any']
   filterBreeds.forEach(breed => {
-    matchFilter.push(['in', breed, ['get', 'Breeds']]);
+    breedSelection.push(['in', breed, ['get', 'Breeds']]);
   });
+
+  console.log(breedSelection)
+  matchFilter.push(breedSelection)
+
   console.log('filter at applyBreeds()', matchFilter)
   map.setFilter(appleLayerName, matchFilter)
   updateOrchards()
@@ -1282,16 +1314,6 @@ function updateOrchards(load=0){
   console.log('updateOrchards()')
   document.getElementById('orchardGrouped').innerHTML = null
   document.getElementById('mobileOrchardGrouped').innerHTML = null
-  // document.getElementById('mobileOrchardGrouped').innerHTML += `<button id="closeMobileOrchards" class="w3-button" onclick="closeHelp()">Close</button>
-  // `
-  // oldCenter = map.getCenter()
-  // oldZoom = map.getZoom()
-  // console.log(oldCenter, oldZoom)
-
-  // map.flyTo({
-  //   center: baseCenter, 
-  //   zoom: baseZoom
-  // })
 
   // to go off on load immediately
   if(load==1){
@@ -1323,25 +1345,25 @@ function updateOrchards(load=0){
         if(oState == 'Washington'){
           div.classList.add('washington')
           div.innerHTML = `
-            <h1 class=containerOrchardName><u>${oName}</u></h1>
-            <p class=containerOrchardText>
-            <span>
-            Address: <a class="infoAddress" href=${oGMaps} target="_blank"> ${oAddress} </a><br>
-            </span>
-            <span>
-            Phone Number: ${oPhone}<br>
-            </span>
-            <span class="containerBreeds" onclick="showBreedList()">
-            Breeds: ${htmlBreeds}<br>
-            </span>
+            <h1 class="containerOrchardName kanitMedium oneLineTruncate"><u>${oName}</u></h1>
+            <p class="containerOrchardText kanitMedium">
+              <span class="oneLineTruncate">
+                Address: <a class="infoAddress" href=${oGMaps} target="_blank"> ${oAddress} </a><br>
+              </span>
+              <span>
+                Phone Number: ${oPhone}<br>
+              </span>
+              <span class="containerBreeds" onclick="showBreedList()">
+                Breeds: ${htmlBreeds}<br>
+              </span>
             </p>
         `;
         } else {
           div.classList.add('oregon')
           div.innerHTML = `
-            <h1 class=containerOrchardName><u>${oName}</u></h1>
-            <p class=containerOrchardText>
-            <span>
+            <h1 class="containerOrchardName kanitMedium oneLineTruncate"><u>${oName}</u></h1>
+            <p class="containerOrchardText kanitMedium">
+            <span class="oneLineTruncate">
             Address: <a class="infoAddress" href=${oGMaps} target="_blank"> ${oAddress} </a><br>
             </span>
             <span>
@@ -1392,9 +1414,9 @@ function updateOrchards(load=0){
           if(oState == 'Washington'){
             div.classList.add('washington')
             div.innerHTML = `
-              <h1 class=containerOrchardName><u>${oName}</u></h1>
-              <p class=containerOrchardText>
-              <span>
+              <h1 class="containerOrchardName kanitMedium oneLineTruncate"><u>${oName}</u></h1>
+              <p class="containerOrchardText kanitMedium">
+              <span class="oneLineTruncate">
               Address: <a class="infoAddress" href=${oGMaps} target="_blank"> ${oAddress} </a><br>
               </span>
               <span>
@@ -1408,9 +1430,9 @@ function updateOrchards(load=0){
           } else {
             div.classList.add('oregon')
             div.innerHTML = `
-              <h1 class=containerOrchardName><u>${oName}</u></h1>
-              <p class=containerOrchardText>
-              <span>
+              <h1 class="containerOrchardName kanitMedium oneLineTruncate"><u>${oName}</u></h1>
+              <p class="containerOrchardText kanitMedium">
+              <span class="oneLineTruncate">
               Address: <a class="infoAddress" href=${oGMaps} target="_blank"> ${oAddress} </a><br>
               </span>
               <span>
@@ -1427,7 +1449,7 @@ function updateOrchards(load=0){
         }
       }
       let $el = $('#orchardGrouped').children().clone()
-      console.log('YEAHHHHHHH', $el)
+      // console.log('YEAHHHHHHH', $el)
       $('#mobileOrchardGrouped').append($el)
     },1000)
   }

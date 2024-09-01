@@ -10,6 +10,10 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,9 +28,9 @@
         
         <!-- Popup how to on load -->
         <div id="howTo">
-            <button id="exitButton" class="w3-button" onclick="closeHelp()">Close</button>
+            <button id="exitButton" class="w3-button kanitMedium" onclick="closeHelp()">Close</button>
             <div id="title">
-                <p class="howToTitle">It's apple time!</p>
+                <p class="howToTitle kanitMedium">It's apple time!</p>
             </div>
             <div id="contentContainer">
                 <div id="leftContent" class="howToSection">
@@ -107,15 +111,15 @@
         <div id="breedSelectContainer" class="flexContainer">
             <div id="breedSelector" class="largePopup" style="display: none;">
                 <div id="closeContainer">
-                    <button id="closeBreed" class="w3-button closeButton" onclick="closeHelp()">Close</button>
-                    <div id="counterContainer">
+                    <button id="closeBreed" class="w3-button closeButton kanitMedium" onclick="closeHelp()">Close</button>
+                    <div id="counterContainer" class="kanitMedium">
                         <div id="count">0</div>
                         <div id="countText">breed(s) selected!</div>
                     </div>
                 </div>
                 <div id="commandsContainer">
-                    <button id="clearBreed" class="w3-button" onclick="clearBreeds()">Clear</button>
-                    <button id="applyBreed" class="w3-button" onclick="applyBreeds()">Apply</button>
+                    <button id="clearBreed" class="w3-button kanitMedium" onclick="clearBreeds()">Clear</button>
+                    <button id="applyBreed" class="w3-button kanitMedium" onclick="applyBreeds()">Apply</button>
                 </div>
                 <div id="breedContent">
                     <!-- filling in new divs here -->
@@ -146,7 +150,7 @@
         </div>
 
         <div id="mapTitle">
-            <p class="mainTitle">Abundant Apples</p>
+            <p class="mainTitle .kanit-medium ">Abundant Apples</p>
         </div>
 
         <input id="resetButton" type="reset" value="Reset" onclick="resetButton()">
