@@ -1195,7 +1195,7 @@ function showBreedList(){
     d3.select('#listContent').classed('mobileListContent', true)
     d3.select('#infoPanel').style('z-index', '9')
     d3.select('#closeMobileOrchards').style('z-index', '9')
-    d3.select('#mobileOrchardGrouped').style('z-index', '9')
+    d3.select('#mobileOrchardGrouped').style('z-index', '8')
 
   }
   // document.getElementById('breedList').innerHTML = ""
@@ -1215,13 +1215,22 @@ function closeHelp(){
   //   // console.log('here', matchFilter)
   //   // console.log('also', filterBreeds)
   // }
+  let titleFade = false
   if(window.innerWidth <= 800){
+    if(titleFade === false){
+      titleFade = true
+      setTimeout(function(){
+        d3.select('#mapTitle').classed('fadeTitle', true)
+      }, 500)
+    }
+  
+    d3.select("#mapTitle").classed('fadeTitle', true)
     console.log('mobile info panel')
     clearPanel()
     d3.select('#infoPanel').classed('showMobileInfoPanel', false)
     d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
     d3.select('#infoPanel').style('z-index', '10')
-    d3.select('#closeMobileOrchards').style('z-index', '10')
+    d3.select('#closeMobileOrchards').style('z-index', '11')
   
   }
 
