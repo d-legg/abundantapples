@@ -1169,9 +1169,6 @@ p{
     overflow: hidden;
     white-space: nowrap;
 }
-#closeList{
-    position: absolute;
-}
 
 #breedListContainer{
     display: flex;
@@ -1205,4 +1202,5 @@ p{
     top: 0;
     right: 0;
     position: absolute;
+    font-size: 1.25em;
 }

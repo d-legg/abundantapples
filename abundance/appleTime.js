@@ -343,7 +343,6 @@ orchardsData = {
  {
    "type": "Feature",
    "id":17,
-
    "geometry": {
       "type": "Point",
       "coordinates":  [ -122.9421051,44.62929024 ]
@@ -363,7 +362,6 @@ orchardsData = {
  {
    "type": "Feature",
    "id":18,
-
    "geometry": {
       "type": "Point",
       "coordinates":  [ -121.5695688,45.55002796 ]
@@ -539,7 +537,405 @@ orchardsData = {
    "PhoneNumber":"(503) 982 9307",
    "Website":""
    }
- }
+ },
+ {
+  "type": "Feature",
+  "id":27,
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.5800683,45.65789561 ]
+  },
+  "properties": {
+  "id":27,
+  "orchardName":"A & J Orchards",
+  "City":"Hood River",
+  "State":"Oregon",
+  "Breeds":[],
+  "Address":"4600 Kenwood Drive, Hood River, OR, 97031",
+  "GMapsLink":"https://www.google.com/maps/place/4600+Kenwood+Dr,+Hood+River,+OR+97031/@45.6578234,-121.5826828,678m/data=!3m2!1e3!4b1!4m6!3m5!1s0x549608e0a394a12f:0xf0523353ce6a523!8m2!3d45.6578197!4d-121.5801079!16s%2Fg%2F11rhqtd2tt!5m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(541) 386 1974",
+  "Website":"",
+  "Email":""
+  }
+},
+{
+  "type": "Feature",
+  "id":28,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.5732769,45.64679147 ]
+  },
+  "properties": {
+  "id":28,
+  "orchardName":"Poole Family Farms",
+  "City":"Hood River",
+  "State":"Oregon",
+  "Breeds":['Gravenstein', 'Gala', 'Elstar', 'Honeycrisp', 'Ruby John', 'Jonagold', 'Valstar', 'Melrose', 'Ambrosia', 'Cameo', 'Golden Delicious', 'Red Delicious', 'Fuji', 'Newtown', 'Adams', 'Braeburn', 'Mutsu', 'Macintosh', 'Hanner', 'Empire'],
+  "Address":"2669 Wheeler Rd, Hood River, OR, 97031",
+  "GMapsLink":"https://www.google.com/maps/place/Poole+Family+Farms/@45.6462646,-121.5767597,925m/data=!3m1!1e3!4m6!3m5!1s0x54960900385804ff:0x58b875628776bb16!8m2!3d45.646671!4d-121.5743001!16s%2Fg%2F11w4tkykqd!5m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(541) 735 4512",
+  "Website":"https://poolefamily.farm/",
+  "Email":"poolefruit@gmail.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":29,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.544161,45.66281254 ]
+  },
+  "properties": {
+  "id":29,
+  "orchardName":"McCurdy Farms",
+  "City":"Hood River",
+  "State":"Oregon",
+  "Breeds":['Gravenstein'],
+  "Address":"2080 Tucker Rd, Hood River, OR, 97031",
+  "GMapsLink":"https://www.google.com/maps/place/McCurdy+Farms/@45.6622707,-121.547875,16.16z/data=!4m15!1m8!3m7!1s0x54960f2d81b6a94d:0xabc5311c371f8034!2s2080+Tucker+Rd,+Hood+River,+OR+97031!3b1!8m2!3d45.661948!4d-121.5458309!16s%2Fg%2F11fjtbxj77!3m5!1s0x54960f2d067bffb7:0xdfeb63a2724cd356!8m2!3d45.6625934!4d-121.5449062!16s%2Fg%2F1hc72nl6h!5m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(541) 386 1628",
+  "Website":"",
+  "Email":"mcfarms@gorge.net"
+  }
+},
+{
+  "type": "Feature",
+  "id":30,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.5080617,45.65861032 ]
+  },
+  "properties": {
+  "id":30,
+  "orchardName":"The Gorge White House",
+  "City":"Hood River",
+  "State":"Oregon",
+  "Breeds":['Honeycrisp', 'Gala', 'Golden', 'Granny Smith'],
+  "Address":"2265 Highway 35, Hood River, OR, 97031",
+  "GMapsLink":"https://www.google.com/maps/place/The+Gorge+White+House/@45.6587351,-121.5226964,14.75z/data=!4m6!3m5!1s0x54960f404fbef857:0xd6197f840321ad2b!8m2!3d45.6578627!4d-121.5131224!16s%2Fg%2F1tgxhsfk!5m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(541) 386 2828",
+  "Website":"https://www.thegorgewhitehouse.com/",
+  "Email":"info@thegorgewhitehouse.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":31,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.5130236,45.66829883 ]
+  },
+  "properties": {
+  "id":31,
+  "orchardName":"Pearl's Place",
+  "City":"Hood River",
+  "State":"Oregon",
+  "Breeds":['Fuji', 'Gala', 'Golden Delicious', 'Granny Smith', 'Gravenstein', 'Honeycrisp', 'Jonagold', 'Newtown Pippin', 'Red Delicious', 'Sonata'],
+  "Address":"1860 Highway 35, Hood River, OR, 97031",
+  "GMapsLink":"https://www.google.com/maps/place/Pearls+Place/@45.6696594,-121.5210253,15z/data=!4m15!1m8!3m7!1s0x54960f16e100960b:0xdde2b9b854179452!2s1860+OR-35,+Hood+River,+OR+97031!3b1!8m2!3d45.668734!4d-121.5150884!16s%2Fg%2F11hczwgrwj!3m5!1s0x54960f1748826beb:0xc82c2057e3a2ae3a!8m2!3d45.6679028!4d-121.5150706!16s%2Fg%2F1w455b5p!5m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(541) 386 3888",
+  "Website":"https://pearlsplacefruit.com/",
+  "Email":"devon.wells@viewmontfruit.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":32,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.6060892,45.66265097 ]
+  },
+  "properties": {
+  "id":32,
+  "orchardName":"Sakura Ridge",
+  "City":"Hood River",
+  "State":"Oregon",
+  "Breeds":[],
+  "Address":"5601 York Hill Drive, Hood River, OR, 97031",
+  "GMapsLink":"https://www.google.com/maps/place/Sakura+Ridge+Farm+and+Lodge/@45.6631342,-121.6113671,15.6z/data=!4m9!3m8!1s0x54960905a5ecdd39:0x5e03c7d071b8258c!5m2!4m1!1i2!8m2!3d45.662109!4d-121.6077279!16s%2Fg%2F1tcwl8kd!5m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(541) 386 2636",
+  "Website":"https://www.sakuraridge.com/",
+  "Email":"info@sakuraridge.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":33,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.572331,45.67782211 ]
+  },
+  "properties": {
+  "id":33,
+  "orchardName":"Hilda's Organic U-Pick",
+  "City":"Hood River",
+  "State":"Oregon",
+  "Breeds":['Honeycrisp', 'Heirloom', 'Red Crimson'],
+  "Address":"1519 Country Club Rd, Hood River, OR, 97031",
+  "GMapsLink":"https://www.hildasorganicupick.com/",
+  "PhoneNumber":"(541) 490 8212",
+  "Website":"https://www.hildasorganicupick.com/",
+  "Email":"hildasorganicupick@yahoo.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":34,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.0291124,44.07375747 ]
+  },
+  "properties": {
+  "id":34,
+  "orchardName":"Windflower Farm",
+  "City":"Bend",
+  "State":"Oregon",
+  "Breeds":[],
+  "Address":"26285 Walker Road, Bend, OR, 97701",
+  "GMapsLink":"https://www.google.com/maps/place/Windflower+Farm+LLC/@44.0736688,-121.0323418,17z/data=!3m1!4b1!4m6!3m5!1s0x54b8dbefdc231795:0x7dced950c59be939!8m2!3d44.073665!4d-121.0297669!16s%2Fg%2F11bbrlnr4m!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(541) 678 3166",
+  "Website":"https://windflowerfarmbend.com/",
+  "Email":"gigi@windflowerfarmbend.com/"
+  }
+},
+{
+  "type": "Feature",
+  "id":35,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.2612405,45.56598259 ]
+  },
+  "properties": {
+  "id":35,
+  "orchardName":"Sandoz Farm",
+  "City":"The Dalles",
+  "State":"Oregon",
+  "Breeds":[],
+  "Address":"5755 Mill Creek Road, The Dalles, OR, 97058",
+  "GMapsLink":"https://www.google.com/maps/place/Sandoz+Farm/@45.5645957,-121.2701638,15.32z/data=!4m6!3m5!1s0x54961d4402c424bd:0xf9ed921171aeb972!8m2!3d45.5654489!4d-121.2631976!16s%2Fg%2F1hc11mj7q!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(541) 296 3859",
+  "Website":"https://sandozfarm.com/",
+  "Email":"sandozfarmstand@gmail.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":36,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.625995,45.5906862 ]
+  },
+  "properties": {
+  "id":36,
+  "orchardName":"Hood River Organic",
+  "City":"Hood River",
+  "State":"Oregon",
+  "Breeds":[],
+  "Address":"4780 Dee Hwy, Hood River, OR, 97031",
+  "GMapsLink":"https://www.google.com/maps/place/Hood+River+Organic/@45.5901629,-121.6318797,15.81z/data=!4m6!3m5!1s0x5495fd4472613ed3:0xda90699b50696e2b!8m2!3d45.590432!4d-121.627627!16s%2Fg%2F1th5c8v7!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(541) 354 2111",
+  "Website":"https://www.hoodriverorganic.com/",
+  "Email":"csa@hoodriverorganic.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":37,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -121.597967,45.55649867 ]
+  },
+  "properties": {
+  "id":37,
+  "orchardName":"McCarthy Family Farm",
+  "City":"Mt Hood",
+  "State":"Oregon",
+  "Breeds":['Honeycrisp'],
+  "Address":"8405 Clear Creek Road, Parkdale, OR, 97041",
+  "GMapsLink":"https://www.google.com/maps/place/McCarthy+Family+Farm/@45.5560917,-121.6025963,15.89z/data=!4m6!3m5!1s0x5495ff21478fbe73:0x4522829992968072!8m2!3d45.5563547!4d-121.5989229!16s%2Fg%2F1tdgjzrv!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(541) 352 6476",
+  "Website":"https://mccarthyfamilyfarm.com/",
+  "Email":"info@mccarthyfamilyfarm.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":38,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -123.1988914,45.68841224 ]
+  },
+  "properties": {
+  "id":38,
+  "orchardName":"Dairy Creek Farm",
+  "City":"Buxton",
+  "State":"Oregon",
+  "Breeds":['Granny Smith', 'Jonathan'],
+  "Address":"23295 NW Hwy 47, Buxton, OR, 97109",
+  "GMapsLink":"https://www.google.com/maps/place/Dairy+Creek+Farm+and+Produce/@45.6883847,-123.2004223,17.82z/data=!4m6!3m5!1s0x5494e35a5a153f8b:0xf6624ec3a5bd9f31!8m2!3d45.6883376!4d-123.1990809!16s%2Fg%2F1hc147fmm!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(503) 324 7819",
+  "Website":"https://www.dairycreekfarm.com/",
+  "Email":"DD@DairyCreekFarm.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":39,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -123.0130564,45.54392988 ]
+  },
+  "properties": {
+  "id":39,
+  "orchardName":"Sparrowhawk Farm",
+  "City":"Hillsboro",
+  "State":"Oregon",
+  "Breeds":[],
+  "Address":"32720 NW Hornecker Rd, Hillsboro, OR, 97124",
+  "GMapsLink":"https://www.google.com/maps/place/Sparrowhawk+Farm+Stand/@45.5434504,-123.0162464,16.51z/data=!4m6!3m5!1s0x54951bf9373ccb27:0x33a672632c922fd!8m2!3d45.5436769!4d-123.013765!16s%2Fg%2F11h6yf2q_p!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(503) 515 9585",
+  "Website":"https://www.sparrowhawkfarm.com/",
+  "Email":"sparrowhawkfarm18@gmail.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":40,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -123.1523858,45.38379226 ]
+  },
+  "properties": {
+  "id":40,
+  "orchardName":"Kristof Farms",
+  "City":"Yamhill",
+  "State":"Oregon",
+  "Breeds":[],
+  "Address":"23050 NW Roosevelt Dr, Yamhill, OR 97148",
+  "GMapsLink":"https://www.google.com/maps/place/Kristof+Farms/@45.3834442,-123.1562701,15.68z/data=!4m6!3m5!1s0x54953dac4f376e47:0xd1c288936b159b97!8m2!3d45.3833849!4d-123.153384!16s%2Fg%2F11vyj3_jyh!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"",
+  "Website":"https://www.kristoffarms.com/eventsplus",
+  "Email":"info@kristoffarms.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":41,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -122.5816565,45.42157649 ]
+  },
+  "properties": {
+  "id":41,
+  "orchardName":"Justy's Produce and Flowers",
+  "City":"Milwaukie",
+  "State":"Oregon",
+  "Breeds":['Gravenstein', 'Jona Gold', 'Braeburn', 'Rome', 'Pink Lady', 'Gala'],
+  "Address":"7924 SE Lake Rd, Milwaukie, OR",
+  "GMapsLink":"https://www.google.com/maps/place/Justy's+Produce+%26+Flowers/@45.4219469,-122.5823443,16.86z/data=!4m6!3m5!1s0x549575bcb4d4c90f:0xb7ed00ee02c661d2!8m2!3d45.4213528!4d-122.5819826!16s%2Fg%2F1wzt229c!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(503) 659 4169",
+  "Website":"https://www.justysproduce.com/index.html",
+  "Email":"justysproduce@comcast.net"
+  }
+},
+{
+  "type": "Feature",
+  "id":42,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -122.690499,45.37165281 ]
+  },
+  "properties": {
+  "id":42,
+  "orchardName":"Fiala Farms",
+  "City":"West Linn",
+  "State":"Oregon",
+  "Breeds":['Honeycrisp'],
+  "Address":"21231 SW Johnson Rd, West Linn, OR, 97068",
+  "GMapsLink":"https://www.google.com/maps/place/Fiala+Farms/@45.3715058,-122.6915933,17z/data=!4m15!1m8!3m7!1s0x549573cb7d954a73:0x6d61fe6607915635!2s21231+SW+Johnson+Rd,+West+Linn,+OR+97068!3b1!8m2!3d45.3715021!4d-122.6890184!16s%2Fg%2F11jk33dgs2!3m5!1s0x549573cb5ccca36b:0x969e8b982926967c!8m2!3d45.3714738!4d-122.6909132!16s%2Fg%2F11cmq_c4rk!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(971) 777 3727",
+  "Website":"https://www.fialafarms.com/",
+  "Email":"fialafarms@gmail.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":43,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -122.8132909,45.33734171 ]
+  },
+  "properties": {
+  "id":43,
+  "orchardName":"Our Table Cooperative",
+  "City":"Sherwood",
+  "State":"Oregon",
+  "Breeds":[],
+  "Address":"13390 SW Morgan Road, Sherwood, OR, 97140",
+  "GMapsLink":"https://www.google.com/maps/place/Our+Table+Cooperative/@45.3374653,-122.8167305,16.72z/data=!4m6!3m5!1s0x54956c38760450a9:0xf4e2d6c4c8201f6d!8m2!3d45.3371753!4d-122.8145616!16s%2Fg%2F12hlgn1n0!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(503) 217 4304",
+  "Website":"https://www.ourtable.us/",
+  "Email":"sales@ourtable.us"
+  }
+},
+{
+  "type": "Feature",
+  "id":44,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -122.6934742,45.17603912 ]
+  },
+  "properties": {
+  "id":44,
+  "orchardName":"Morning Shade Farm",
+  "City":"Canby",
+  "State":"Oregon",
+  "Breeds":['Gold Rush', 'Heralred', 'Wynootchie', 'Gravenstein'],
+  "Address":"8345 S. Barnards Rd, Canby, OR, 97013",
+  "GMapsLink":"https://www.google.com/maps/place/Morning+Shade+Farm/@45.1759295,-122.6967679,17z/data=!3m1!4b1!4m6!3m5!1s0x5495614819319b63:0x59eb6954c5d52213!8m2!3d45.1759257!4d-122.694193!16s%2Fg%2F1tflm45s!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(503) 651 2622",
+  "Website":"https://www.morningshadefarm.com/home/",
+  "Email":"jimgeiselman@canby.com"
+  }
+},
+{
+  "type": "Feature",
+  "id":45,
+
+  "geometry": {
+     "type": "Point",
+     "coordinates":  [ -123.4876337,45.13645895 ]
+  },
+  "properties": {
+  "id":45,
+  "orchardName":"Mama Tee's Farmstead",
+  "City":"Willamina",
+  "State":"Oregon",
+  "Breeds":[],
+  "Address":"16751 Willamina Creek Rd, Willamina, OR, 97396",
+  "GMapsLink":"https://www.google.com/maps/place/Mama+Tee's+Farm/@45.1365484,-123.4910376,16.83z/data=!4m6!3m5!1s0x54eab67de4f57569:0x8ffe7d7fd8c2f138!8m2!3d45.1363563!4d-123.4883016!16s%2Fg%2F11bxg026wd!5m1!1e3?authuser=0&entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+  "PhoneNumber":"(510) 323 3699",
+  "Website":"https://mamateesfarm.com/",
+  "Email":"mamateesfarm@gmail.com"
+  }
+}
 ]
 }
 
