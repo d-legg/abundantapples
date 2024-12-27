@@ -957,8 +957,11 @@ var panel = document.getElementById('infoPanel')
 const appleLayerName = 'orchardsLayer'
 const mapboxSourceName = 'orchardsSource'
 
+// var baseZoom = 5
+// var baseCenter = [-120.324262, 45.468905]
+
 var baseZoom = 5
-var baseCenter = [-120.324262, 45.468905]
+var baseCenter = [-120.420, 45.668123]
 
 var currentID = 0
 var currentDiv 
@@ -983,21 +986,37 @@ var currentBreeds
 
 
 // –––––––––––––––––––––––––––––––––––––––– MAP HANDLERS –––––––––––––––––––––––––––––––––––––––– 
+// const bounds = [
+//   [-130.2102074123973, 40.98336280311873], // Southwest coordinates
+//   [-110.43831658760334, 51.77076348214101] // Northeast coordinates
+// ];
+
 const bounds = [
-  [-130.2102074123973, 40.98336280311873], // Southwest coordinates
-  [-110.43831658760334, 51.77076348214101] // Northeast coordinates
+  [-137.2102074123973, 35.98336280311873], // Southwest coordinates
+  [-102.43831658760334, 51.77076348214101] // Northeast coordinates
 ];
 
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGxlZ2c0OCIsImEiOiJjbHBpcjhucDkwMXp5MmxvdXZ4OTA3ajIzIn0.VrClHW1R9SYZLfcmTzvrLA';
+// var map = new mapboxgl.Map({
+//     container: 'map',
+//     style: 'mapbox://styles/dlegg48/cluao316i02hz01oigktb1l0s', // Choose your map style
+//     center: [-120.324262, 45.468905], // Starting position [lng, lat]
+//     zoom: 5,
+//     minZoom: 5,
+//     projection: 'globe',
+//     maxBounds: bounds  
+// });
+
 var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/dlegg48/cluao316i02hz01oigktb1l0s', // Choose your map style
-    center: [-120.324262, 45.468905], // Starting position [lng, lat]
-    zoom: 5,
-    minZoom: 5,
-    projection: 'globe',
-    maxBounds: bounds  
+  container: 'map',
+  style: 'mapbox://styles/dlegg48/cm56a2w8200ls01sp05spgje9',
+  center: [-120.420, 45.668123], // Starting position [lng, lat]
+  zoom: 5,
+  minZoom: 5,
+  maxBounds: bounds  
 });
+
 map.getCanvas().style.cursor = 'auto';
 map.dragRotate.disable()
 map.touchZoomRotate.disableRotation();
@@ -1078,6 +1097,7 @@ if(window.innerWidth <= 1000 && window.innerWidth > 800){
 }
 
 
+
 // –––––––––––––––––––––––––––––––––––––––– START MAP.LOAD ––––––––––––––––––––––––––––––––––––––––
 map.on('load', () => {
   // console.log(breedList)
@@ -1113,6 +1133,9 @@ map.on('load', () => {
     '#F7E922',
     '#5D3DA8'
   ]);
+
+  map.moveLayer('Washington-Label')
+  map.moveLayer('Oregon label')
 
   // on hover of circle point
   map.on('mouseenter', appleLayerName, (e) => {
@@ -1928,13 +1951,35 @@ function getOrchardIdx(name){
   return idx
 }
 
+function testCenter(currentCenter, baseCenter){
+  var lngCurrentCenter = currentCenter['lng']
+  var latCurrentCenter = currentCenter['lat']
+  var lngBaseCenter = baseCenter[0]
+  var latBaseCenter = baseCenter[1]
+  // console.log(currentCenter, baseCenter)
 
-map.on('zoomend', function() {
+  if ( ((lngCurrentCenter > lngBaseCenter - 0.01) && (lngCurrentCenter < lngBaseCenter + 0.01)) && ((latCurrentCenter > latBaseCenter - 0.01) && (latCurrentCenter < latBaseCenter + 0.01))){
+    console.log('Returning true, center good');
+    return true;
+  } else {
+    console.log('False, center not aligned');
+    return false;
+  }
+
+}
+
+
+map.on('moveend', function() {
+  console.log('move end')
   var currentZoom = map.getZoom();
   var currentCenter = map.getCenter()
-  console.log('Current zoom level:', currentZoom);
+  console.log('Current zoom level:', currentZoom, 'Current center:', currentCenter);
+  console.log('baseZoom:', baseZoom, 'baseCenter', baseCenter)
 
-  if((currentZoom > baseZoom) && (currentCenter !== baseCenter)){
+  // if((currentZoom != baseZoom) || (currentCenter !== baseCenter)){
+  if((currentZoom != baseZoom) || !(testCenter(currentCenter, baseCenter))){
+
+    console.log('disabling interation')
     // mobile disable menus
     if(window.innerWidth <= 800){
       collapseMobileOrchard()
@@ -1953,9 +1998,9 @@ map.on('zoomend', function() {
       }
       document.getElementById("homeButton").src="img/homeDark.png";
       d3.select('#resetButton').style('display', 'block')
-
   }
 });
+
 
 function disableInteraction(){
   d3.selectAll(".intButton").classed('inactiveButton', true)
@@ -1976,8 +2021,20 @@ function enableInteraction(){
 }
 
 function returnHome(){
+  console.log('returnHome()')
   map.flyTo({
     center: baseCenter, 
     zoom: baseZoom
+  })
+
+  map.on('zoomend', function() {
+    console.log('zoomend on returnHome')
+    if(window.innerWidth <=800){
+        expandMobileOrchard()
+      } else { // desktop enable menus
+        enableInteraction()
+      }
+      document.getElementById("homeButton").src="img/homeDark.png";
+      d3.select('#resetButton').style('display', 'block')
   })
 }
