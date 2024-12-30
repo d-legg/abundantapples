@@ -94,11 +94,8 @@
                             <a href="https://waapple.org/regions/" target="_blank">Washington Apple</a>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
-            
-
-
         </div>
 
         <div id="breedListContainer">
@@ -161,13 +158,13 @@
 
         <div id="orchardContainer">
             <div id="filterTab">
-                <div id="oregonButton" onclick="oregonFilter()" class="stateFilter intButton">
-                    <img id="oregonDark" style="display: none;" src="img/oregonDark.png">
-                    <img id="oregonImage" src="img/oregonOutline.png">
-                </div>
                 <div id="washingtonButton" onclick="washingtonFilter()" class="stateFilter intButton">
                     <img id="washDark" style="display: none;" src="img/washDark.png">
                     <img id="washImage" src="img/washOutline.png">
+                </div>
+                <div id="oregonButton" onclick="oregonFilter()" class="stateFilter intButton">
+                    <img id="oregonDark" style="display: none;" src="img/oregonDark.png">
+                    <img id="oregonImage" src="img/oregonOutline.png">
                 </div>
                 <div id="breedFilter" class="intButton" onclick="openBreedSelector()">
                     <img id="breedImage" src="img/appleTime.png">
@@ -175,7 +172,6 @@
                 <div id="exportDataButton" class="intButton" style="display: none;" onclick="exportData()">
                     <img id="exportImage" src="img/download.png">
                 </div>
-
                 <div id='expandSeperator'></div>
                 <!-- <i id="expandButton" onclick="changeOrchardContainerSize()" class='fas fa-angle-double-down' style='font-size:36px'></i> -->
                 <img id="openMenu" src="img/openOrchards.png" alt="Open orchard list!" onclick="changeOrchardContainerSize()">
@@ -186,6 +182,13 @@
 
         <!-- Top right elements -->
         <!-- <img id="clearPanel" src="img/clear.png" title="Clear info panel" onclick="clearPanel()" style="display: none;"> -->
+        <div id="closeInfoPanel" onclick="changeInfoPanel()">
+           <div id="panelSymbol">
+                <div id="minus"></div>
+                <div id="add" style="display: none;"></div>
+                <!-- <img src="img/minus.png" alt="Close info panel"> -->
+           </div>
+        </div>
         <div id="infoPanel"></div>
     </div>
 

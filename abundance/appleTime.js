@@ -1020,8 +1020,22 @@ var map = new mapboxgl.Map({
 map.getCanvas().style.cursor = 'auto';
 map.dragRotate.disable()
 map.touchZoomRotate.disableRotation();
-map.addControl(new mapboxgl.NavigationControl({}), 'bottom-left');
-map.addControl(new mapboxgl.NavigationControl({}), 'top-left');
+// map.addControl(new mapboxgl.NavigationControl({}), 'bottom-left');
+map.addControl(new mapboxgl.NavigationControl({visualizePitch: true}), 'top-left');
+// map.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}));
+
+// map.addControl(new mapboxgl.ScaleControl(), 'bottom-right');
+// map.addControl(new mapboxgl.GeolocateControl({
+//   // positionOptions: {
+//   //     enableHighAccuracy: true
+//   // },
+//   trackUserLocation: true,
+//   showUserHeading: true
+// }), 'bottom-right');
+
+
+// map.addControl(new mapboxgl.NavigationControl({showCompass:true}), 'bottom-right');
+
 
 const mapTitle = document.getElementById("mapTitle")
 mapTitle.addEventListener("animationend", function() {
@@ -1117,21 +1131,32 @@ map.on('load', () => {
     'paint': {
         'circle-radius': [
           'interpolate', ['linear'], ['zoom'],
-          5, 5, 
+          5, 4, 
           9, 12
         ],
-        'circle-stroke-width': 2,
+        'circle-stroke-width': 1,
         'circle-color': '#5d3da8',
-        'circle-stroke-color': 'white',
+        'circle-stroke-color': '#fffdd0',
+        // 'circle-color': '#ffbf00',
+        // 'circle-stroke-color': '#5d3da8',
+
+        
     }
   });
   
   // setting paint property of circles to be dependent on feature-state (if hovered or not)
+  // map.setPaintProperty(appleLayerName, 'circle-color', [
+  //   'case',
+  //   ['boolean', ['feature-state', 'hover'], false],
+  //   '#F7E922',
+  //   '#5D3DA8'
+  // ]);
+
   map.setPaintProperty(appleLayerName, 'circle-color', [
     'case',
     ['boolean', ['feature-state', 'hover'], false],
     '#F7E922',
-    '#5D3DA8'
+    '#785BBC'
   ]);
 
   map.moveLayer('Washington-Label')
@@ -2038,3 +2063,19 @@ function returnHome(){
       d3.select('#resetButton').style('display', 'block')
   })
 }
+
+function changeInfoPanel(){
+  console.log('closeInfoPanel()')
+  if($('#add').css('display') == 'none') {
+    $('#add').css('display', 'block')
+    d3.select('#infoPanel').classed('.collapseTransition', true)
+    d3.select('#infoPanel').classed('closedInfoPanel', true)
+    $('#closeInfoPanel').css('margin-right', '1.5rem')
+  } else {
+    $('#add').css('display', 'none')
+    d3.select('#infoPanel').classed('.collapseTransition', false)
+    d3.select('#infoPanel').classed('closedInfoPanel', false)
+    $('#closeInfoPanel').css('margin-right', '26.75em')
+  }
+}
+
