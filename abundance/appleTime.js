@@ -986,11 +986,6 @@ var currentBreeds
 
 
 // –––––––––––––––––––––––––––––––––––––––– MAP HANDLERS –––––––––––––––––––––––––––––––––––––––– 
-// const bounds = [
-//   [-130.2102074123973, 40.98336280311873], // Southwest coordinates
-//   [-110.43831658760334, 51.77076348214101] // Northeast coordinates
-// ];
-
 const bounds = [
   [-137.2102074123973, 35.98336280311873], // Southwest coordinates
   [-102.43831658760334, 51.77076348214101] // Northeast coordinates
@@ -998,15 +993,6 @@ const bounds = [
 
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGxlZ2c0OCIsImEiOiJjbHBpcjhucDkwMXp5MmxvdXZ4OTA3ajIzIn0.VrClHW1R9SYZLfcmTzvrLA';
-// var map = new mapboxgl.Map({
-//     container: 'map',
-//     style: 'mapbox://styles/dlegg48/cluao316i02hz01oigktb1l0s', // Choose your map style
-//     center: [-120.324262, 45.468905], // Starting position [lng, lat]
-//     zoom: 5,
-//     minZoom: 5,
-//     projection: 'globe',
-//     maxBounds: bounds  
-// });
 
 var map = new mapboxgl.Map({
   container: 'map',
@@ -1134,9 +1120,9 @@ map.on('load', () => {
           5, 4, 
           9, 12
         ],
-        'circle-stroke-width': 1,
+        'circle-stroke-width': 2,
         'circle-color': '#5d3da8',
-        'circle-stroke-color': '#fffdd0',
+        'circle-stroke-color': '#49ffff',
         // 'circle-color': '#ffbf00',
         // 'circle-stroke-color': '#5d3da8',
 
@@ -1835,12 +1821,17 @@ function updateOrchards(load=0){
     $('#mobileOrchardGrouped').append($el)
   
   } else {
+    console.log('in updateOrchards', map.queryRenderedFeatures())
+
     setTimeout(function(){    
       for(orchard of map.queryRenderedFeatures()){
         // console.log(orchard)
         if(orchard.layer.id !== "orchardsLayer"){
-          break
+          console.log('breaking')
+
+          continue
         } else {
+          console.log('orchard layer')
           oName = orchard.properties.orchardName
           oState = orchard.properties.State
           oAddress = orchard.properties.Address
