@@ -1006,7 +1006,7 @@ var map = new mapboxgl.Map({
 map.getCanvas().style.cursor = 'auto';
 map.dragRotate.disable()
 map.touchZoomRotate.disableRotation();
-// map.addControl(new mapboxgl.NavigationControl({}), 'bottom-left');
+map.addControl(new mapboxgl.NavigationControl({}), 'bottom-left');
 map.addControl(new mapboxgl.NavigationControl({visualizePitch: true}), 'top-left');
 // map.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}));
 
