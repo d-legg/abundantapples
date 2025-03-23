@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="data/orchardData.geojson"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -34,63 +35,57 @@
             </div>
             <div id="contentContainer">
                 <div id="leftContent" class="howToSection">
-                    <div id="oregonDesc" class="descContainer">
-                        <img id="oregonHere" class="howToButtonImage" src="img/howToOregon.png" alt="Oregon button">
-                        <div class="howToText">Display orchards in Oregon.</div>
-                    </div>
                     <div id="washDesc" class="descContainer">
                         <img id="washButton" class="howToButtonImage" src="img/howToWashington.png" alt="Washington button">
-                        <div class="howToText">Display orchards in Washington.</div>
+                        <div class="howToText">Washington orchards</div>
+                    </div>
+                    <div id="oregonDesc" class="descContainer">
+                        <img id="oregonHere" class="howToButtonImage" src="img/howToOregon.png" alt="Oregon button">
+                        <div class="howToText">Oregon orchards</div>
                     </div>
                     <div id="appleTimeDesc" class="descContainer">
                         <img id="appleTimeButton" class="howToButtonImage" src="img/howToAppleTime.png" alt="Breed filter button">
-                        <div class="howToText">Filter apples by breed.</div>
+                        <div class="howToText">Apple breeds</div>
                     </div>
                     <div id="menuDesc" class="descContainer">
                         <img id="menuButton" class="howToButtonImage" src="img/howToMenu.png" alt="Open orchard directory">
-                        <div class="howToText">Open orchard directory.</div>
+                        <div class="howToText">Open orchard directory</div>
                     </div>
                     <div id="homeDesc" class="descContainer">
                         <div class="imageContainer">
                             <img id="homeHowTo" class="howToButtonImage" src="img/home2.png" alt="Return to starting view">
                         </div>
-                        <div class="howToText">Fly to starting view and enable interactive features.</div>
+                        <div class="howToText">Fly home</div>
                     </div>
                     <div id="resetDesc" class="descContainer">
                         <div class="imageContainer">
                             <img id="resetHowTo" class="howToButtonImage" src="img/howToReset.png" alt="Reset filters">
                         </div>
-                        <div class="howToText">Clear all filters.</div>
+                        <div class="howToText">Clear all filters</div>
                     </div>
                     <div id="returnHowTo" class="descContainer">
                         <img id="helpHowTo" class="howToButtonImage" src="img/openHowTo.png" alt="Reset filters">
-                        <div class="howToText">Reopen this help panel.</div>
+                        <div class="howToText">Reopen this panel</div>
                     </div>
                 </div>
                 <div id="rightContent" class="howToSection">
-                    <div id="activeContent" class="imageInfo">
-                        <div class="howToText rightContent">On load, interactive features are enabled</div>
-                        <img src="img/activeInteraction.png" alt="Active breed tab" class="rightContent" style="width: 95%;">
-                    </div>
-                    <div id="inactiveContent">
-                        <div class="howToText rightContent" rightContent>On change of zoom level, interactive features are disabled</div>
-                        <img src="img/inactiveInteraction.png" alt="Active breed tab" class="rightContent" style="width: 95%;">
-                    </div>
                     <div id="pointHover">
-                        <div class="howToText rightContent">Hovering  or clicking a point will highlight it and display that orchard's information in the panel. Click on the breeds list to see all of that orchard's breeds!</div>
+                        <div class="howToText unsetWidth rightContent">Hover/click on a point to highlight and access the orchard's info!</div>
+                        <br>
                         <img src="img/pointHighlight.png" alt="Active breed tab" class="rightContent" style="width: 95%;">
                     </div>
                     <div id="dataSources">
-                        <div id="dataTitle" class="howToText rightContent">
+                        <div id="dataTitle" class="howToText rightContent" style="width:fit-content">
                             Data Sources:
                         </div>
-                        <div id="source" class="howToText rightContent">
+                        <br>
+                        <div id="source" class="howToText rightContent unsetWidth">
                             <a href="https://www.allthefarms.com/" target="_blank">Allthefarms</a>
                         </div>
-                        <div class="howToText rightContent">
+                        <div class="howToText rightContent unsetWidth">
                             <a href="https://www.orangepippin.com/orchards/united-states/oregon" target="_blank">Orange Pippin</a>
                         </div>
-                        <div class="howToText rightContent">
+                        <div class="howToText rightContent unsetWidth">
                             <a href="https://waapple.org/regions/" target="_blank">Washington Apple</a>
                         </div>
                     </div>
@@ -116,7 +111,7 @@
                 </div>
                 <div id="commandsContainer">
                     <button id="clearBreed" class="w3-button kanitMedium" onclick="clearBreeds()">Clear</button>
-                    <button id="applyBreed" class="w3-button kanitMedium" onclick="applyBreeds()">Apply</button>
+                    <button id="applyBreed" class="w3-button kanitMedium" onclick="closeHelp();runLayerQuery()">Apply</button>
                 </div>
                 <div id="breedContent">
                     <!-- filling in new divs here -->
@@ -154,15 +149,15 @@
 
         <img id="openTutorial" src="img/openHowTo.png" title="open help panel" onclick="openHelp()">
 
-        <img id="homeButton" src="img/homeDark.png" title="Return to home view" onclick="returnHome()">
+        <img id="homeButton" src="img/home2.png" title="Return to home view" onclick="returnHome()">
 
         <div id="orchardContainer">
             <div id="filterTab">
-                <div id="washingtonButton" onclick="washingtonFilter()" class="stateFilter intButton">
+                <div id="washingtonButton" onclick="colorStateFilter('Washington');runLayerQuery()" class="stateFilter intButton">
                     <img id="washDark" style="display: none;" src="img/washDark.png">
                     <img id="washImage" src="img/washOutline.png">
                 </div>
-                <div id="oregonButton" onclick="oregonFilter()" class="stateFilter intButton">
+                <div id="oregonButton" onclick="colorStateFilter('Oregon');runLayerQuery()" class="stateFilter intButton">
                     <img id="oregonDark" style="display: none;" src="img/oregonDark.png">
                     <img id="oregonImage" src="img/oregonOutline.png">
                 </div>

@@ -104,8 +104,8 @@ html, head, body{
 }
 
 .imageContainer{
-    width: 4.5em;
-    height: 4em;
+    width: auto;
+    height: auto;    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,12 +113,14 @@ html, head, body{
 
 .howToText{
     color: ivory;
-    font-size: 1.9em;
+    font-size: 1.35em;
     display: flex;
     align-items: center;
     font-family: "Kanit", sans-serif !important;
     font-weight: 200;
     font-style: normal;
+    width: 10rem;
+    line-height: 1;
 }
 
 .titleFont{
@@ -134,14 +136,20 @@ html, head, body{
 
 #leftContent{
     margin-left: .5em;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
-#menuButton{
-    width: 4.5em;
-}
 
 .rightContent{
     margin-left: .5em;
+    row-gap: 1rem;
+}
+
+#rightContent{
+    flex-direction: column;
+    right: 0;
+    row-gap: 2.5rem;
 }
 
 
@@ -162,34 +170,40 @@ html, head, body{
 
 #contentContainer{
     overflow: auto;
-    display: flex;
     height: 100%;
-    flex-direction: row;
     margin-top: 1em;
+    position: relative;
+
+    /* flex-direction: row;
+    display: flex; */
+}
+
+.unsetWidth{
+    width: unset !important;
 }
 
 .descContainer{
     display: flex;
     height: 4em;
-    gap: 1.5em;
+    /* gap: 1.5em; */
+    gap: .5rem;
     align-items: center;
 }
 
 .howToButtonImage{
-    height: 4em;
-    width: 4.5em;
-}
-
-.imageInfo{
-    width: 100%;
-    height: 15em;
+    height: 3em;
+    width: 3.5em;
 }
 
 .howToSection{
     width: 50%;
     display: flex;
-    flex-direction: column;
-    gap: 2em;
+    /* flex-direction: column;
+    gap: 2em; */
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    flex-wrap: wrap;
 }
 
 
@@ -207,8 +221,7 @@ html, head, body{
 }
 
 #resetHowTo{
-    width: 4em;
-    height: 1.75em;
+    height: 1.5em;
 }
 
 .mobileOrchard{
@@ -467,27 +480,11 @@ html, head, body{
 
 
 @media only screen and (max-width: 1000px){
-    /* #breedContent{
-        height: 26.5em !important;
-        width: 100%;
-        margin-top: 1.75em;
-    } */
-
-    /* #infoPanel {
-        right: 0;
-        top: 0;
-        position: absolute;
-        margin: 25px;
-        width: 16em !important;
-        height: 16em !important;
-        background-color: #785BBC;
-        border: 8px #321479 solid;
-        display: flex;
-        flex-direction: column;
-    } */
 
     #contentContainer{
         flex-direction: column !important;
+        display: flex;
+        row-gap: 2.5rem;
     }
 
     #howToSection{
@@ -495,8 +492,7 @@ html, head, body{
     }
     .descContainer{
         display: flex;
-        height: 8em;
-        gap: 1.5em;
+        /* gap: 1.5em; */
         align-items: center;
     }
 
@@ -504,7 +500,20 @@ html, head, body{
         width: 99%;
         display: flex;
         flex-direction: column;
-        gap: 2em;
+        position: unset;
+    }
+
+    .howToText{
+        font-size: 1.15rem;
+        width: 5rem;
+    }
+
+    #rightContent{
+        gap: 2rem;
+    }
+
+    #leftContent{
+        column-gap: 2.25rem;
     }
 
     #title{
@@ -734,6 +743,7 @@ p{
 }
 
 #exitButton {
+    cursor: pointer;
     height: 1.5em;
     color: ivory;
     width: 4em;
@@ -746,6 +756,7 @@ p{
     justify-content: center;
 }
 .closeButton{
+    cursor: pointer;
     right: 0;
     position: absolute;
     background-color: #9F87D6;
@@ -755,6 +766,7 @@ p{
 }
 
 #clearBreed{
+    cursor: pointer;
     display: flex;
     height: fit-content;
     background-color: #9F87D6;
@@ -767,6 +779,7 @@ p{
 
 #applyBreed{
     display: flex;
+    cursor: pointer;
     height: fit-content;
     background-color: #9F87D6;
     color: ivory;
