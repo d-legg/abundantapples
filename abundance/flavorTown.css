@@ -1019,6 +1019,7 @@ p{
 
 /* This is the divs populating orchardContainer */
 .scrollInfo{
+    cursor: pointer;
     border-color: #321479;
     border-style: outset;
     border-width: .25em;

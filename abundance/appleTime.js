@@ -68,20 +68,6 @@ map.dragRotate.disable()
 map.touchZoomRotate.disableRotation();
 map.addControl(new mapboxgl.NavigationControl({}), 'bottom-left');
 map.addControl(new mapboxgl.NavigationControl({visualizePitch: true}), 'top-left');
-// map.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}));
-
-// map.addControl(new mapboxgl.ScaleControl(), 'bottom-right');
-// map.addControl(new mapboxgl.GeolocateControl({
-//   // positionOptions: {
-//   //     enableHighAccuracy: true
-//   // },
-//   trackUserLocation: true,
-//   showUserHeading: true
-// }), 'bottom-right');
-
-
-// map.addControl(new mapboxgl.NavigationControl({showCompass:true}), 'bottom-right');
-
 
 const mapTitle = document.getElementById("mapTitle")
 mapTitle.addEventListener("animationend", function() {
@@ -122,25 +108,25 @@ map.on('click', 'water', () => {
 
 
 // –––––––––––––––––––––––––––––––––––––––– loop through orchardsData –––––––––––––––––––––––––––––––––––––––– 
-for (var orchardIDX in orchardsData.features){
-  currentOrchard = orchardsData.features[orchardIDX]
-//   // getting breedList
-  try{
-    var breeds = currentOrchard.properties.Breeds
-    breeds.forEach((appleBreed) => {
-        // console.log(appleBreed)
-        if(!breedList.includes(appleBreed)){
-          // console.log('new apple!')
-          breedList.push(appleBreed)
-        }
-    })
-    breedList.sort()
-  }
-  catch(error){
-    console.log('no apple breeds')
-  }
+// for (var orchardIDX in orchardsData.features){
+//   currentOrchard = orchardsData.features[orchardIDX]
+// //   // getting breedList
+//   try{
+//     var breeds = currentOrchard.properties.Breeds
+//     breeds.forEach((appleBreed) => {
+//         // console.log(appleBreed)
+//         if(!breedList.includes(appleBreed)){
+//           // console.log('new apple!')
+//           breedList.push(appleBreed)
+//         }
+//     })
+//     breedList.sort()
+//   }
+//   catch(error){
+//     console.log('no apple breeds')
+//   }
 
-}
+// }
 // –––––––––––––––––––––––––––––––––––––––– END –––––––––––––––––––––––––––––––––––––––– 
 
 // mobile version
@@ -235,40 +221,54 @@ map.on('load', () => {
   })
 
   // loop through breedList
-  for(var breed of breedList){
-    // console.log(breed)
-    var divContent = document.createElement('div')
-    // divContent.id = 
-    divContent.classList.add('breedItem')  
-    divContent.innerHTML = `
-      <label class="container">
-        <input type="checkbox">
-        <span class="checkBox"></span>
-        <p class=breedName>${breed}</p>
-      </label>
-    `
+  // for(var breed of breedList){
+  //   // console.log(breed)
+  //   var divContent = document.createElement('div')
+  //   // divContent.id = 
+  //   divContent.classList.add('breedItem')  
+  //   divContent.innerHTML = `
+  //     <label class="container">
+  //       <input type="checkbox">
+  //       <span class="checkBox"></span>
+  //       <p class=breedName>${breed}</p>
+  //     </label>
+  //   `
 
-    document.getElementById('breedContent').appendChild(divContent)
+  //   document.getElementById('breedContent').appendChild(divContent)
 
-  }
-
-
-  document.querySelectorAll('.breedItem input[type="checkbox"]').forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        // console.log('clicked');
-        const label = checkbox.closest('label');
-        var breedName = label.querySelector('.breedName').textContent
-        if(this.checked){
-          // console.log('checked!')
-          addBreed(breedName)
-        } else if (!this.checked){
-          // console.log('unchecked')
-          deleteBreed(breedName)
-        }
-    });
-  });
+  // }
   
   runLayerQuery()
+
+  // document.querySelectorAll('.breedItem input[type="checkbox"]').forEach(function(checkbox) {
+  //   checkbox.addEventListener('change', function() {
+  //       // console.log('clicked');
+  //       const label = checkbox.closest('label');
+  //       var breedName = label.querySelector('.breedName').textContent
+  //       if(this.checked){
+  //         // console.log('checked!')
+  //         addBreed(breedName)
+  //       } else if (!this.checked){
+  //         // console.log('unchecked')
+  //         deleteBreed(breedName)
+  //       }
+  //   });
+  // });
+
+  document.getElementById('breedContent').addEventListener('change', function(event) {
+    const checkbox = event.target;
+
+    if (checkbox.matches('.breedItem input[type="checkbox"]')) {
+        const label = checkbox.closest('label');
+        var breedName = label.querySelector('.breedName').textContent;
+        
+        if (checkbox.checked) {
+            addBreed(breedName);
+        } else {
+            deleteBreed(breedName);
+        }
+    }
+});
 
 }); 
 // –––––––––––––––––––––––––––––––––––––––– END MAP.LOAD ––––––––––––––––––––––––––––––––––––––––
@@ -333,17 +333,6 @@ function setInfoPanel(point, idx=0){
     htmlBreeds = 'No breed data!'
   }
   currentBreeds = htmlBreeds
-  // console.log('currentBreeds at setPanel()', currentBreeds)
-//   panel.innerHTML = `
-//   <h1 class=panelName>${orchardName}</h1>
-//   <p class="panelText kanitMedium">
-//   Address: <a class="infoAddress" href=${orchardGMaps} target="_blank">${orchardAddress}</a>
-//   Phone Number: ${phone}<br><br>
-//   </p>
-//   <div class="htmlBreeds kanitMedium" onclick="showBreedList()">
-//   Breeds: ${htmlBreeds}
-//   </div>
-// `;
 
   panel.innerHTML = `
     <div class="panelContentContainer">
@@ -476,10 +465,8 @@ function resetButton(){
   clearOrchardContainer()
   clearPanel()
   clearBreeds()
-  clearBorders()
+  resetStateBorderColor()
   clearStateIcons()
-  matchFilter = ['all']
-  map.setFilter(appleLayerName, null)
   runLayerQuery()
 }
 
@@ -502,8 +489,7 @@ function resetButton(){
 // }
 
 function filterData(data){
-  // console.log(filterData)
-  // console.log(filterBreeds)
+  console.log('filterData()')
   let newData = data.features.filter( data => {
     let washingtonConditional = (d3.select('#washingtonButton').style('border-style')) == 'inset' ? data.properties.State == 'Washington' : true
     let oregonConditional = (d3.select('#oregonButton').style('border-style')) == 'inset' ? data.properties.State == 'Oregon' : true
@@ -586,22 +572,55 @@ function updateOrchards(data){
 }
 
 var filteredIDs
-function updateIdCounts(data){
-  console.log('updateIdCounts()')
+// updates ID for map.setFilter, updates Breeds for dynamic filter
+function updateDataCounts(data){
+  console.log('updateDataCounts()')
   filteredIDs = []
+  breedList = []
+  document.getElementById('breedContent').innerHTML = ''
+
   data.forEach((orchard) => {
     // console.log(orchard)
     var id = orchard.properties.id
     filteredIDs.push(id)
+
+    try{ 
+      var breeds = orchard.properties.Breeds
+      breeds.forEach((appleBreed) => {
+          // console.log(appleBreed)
+          if(!breedList.includes(appleBreed)){
+            // console.log('new apple!')
+            breedList.push(appleBreed)
+          }
+      })
+    } catch (error) {
+      console.log('no apple Breeds')
+    }
+    breedList.sort()
   })
-  // console.log('filteredIDs', filteredIDs)
+
+  // loop through breedList
+  for(var breed of breedList){
+    var isChecked = filterBreeds.includes(breed) ? 'checked' : '';
+    var divContent = document.createElement('div')
+    divContent.classList.add('breedItem')  
+    divContent.innerHTML = `
+      <label class="container">
+        <input type="checkbox" ${isChecked}>
+        <span class="checkBox"></span>
+        <p class=breedName>${breed}</p>
+      </label>
+    `
+    document.getElementById('breedContent').appendChild(divContent)
+  }
+  
 }
 
 function runLayerQuery(){
   console.log('runLayerQuery()')
   let filteredOrchards = filterData(orchardsData)
   // console.log('filteredOrchards =',filteredOrchards)
-  updateIdCounts(filteredOrchards)
+  updateDataCounts(filteredOrchards)
   updateOrchards(filteredOrchards)
 
   map.setFilter('orchardsLayer', [
@@ -622,9 +641,9 @@ function colorBorder(state){
         '#5D3DA8'
       )
     );
-    // map.moveLayer('washingtonBottom')
-    // map.moveLayer('washingtonMiddle')
-    // map.moveLayer('washingtonTop')
+    map.moveLayer('oregonBottom', 'washingtonBottom')
+    map.moveLayer('oregonMiddle', 'washingtonMiddle')
+    map.moveLayer('oregonTop', 'washingtonTop')
 
   } else if (state == 'Oregon'){
     oregonBorderLayers.map((layer) => 
@@ -634,9 +653,9 @@ function colorBorder(state){
         '#5D3DA8'
       )
     );
-    // map.moveLayer('oregonBottom')
-    // map.moveLayer('oregonMiddle')
-    // map.moveLayer('oregonTop')
+    map.moveLayer('washingtonBottom', 'oregonBottom')
+    map.moveLayer('washingtonMiddle', 'oregonMiddle')
+    map.moveLayer('washingtonTop', 'oregonTop')
 
   }
 }
@@ -646,10 +665,10 @@ function colorStateFilter(state){
   if((d3.select('#washingtonButton').classed('lightBackground') && state == 'Washington') || (d3.select('#oregonButton').classed('lightBackground') && state == 'Oregon')){
     console.log('RECLICK CANCEL BURN IT ALL DOWN')
     clearStateIcons()
-    clearBorders()
+    resetStateBorderColor()
   } else {
     clearStateIcons()
-    clearBorders()
+    resetStateBorderColor()
     if( (state == 'Washington') ){
       console.log('coloring washington')
       d3.select('#washingtonButton').classed('lightBackground', true)
@@ -677,7 +696,7 @@ function colorStateFilter(state){
   }
 }
 
-function clearBorders(){
+function resetStateBorderColor(){
   oregonBorderLayers.map((layer) => 
     map.setPaintProperty(
       layer, 
