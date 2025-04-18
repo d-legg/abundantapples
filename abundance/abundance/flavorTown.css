@@ -1,0 +1,1239 @@
+.topLayer{
+    z-index: 1;
+    position: absolute;
+}
+
+
+html, head, body{
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.mapboxgl-popup-content{
+    background-color: wheat !important;
+    border-radius: 15px !important;
+    opacity: .9 !important;
+
+}
+
+
+#homeButton{
+    bottom: 0;
+    right: 0;
+    margin-right: 3.5rem;
+    margin-bottom: 1.75rem;
+
+    z-index: 6;
+    position: absolute;
+    cursor: pointer;
+    border-radius: .5rem;
+}
+
+.countContainer{
+    margin-left: calc(2em + 30vw + 29px);
+    margin-top: 8rem;
+    position: absolute;
+    border-radius: .5rem;
+    left: 0;
+    top: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-color: #321479;
+    background-color: #785BBC;
+    border: .25rem solid #321479;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem; 
+    color: ivory;
+    padding: 0.2rem;
+    line-height: 1;
+}
+
+
+#activeCount,
+#countSeperate,
+#totalCount {
+  position: absolute;
+}
+
+#activeCount {
+  top: 0.1rem;
+  left: 0.2rem;
+}
+
+#countSeperate {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#totalCount {
+  bottom: 0.1rem;
+  right: 0.2rem;
+}
+
+@keyframes fade {
+    to { opacity: 0;}
+}
+
+#mobileOrchardGrouped{
+    display: flex;
+    width: 90% !important;
+    height: 85% !important;
+    margin: auto;
+    margin-top: 3.5em;
+    z-index: 999;
+    border: 8px solid #321479 !important;
+    background-color: hsl(258, 49%, 68%);
+    position: fixed;
+    inset: 0px;
+    flex-direction: column;
+    overflow: auto;
+}
+
+/* how to stuff  */
+#title{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.imageContainer{
+    width: auto;
+    height: auto;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.howToText{
+    color: ivory;
+    font-size: 1.35em;
+    display: flex;
+    align-items: center;
+    font-family: "Kanit", sans-serif !important;
+    font-weight: 200;
+    font-style: normal;
+    width: 10rem;
+    line-height: 1;
+}
+
+.titleFont{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.howToTitle{
+    color: ivory;
+    text-align: left;
+    font-size: 4em;
+    text-align: center;
+}
+
+#leftContent{
+    margin-left: .5em;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+.rightContent{
+    margin-left: .5em;
+    row-gap: 1rem;
+}
+
+#rightContent{
+    flex-direction: column;
+    right: 0;
+    row-gap: 1rem;
+}
+
+
+#howTo {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0px;
+    width: 80%;
+    height: 80%;
+    max-width: 1000px;
+    margin: auto;
+    border: .5rem #321479 solid;
+    background-color: #9F87D6;
+    z-index: 999;
+}
+
+
+#contentContainer{
+    /* flex: 1 1 auto; */
+    overflow-y: auto;    
+}
+
+
+.unsetWidth{
+    width: unset !important;
+}
+
+.descContainer{
+    display: flex;
+    height: 4em;
+    /* gap: 1.5em; */
+    gap: .5rem;
+    align-items: center;
+}
+
+.howToButtonImage{
+    height: 3em;
+    width: 3.5em;
+}
+
+.howToSection{
+    width: 50%;
+    display: flex;
+    /* flex-direction: column;
+    gap: 2em; */
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    flex-wrap: wrap;
+}
+
+
+#closeMobileOrchards{
+    position: fixed;
+    top: 0;
+    margin-right: .25em;
+    margin-top: .25em;
+    background-color: #9F87D6;
+    color: ivory;
+    height: 2em;
+    right: 0;
+    z-index: 11;
+    font-size: 1.25em;
+}
+
+#resetHowTo{
+    height: 1.5em;
+}
+
+.mobileOrchard{
+    bottom: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    left: auto !important;
+    margin-bottom: 1rem !important;
+    margin-right: 1rem !important;
+    position: absolute !important;
+    border: .5em solid #321479 !important;
+    background-color: #9F87D6 !important;
+    height: 20em !important;
+    width: 5em !important;
+    min-width: 0 !important;
+    flex-direction: column !important;
+    transition: height 0.3s ease !important;
+    overflow: hidden !important;
+
+}
+
+.collapsedOrchardContainer {
+    bottom: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    left: auto !important;
+    margin-bottom: 2em !important;
+    margin-right: 2em !important;
+    position: absolute !important;
+    border: .5em solid #321479 !important;
+    background-color: #9F87D6 !important;
+    height: 4em !important;
+    width: 5em !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: height 0.3s ease !important;
+    overflow: hidden !important;
+}
+
+.mobileFilterTab{
+    height: 20em !important;
+    position: absolute !important;
+    width: 100% !important;
+    background-color: #9F87D6 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.mobileFilterTabCollapsed{
+    height: 4em !important;
+    position: absolute !important;
+    width: 100% !important;
+    background-color: #9F87D6 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.panelContentContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+
+.hiddenMobileInfoPanel {
+    display: none !important;
+    inset: 0 !important;
+    margin: auto !important;
+    position: absolute !important;
+    margin-top: 2em;
+    margin-right: 2em;
+    width: 80% !important;
+    height: 50% !important;
+    background-color: #785BBC;
+    border: 8px #321479 solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.showMobileInfoPanel{
+    display: flex !important;
+    inset: 0 !important;
+    position: absolute !important;
+    margin: auto !important;
+    width: 80% !important;
+    height: 50% !important;
+    background-color: #785BBC;
+    border: 8px #321479 solid;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.mobileListContent{
+    z-index: 99 !important;
+    display: flex;
+    position: fixed;
+    border: 8px solid #321479;
+    background-color: #9F87D6;
+    width: 80% !important;
+    height: fit-content !important;
+    max-height: 80% !important;
+    margin-top: 2em;
+    overflow: scroll;
+}
+
+.hideMobileListContent{
+    z-index: 99 !important;
+    display: flex;
+    position: fixed;
+    border: 8px solid #321479;
+    background-color: #9F87D6;
+    width: 80% !important;
+    height: fit-content !important;
+    max-height: 80%;
+    margin-top: 2em;
+}
+
+.fadeTitle{
+    animation: fade 6s;
+}
+
+.mapboxgl-ctrl-top-right{
+    display: none;
+}
+
+
+
+/* MOBILE VERSION */
+@media (max-width: 800px){
+    #title{
+        margin-top: 1.5rem
+    }
+
+    #closeInfoPanel{
+        display: none;
+    }
+
+    #counterContainer {
+        height: 1.5em;
+        font-size: 1.5em !important;
+        width: 15em !important;
+        text-align: center !important;
+        display: flex !important;
+        gap: .5em !important;
+        justify-content: flex-start !important;
+        position:unset !important;
+    }
+
+    .howToTitle{
+        font-size: 2.25em !important;
+    }
+
+    #orchardGrouped{
+        display: none !important;
+    }
+
+    #expandSeperator{
+        display: none !important;
+    }
+
+    .mapboxgl-ctrl-bottom-right{
+        display: none;
+    }
+
+    .mapboxgl-ctrl-top-right{
+        display: block;
+    }
+
+    #homeButton{
+        bottom: unset;
+        top: 0;
+        right: 0;
+        margin-top: 4rem;    
+    }
+
+    #openTutorial {
+        top: 0;
+        margin-top: .5rem;    
+    }
+
+    .breedItem{
+        flex: 0 0 98% !important;
+        height: 4em;
+        border-bottom: 2px ivory solid;
+        border-radius: 0%;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    #breedContent{
+        height: 100% !important;
+        width: 100% !important;
+        margin-top: 2.5em !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        overflow-y: scroll !important;
+        column-gap: 8px !important;
+        box-sizing: border-box !important;
+    }
+
+    #breedSelector{
+        position: fixed;
+        z-index: 999;
+        border: 8px solid #321479;
+        background-color: #9F87D6;
+        display: flex;
+        margin-top: 2em;
+        width: 80% !important;
+        height: 80% !important;
+        max-height: none !important;
+        max-width: none !important;
+        overflow: hidden;
+    }
+    
+}
+
+/* medium size screen (801 - 1000 px) */
+@media only screen and (max-width: 1000px){
+
+    #contentContainer{
+        flex-direction: column !important;
+        display: flex;
+        row-gap: 1rem;
+    }
+
+    .howToSection{
+        width: 99%;
+        position: unset;
+    }
+
+    .howToText{
+        font-size: 1.15rem;
+        width: 5rem;
+    }
+
+    #leftContent{
+        column-gap: 1.5rem;
+    }
+
+    /* #breedSelector{
+        position: fixed;
+        z-index: 999;
+        border: 8px solid #321479;
+        background-color: #9F87D6;
+        display: flex;
+        margin-top: 2em;
+        width: 80% !important;
+        height: 80% !important;
+        max-height: none !important;
+        max-width: none !important;
+        overflow: hidden;
+    } */
+
+        
+    /* #breedSelector{
+        position: fixed;
+        z-index: 999;
+        border: 8px solid #321479;
+        background-color: #9F87D6;
+        display: flex;
+        width: 35em ;
+        height: 30em ;
+        margin-top: 2em;
+        max-width: 800px;
+        max-height: 560px; 
+    } */
+}
+
+
+
+.mapboxgl-popup-tip{
+    /* background-color: wheat !important; */
+    border-top-color: wheat !important;
+    opacity: .9 !important;
+
+}
+
+.lightBackground{
+    background-color: #9F87D6 !important;
+}
+
+h1{
+    font-size: 24px;
+    margin: 0;
+}
+
+p{
+    margin: 0;
+}
+
+#mapContainer{
+    position: relative;
+    height: 100%;
+}
+
+#map{
+    height: 100%;
+    z-index: 0;
+    position: relative;
+    cursor: pointer !important;
+}
+
+#mapTitle{
+    left: 0;
+    top: 0;
+    margin-left: 2em;
+    margin-top: 2em;
+    height: fit-content;
+    width: 30vw;
+    max-width: 600px;
+    min-width: 360px;
+    position: absolute;
+    background-color: #785BBC;
+    border: 8px;
+    border-color: #321479;
+    border-style: solid;
+}
+
+.mainTitle{
+    font-size: 2.5em;
+    color: ivory;
+    text-align: center;
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.kanitMedium {
+    font-family: "Kanit", sans-serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+  }
+
+
+.largePopup {
+    position: fixed;
+    z-index: 999;
+    border: 8px solid #321479;
+    background-color: hsl(258, 49%, 68%);
+    display: flex;
+    width: 50em;
+    height: 35em;
+    margin-top: 2em;
+    max-width: 800px;
+    max-height: 560px;
+}
+
+/* #breedSelectContainer{
+    display: flex;
+    justify-content: center;
+} */
+
+.flexContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.breedName{
+    color: ivory;
+    right: 0;
+    position: absolute;
+    /* font-size: 1.25em; */
+    top: 25%;
+    cursor: pointer
+}
+
+
+.breedItem {
+    flex: 0 0 32.25%;
+    height: 4em;
+    border-bottom: 2px ivory solid;
+    border-radius: 0%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Customize the label (the container) */
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: ivory;
+    right: 0;
+    font-size: 1.25em;
+    top: 25%;
+    cursor: pointer
+}
+  
+/* Hide the browser's default checkbox */
+.breedItem input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    margin-left: .5em;
+}
+
+/* On mouse-over, add a grey background color */
+.breedItem:hover input ~ .checkBox {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.breedItem input:checked ~ .checkBox {
+    background-color: #5D3DA8;
+}
+
+/* Create the checkBox/indicator (hidden when not checked) */
+.checkBox:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+/* Show the checkBox when checked */
+.breedItem input:checked ~ .checkBox:after {
+    display: block;
+}
+  
+/* Style the checkBox/indicator */
+.breedItem .checkBox:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#breedContent {
+    height: 31.5em;
+    width: 100%;
+    margin-top: 2.5em;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    column-gap: 8px;
+    box-sizing: border-box;
+}
+
+#dataContent {
+    height: 31.5em;
+    width: 100%;
+    margin-top: 1.75em;
+    display: flex;
+    flex-wrap: wrap;
+    /* overflow-y: scroll; */
+    column-gap: 8px;
+    box-sizing: border-box;
+
+}
+
+#exitButton {
+    cursor: pointer;
+    height: 1.5em;
+    color: ivory;
+    width: 4em;
+    font-size: 1.25em;
+    background-color: #9F87D6;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.closeButton{
+    cursor: pointer;
+    right: 0;
+    position: absolute;
+    background-color: #9F87D6;
+    color: ivory;
+    height: fit-content;
+    font-size: 1.25em;
+}
+
+#clearBreed{
+    cursor: pointer;
+    display: flex;
+    height: fit-content;
+    background-color: #9F87D6;
+    color: ivory;
+    font-size: 1.25em;
+    width: 3.5em;
+    justify-content: center;
+}
+
+
+#applyBreed{
+    display: flex;
+    cursor: pointer;
+    height: fit-content;
+    background-color: #9F87D6;
+    color: ivory;
+    font-size: 1.25em;
+    width: 3.5em;
+    justify-content: center;}
+
+#closeContainer{
+    height: 2.5em;
+    width: 100%;
+    background-color: #321479;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+#counterContainer{
+    height: 1.5em;
+    font-size: 1.5em;
+    width: 15em;
+    position: absolute;
+    text-align: center;
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+}
+
+#count, #countText{
+    color: ivory;
+}
+
+#commandsContainer{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    gap: 2em;
+    height: 2.5em;
+    width: 100%;
+    bottom: 0;
+    background-color: #321479;
+    position: absolute;
+    z-index: 99;
+}
+
+#openTutorial{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 3.5rem;
+    margin-bottom: 5.25rem;
+    cursor: pointer;
+}
+
+
+.tutorialImage{
+    height: 100%;
+    width: 100%;
+}
+
+#text1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 10px;
+    height: 100px;
+    width: 450px;
+    margin-top: 100px;
+    height: 200px;
+}
+
+#text2{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 250px;
+    height: 350px;
+}
+
+#img1{
+    height: 350px;
+    width: 450px;
+    bottom: 0;
+    position: absolute;
+    margin-bottom: 10px;
+}
+
+#img2{
+    width: 225px;
+    height: 350px;
+    right: 0;
+    position: absolute;
+    margin-bottom: 10px;
+    margin-right: 275px;
+    bottom: 0;
+}
+
+
+#img3{
+    position: absolute;
+    height: 200px;
+    width: 490px;
+    right: 0;
+    margin-right: 10px;
+    top: 0;
+    margin-top: 100px;
+}
+
+#greyMask{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(100, 100, 100, 0.6);
+    z-index: 10;
+    /* display: none; */
+}
+
+.hide{
+    display: none !important;
+}
+
+#infoPanel {
+    right: 0;
+    top: 0;
+    position: absolute;
+    margin-top: 2em;
+    margin-right: 2em;
+    width: 25em ;
+    height: 20em;
+    background-color: #785BBC;
+    border: 8px #321479 solid;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#clearPanel{
+    top: 0;
+    right: 0;
+    position: absolute;
+    margin-right: 350px;
+    margin-top: 18px;
+    display: none;
+    cursor: pointer;
+}
+
+#expandButton, #openMenu{
+    /* font-size: 36px; */
+    color: ivory;
+    cursor: pointer;
+    margin: auto;
+}
+
+#exportDataButton{
+    border-radius: 15px;
+    font-size: 1.25em !important;
+    text-align: center;
+    border-color: #321479;
+    background-color: #785BBC;
+    width: 3em !important;
+    border-style: solid;
+    height: 2.5em !important;
+    border-width: thick;
+    color: ivory;
+    cursor: pointer;
+    margin: auto;
+}
+
+#orchardContainer{
+    top: 0;
+    left: 0;
+    position: absolute;
+    border: .5em solid #321479;
+    background-color: #9F87D6;
+    margin-left: 1em;
+    margin-top: 3em;
+    height: 4em;
+    width: 30vw;
+    min-width: 360px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    transition: height 0.3s ease;
+    overflow: hidden;
+}
+
+
+#orchardGrouped::-webkit-scrollbar, #contentContainer::-webkit-scrollbar, #mobileOrchardGrouped::-webkit-scrollbar, #breedContent::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+    height: 100%; /* Height of the scrollbar */
+    background: #785BBC; /* Color of the track */
+    position: absolute;
+
+}
+
+#orchardGrouped::-webkit-scrollbar-thumb, #contentContainer::-webkit-scrollbar-thumb,#mobileOrchardGrouped::-webkit-scrollbar-thumb, #breedContent::-webkit-scrollbar-thumb {
+    background-color: #9F87D6; /* Color of the thumb */
+    border-radius: 6px; /* Rounded corners */
+    border: 3px solid #785BBC; /* Border around the thumb */
+    height: 10px;
+}
+
+.orchardGrouped{
+    overflow-y: scroll; 
+    height: 100%;
+    width: 100%;
+    position: relative;
+    margin-top: 4em;
+    border-top: solid 8px;
+    border-color: #321479;
+    display: flex;
+    flex-direction: column;
+    row-gap: .10em;
+}
+
+.orchardPanel{
+    height: 125px;
+    width: 100%;
+}
+
+.panelName{
+    color: ivory;
+    text-align: center;
+    font-size: 2.5em;
+    border-bottom: 3px solid ivory;
+}
+
+.panelText{
+    margin-left: .5em;
+    color: ivory;
+    font-size: 1.35em;
+}
+
+
+/* This is the divs populating orchardContainer */
+.scrollInfo{
+    cursor: pointer;
+    border-color: #321479;
+    border-style: outset;
+    border-width: .25em;
+    border-radius: 10px;
+    background-color: #785BBC;
+    display: flex;
+    flex-direction: column;
+    max-height: 13em;
+    min-height: 13em;
+    overflow: hidden;
+}
+
+.selectedOrchard{
+    background-color: #9F87D6;
+    border-style: inset;
+}
+
+.oneLineTruncate{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+.containerOrchardName{
+    color: ivory;
+    direction: ltr;
+    margin-left: .5em;
+    margin-top: .25em;
+    font-size: 2em;
+}
+
+.containerOrchardText{
+    color: ivory;
+    direction: ltr;
+    font-size: 1.15em;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5em;
+    margin-top: .25em;
+    gap: .5em;
+}
+
+#filterTab{
+    height: 4em;
+    position: absolute;
+    width: 100%;
+    background-color: #9F87D6;
+    display: flex;
+}
+
+#searchBar{
+    bottom: 0;
+    position: absolute;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.stateFilter {
+    font-size: 1.5em;
+    border-radius: 15px;
+    text-align: center;
+    border-color: #321479;
+    border-style: outset;
+    background-color: #785BBC;
+    width: 2.5em;
+    height: 2em;
+    border-width: thick;
+    color: ivory;
+    overflow: hidden;
+    cursor: pointer;
+    margin: auto;
+}
+
+#oregonDark{
+    position: absolute;
+    display: inline;
+}
+
+#washDark{
+    position: absolute;
+    display: inline;
+}
+
+#breedFilter {
+    border-radius: 15px;
+    font-size: 1.25em !important;
+    text-align: center;
+    border-color: #321479;
+    background-color: #785BBC;
+    width: 3em !important;
+    border-style: solid;
+    height: 2.5em !important;
+    border-width: thick;
+    color: ivory;
+    cursor: pointer;
+    margin: auto;
+}
+
+.smallCircle{
+    border-radius: 50%;
+    z-index: 2;
+    border: .25rem #321479 solid;
+    background-color: #785BBC;
+    height: 1.75rem;
+    width: 1.75rem;
+    cursor:pointer;
+}
+
+#openFilters{
+    display: flex;
+}
+
+#closeInfoPanel{
+    position: absolute;
+
+    right: 0;
+    top: 0;
+    margin-top: 1.25em;
+    margin-right: 26.75em;
+    transition: margin-right .25s;
+}
+
+
+#panelSymbol{    
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#minus{
+    position: absolute;
+    background-color: ivory;
+    width: 1.25rem;
+    height: .25rem;
+    border-radius: .5rem;
+    margin: auto;
+    display: flex;
+}
+
+#add{    
+    height: 1.25rem;
+    width: .25rem;
+    background-color: ivory;
+    margin: auto;
+    position: absolute;
+    border-radius: .5rem;
+}
+
+.closedInfoPanel{
+    height: 0rem !important;
+    width: 0rem !important;
+}
+
+.collapseTransition{
+    transition: width 1s, height .05s;
+}
+
+#editContainer{
+    height: 3rem;
+    width: 20rem;
+    position: absolute;
+    display: flex;
+    margin-left: 1rem;
+    flex-direction: row;
+    column-gap: 1rem;
+    top: 1rem;
+    align-items: center;
+}
+
+#resetButton {
+    display: flex;
+    height: 1.5rem;
+    background-color: #5D3DA8;
+    color: ivory;
+    cursor: pointer;
+    z-index: 6;
+    border-radius: .5rem;
+}
+
+#expandSeperator{
+    height: 4em;
+    width: .5em;
+    background-color: #321479;
+    z-index: 7;
+    margin: auto;
+}
+
+.infoAddress{
+    color: ivory;
+}
+
+.inactiveButton{
+    background-color: gray !important;
+    border-color: darkslategray !important;
+    cursor: not-allowed !important;
+}
+
+#searchInput{
+    border-radius: 10px;
+    width: 200px;
+    height: 20px;
+    border: solid 5px #321479;
+    background: #9F87D6;
+    color: ivory;
+}
+
+::placeholder {
+    color: ivory;
+  }
+
+.htmlBreeds {
+    color: ivory;
+    margin-left: .5em;
+    font-size: 1.35em;
+    flex-grow: 1;
+    margin-bottom: 1em;
+    cursor: pointer;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.containerBreeds {
+    cursor: pointer;
+    text-overflow: ellipsis;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#breedListContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#breedList{
+    color: ivory;
+    margin-top: 1.5em;
+    margin-left: 1em;
+    font-size: 1.25em;
+    padding-bottom: 1em;
+}
+
+#listContent{
+    z-index: 999;
+    display: flex;
+    position: fixed;
+    border: 8px solid #321479;
+    background-color: #9F87D6;
+    width: 40em;
+    height: fit-content;
+    margin-top: 2em;
+    max-width: 800px;
+    max-height: 560px;
+}
+
+#closeList{
+    color: ivory;
+    background-color: #9F87D6;
+    top: 0;
+    right: 0;
+    position: absolute;
+    font-size: 1.25em;
+}

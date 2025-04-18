@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Abundant Apples</title>
+    <link rel="stylesheet" href="flavorTown.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="data/orchardData.geojson"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+
+<body>    
+
+    <div id="mapContainer">
+        <div id="greyMask" onclick="closeHelp()"></div>
+        
+        <!-- Popup how style="display: none;" to on load -->
+        <div id="howTo">
+            <button id="exitButton" class="w3-button kanitMedium" onclick="closeHelp()">Close</button>
+            <div id="title">
+                <p class="howToTitle kanitMedium">Abundant Apples</p>
+            </div>
+            <div id="contentContainer">
+                <div id="leftContent" class="howToSection">
+                    <div id="washDesc" class="descContainer">
+                        <img id="washButton" class="howToButtonImage" src="img/howToWashington.png" alt="Washington button">
+                        <div class="howToText">Washington orchards</div>
+                    </div>
+                    <div id="oregonDesc" class="descContainer">
+                        <img id="oregonHere" class="howToButtonImage" src="img/howToOregon.png" alt="Oregon button">
+                        <div class="howToText">Oregon orchards</div>
+                    </div>
+                    <div id="appleTimeDesc" class="descContainer">
+                        <img id="appleTimeButton" class="howToButtonImage" src="img/howToAppleTime.png" alt="Breed filter button">
+                        <div class="howToText">Apple breeds</div>
+                    </div>
+                    <div id="menuDesc" class="descContainer">
+                        <img id="menuButton" class="howToButtonImage" src="img/howToMenu.png" alt="Open orchard directory">
+                        <div class="howToText">Open orchard directory</div>
+                    </div>
+                    <div id="homeDesc" class="descContainer">
+                        <div class="imageContainer">
+                            <img id="homeHowTo" class="howToButtonImage" src="img/home2.png" alt="Return to starting view">
+                        </div>
+                        <div class="howToText">Fly home</div>
+                    </div>
+                    <div id="resetDesc" class="descContainer">
+                        <div class="imageContainer">
+                            <img id="resetHowTo" class="howToButtonImage" src="img/howToReset.png" alt="Reset filters">
+                        </div>
+                        <div class="howToText">Clear all filters</div>
+                    </div>
+                    <div id="returnHowTo" class="descContainer">
+                        <img id="helpHowTo" class="howToButtonImage" src="img/openHowTo.png" alt="Reset filters">
+                        <div class="howToText">Reopen this panel</div>
+                    </div>
+                </div>
+                <div id="rightContent" class="howToSection">
+                    <div id="pointHover">
+                        <div class="howToText unsetWidth rightContent">Hover/click on a point to highlight and access the orchard's info!</div>
+                        <br>
+                        <img src="img/pointHighlight.png" alt="Active breed tab" class="rightContent" style="width: 95%;">
+                    </div>
+                    <div id="dataSources">
+                        <div id="dataTitle" class="howToText rightContent" style="width:fit-content">
+                            Data Sources:
+                        </div>
+                        <br>
+                        <div id="source" class="howToText rightContent unsetWidth">
+                            <a href="https://www.allthefarms.com/" target="_blank">Allthefarms</a>
+                        </div>
+                        <div class="howToText rightContent unsetWidth">
+                            <a href="https://www.orangepippin.com/orchards/united-states/oregon" target="_blank">Orange Pippin</a>
+                        </div>
+                        <div class="howToText rightContent unsetWidth">
+                            <a href="https://waapple.org/regions/" target="_blank">Washington Apple</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="breedListContainer">
+            <div id="listContent" style="display: none;">
+                <div id="breedList"> </div>
+                <button id="closeList" class="w3-button kanitMedium" onclick="closeBreedList()">Close</button>
+            </div>
+        </div>
+
+        <div id="breedSelectContainer" class="flexContainer">
+            <div id="breedSelector" class="largePopup" style="display: none;">
+                <div id="closeContainer">
+                    <button id="closeBreed" class="w3-button closeButton kanitMedium" onclick="closeHelp()">Close</button>
+                    <div id="counterContainer" class="kanitMedium">
+                        <div id="count">0</div>
+                        <div id="countText">breed(s) selected!</div>
+                    </div>
+                </div>
+                <div id="commandsContainer">
+                    <button id="clearBreed" class="w3-button kanitMedium" onclick="clearBreeds()">Clear</button>
+                    <button id="applyBreed" class="w3-button kanitMedium" onclick="closeHelp();runLayerQuery()">Apply</button>
+                </div>
+                <div id="breedContent">
+                    <!-- filling in new divs here -->
+                </div>
+            </div>
+        </div>
+<!-- 
+        <div id="exportDataContainer" class="flexContainer">
+            <div id="dataViewer" class="largePopup" style="display: none;">
+                <div id="closeContainer">
+                    <button id="closeData" class="w3-button closeButton" onclick="closeHelp()">Close</button>
+                </div>
+                <div id="commandsContainer">
+                    <button id="clearBreed" class="w3-button" onclick="clearBreeds()">Clear</button>
+                    <button id="applyBreed" class="w3-button" onclick="applyBreeds()">Apply</button>
+                </div>
+                <div id="dataContent">
+                </div>
+            </div>
+        </div> -->
+
+        <button id="closeMobileOrchards" class="w3-button kanitMedium" style="display: none;" onclick="closeHelp()">Close</button>
+        <div id="mobileOrchardGrouped" style="display: none;"></div>
+
+        <div id="map">
+        </div>
+
+        <div id="mapTitle" style="display: none">
+            <p class="mainTitle .kanit-medium ">Abundant Apples</p>
+        </div>
+
+        <!-- <div id="orchardCount" class="countContainer kanitMedium">
+            <div id="activeCount">00</div>
+            <div id="countSeperate">/</div>
+            <div id="totalCount">00</div>
+        </div> -->
+
+        <div id="editContainer">
+            <input id="resetButton" type="reset" value="Reset" onclick="resetButton()">
+            <div id="openFilters" class="smallCircle">
+                <img src="img/pencil.png" alt="Open editing bar">
+            </div>
+        </div>
+
+
+        <img id="openTutorial" src="img/openHowTo.png" title="open help panel" onclick="openHelp()">
+
+        <img id="homeButton" src="img/home2.png" title="Return to home view" onclick="returnHome()">
+
+        <div id="orchardContainer" style="display: none">
+            <div id="filterTab">
+                <div id="washingtonButton" onclick="colorStateFilter('Washington');runLayerQuery()" class="stateFilter">
+                    <img id="washDark" style="display: none;" src="img/washDark.png">
+                    <img id="washImage" src="img/washOutline.png">
+                </div>
+                <div id="oregonButton" onclick="colorStateFilter('Oregon');runLayerQuery()" class="stateFilter">
+                    <img id="oregonDark" style="display: none;" src="img/oregonDark.png">
+                    <img id="oregonImage" src="img/oregonOutline.png">
+                </div>
+                <div id="breedFilter" class="" onclick="openBreedSelector()">
+                    <img id="breedImage" src="img/appleTime.png">
+                </div>
+                <!-- <div id="exportDataButton" class="intButton" style="display: none;" onclick="exportData()">
+                    <img id="exportImage" src="img/download.png">
+                </div> -->
+                <div id='expandSeperator'></div>
+                <!-- <div id="orchardCount" class="stateFilter"></div> -->
+                <img id="openMenu" src="img/openOrchards.png" alt="Open orchard list!" onclick="changeOrchardContainerSize()">
+            </div>
+            <!-- putting new divs in here -->
+            <div id="orchardGrouped" class="orchardGrouped"></div>
+        </div>
+
+        <!-- Top right elements -->
+        <!-- <img id="clearPanel" src="img/clear.png" title="Clear info panel" onclick="clearPanel()" style="display: none;"> -->
+        <div id="closeInfoPanel" class="smallCircle" onclick="changeInfoPanel()">
+           <div id="panelSymbol">
+                <div id="minus"></div>
+                <div id="add" style="display: none;"></div>
+           </div>
+        </div>
+        <div id="infoPanel"></div>
+    </div>
+
+
+</body>
+    <script src="appleTime.js"></script>
+</html>
+
