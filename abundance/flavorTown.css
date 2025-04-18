@@ -17,65 +17,64 @@ html, head, body{
 
 }
 
-/* zoom controls */
-.mapboxgl-ctrl-top-left {
-    left: 0;
-    top: 0;
-    /* margin-left: 36vw; */
-    margin-left: calc(2em + 30vw + 36px);
-    margin-top: 2em;
-}
-
-.mapboxgl-ctrl-bottom-left{
-    display: none;
-}
 
 #homeButton{
-    z-index: 99;
+    bottom: 0;
+    right: 0;
+    margin-right: 3.5rem;
+    margin-bottom: 1.75rem;
+
+    z-index: 6;
     position: absolute;
-    top: 0;
-    margin-left: calc(2em + 30vw + 36px);
-    margin-top: 8em;
     cursor: pointer;
     border-radius: .5rem;
 }
 
+.countContainer{
+    margin-left: calc(2em + 30vw + 29px);
+    margin-top: 8rem;
+    position: absolute;
+    border-radius: .5rem;
+    left: 0;
+    top: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-color: #321479;
+    background-color: #785BBC;
+    border: .25rem solid #321479;
 
-@media only screen  and (max-width: 1200px){
-    #resetButton{
-        margin: 14em 0px 0px 422px !important
-    }
-
-    #openTutorial{
-        margin: 32px 0px 0px 468px !important;
-     }
-
-    .mapboxgl-ctrl-top-left{
-        margin: 2em 0px 0px 420px !important;
-    }
-
-    #expandDataButton{
-        border-radius: 15px;
-        font-size: 1.25em !important;
-        position: absolute;
-        text-align: center;
-        border-color: #321479;
-        background-color: #785BBC;
-        width: 3em !important;
-        border-style: solid;
-        height: 2.5em !important;
-        border-width: thick;
-        color: ivory;
-        position: absolute;
-        margin-top: .1em !important;
-        margin-left: 10.85em;
-        cursor: pointer;
-    }
-
-    #homeButton{
-        margin: 128px 0px 0px 428px !important;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem; 
+    color: ivory;
+    padding: 0.2rem;
+    line-height: 1;
 }
+
+
+#activeCount,
+#countSeperate,
+#totalCount {
+  position: absolute;
+}
+
+#activeCount {
+  top: 0.1rem;
+  left: 0.2rem;
+}
+
+#countSeperate {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#totalCount {
+  bottom: 0.1rem;
+  right: 0.2rem;
+}
+
 @keyframes fade {
     to { opacity: 0;}
 }
@@ -149,7 +148,7 @@ html, head, body{
 #rightContent{
     flex-direction: column;
     right: 0;
-    row-gap: 2.5rem;
+    row-gap: 1rem;
 }
 
 
@@ -158,25 +157,21 @@ html, head, body{
     flex-direction: column;
     position: fixed;
     inset: 0px;
-    width: 60em;
-    height: 40em;
+    width: 80%;
+    height: 80%;
+    max-width: 1000px;
     margin: auto;
-    border: 8px;
+    border: .5rem #321479 solid;
     background-color: #9F87D6;
-    border-color: #321479;
-    border-style: solid;
     z-index: 999;
 }
 
-#contentContainer{
-    overflow: auto;
-    height: 100%;
-    margin-top: 1em;
-    position: relative;
 
-    /* flex-direction: row;
-    display: flex; */
+#contentContainer{
+    /* flex: 1 1 auto; */
+    overflow-y: auto;    
 }
+
 
 .unsetWidth{
     width: unset !important;
@@ -229,15 +224,14 @@ html, head, body{
     right: 0 !important;
     top: auto !important;
     left: auto !important;
-    margin-bottom: 2em !important;
-    margin-right: 2em !important;
+    margin-bottom: 1rem !important;
+    margin-right: 1rem !important;
     position: absolute !important;
     border: .5em solid #321479 !important;
     background-color: #9F87D6 !important;
     height: 20em !important;
     width: 5em !important;
     min-width: 0 !important;
-    display: flex !important;
     flex-direction: column !important;
     transition: height 0.3s ease !important;
     overflow: hidden !important;
@@ -345,6 +339,11 @@ html, head, body{
     animation: fade 6s;
 }
 
+.mapboxgl-ctrl-top-right{
+    display: none;
+}
+
+
 
 /* MOBILE VERSION */
 @media (max-width: 800px){
@@ -362,6 +361,9 @@ html, head, body{
         /* animation: fade 8s linear; */
     }
 
+    #closeInfoPanel{
+        display: none;
+    }
 
     #counterContainer {
         height: 1.5em;
@@ -375,7 +377,7 @@ html, head, body{
     }
 
     .howToTitle{
-        font-size: 3.25em !important;
+        font-size: 2.25em !important;
     }
 
     #orchardGrouped{
@@ -386,47 +388,24 @@ html, head, body{
         display: none !important;
     }
 
-    .mapboxgl-ctrl-top-left{
+    .mapboxgl-ctrl-bottom-right{
         display: none;
     }
 
-    .mapboxgl-ctrl-bottom-left{
+    .mapboxgl-ctrl-top-right{
         display: block;
     }
 
-    #resetButton {
-        position: absolute;
-        font-size: 1em;
-        height: fit-content;
-        right: 0;
-        bottom: 0;
-        left: auto !important;
-        top: auto !important;
-        margin-right: 10em !important;
-        margin-bottom: 2em !important;
-        background-color: #5D3DA8;
-        color: ivory;
-        cursor: pointer;
-        z-index: 5 !important;
-    }
-
     #homeButton{
-        z-index: 5;
-        position: absolute;
-        bottom: 0;
-        top: auto !important;
-        margin-left: 3.5em !important;
-        margin-bottom: 2.5em !important;
-        cursor: pointer;
+        bottom: unset;
+        top: 0;
+        right: 0;
+        margin-top: 4rem;    
     }
 
     #openTutorial {
-        position: absolute;
-        bottom: 0;
-        top: auto !important;
-        margin-left: 3.5em !important;
-        margin-bottom: 5.75em !important;
-        cursor: pointer;
+        top: 0;
+        margin-top: .5rem;    
     }
 
     .breedItem{
@@ -465,41 +444,17 @@ html, head, body{
     
 }
 
-.mediumInfoPanel{
-    right: 0;
-    top: 0;
-    position: absolute;
-    margin: 25px;
-    width: 16em !important;
-    height: 16em !important;
-    background-color: #785BBC;
-    border: 8px #321479 solid;
-    display: flex;
-    flex-direction: column;
-}
-
-
+/* medium size screen (801 - 1000 px) */
 @media only screen and (max-width: 1000px){
 
     #contentContainer{
         flex-direction: column !important;
         display: flex;
-        row-gap: 2.5rem;
-    }
-
-    #howToSection{
-        width: 99% !important;
-    }
-    .descContainer{
-        display: flex;
-        /* gap: 1.5em; */
-        align-items: center;
+        row-gap: 1rem;
     }
 
     .howToSection{
         width: 99%;
-        display: flex;
-        flex-direction: column;
         position: unset;
     }
 
@@ -508,25 +463,26 @@ html, head, body{
         width: 5rem;
     }
 
-    #rightContent{
-        gap: 2rem;
-    }
-
     #leftContent{
-        column-gap: 2.25rem;
+        column-gap: 1.5rem;
     }
 
-    #title{
-        margin-top: 3em;
-    }
-    
-    #howTo{
-        width: 80%;
-        height: 80%;
-    }
+    /* #breedSelector{
+        position: fixed;
+        z-index: 999;
+        border: 8px solid #321479;
+        background-color: #9F87D6;
+        display: flex;
+        margin-top: 2em;
+        width: 80% !important;
+        height: 80% !important;
+        max-height: none !important;
+        max-width: none !important;
+        overflow: hidden;
+    } */
 
-
-    #breedSelector{
+        
+    /* #breedSelector{
         position: fixed;
         z-index: 999;
         border: 8px solid #321479;
@@ -537,7 +493,7 @@ html, head, body{
         margin-top: 2em;
         max-width: 800px;
         max-height: 560px; 
-    }
+    } */
 }
 
 
@@ -747,7 +703,7 @@ p{
     height: 1.5em;
     color: ivory;
     width: 4em;
-    font-size: 2em;
+    font-size: 1.25em;
     background-color: #9F87D6;
     position: absolute;
     right: 0;
@@ -827,9 +783,10 @@ p{
 
 #openTutorial{
     position: absolute;
-    top: 0;
-    margin-left: calc(4.5em + 30vw + 36px);
-    margin-top: 2em;
+    bottom: 0;
+    right: 0;
+    margin-right: 3.5rem;
+    margin-bottom: 5.25rem;
     cursor: pointer;
 }
 
@@ -957,8 +914,8 @@ p{
     position: absolute;
     border: .5em solid #321479;
     background-color: #9F87D6;
-    margin-left: 2em;
-    margin-top: 8em;
+    margin-left: 1em;
+    margin-top: 3em;
     height: 4em;
     width: 30vw;
     min-width: 360px;
@@ -1119,21 +1076,30 @@ p{
     margin: auto;
 }
 
-#closeInfoPanel{
-    position: absolute;
+.smallCircle{
     border-radius: 50%;
     z-index: 2;
-    right: 0;
-    top: 0;
     border: .25rem #321479 solid;
     background-color: #785BBC;
     height: 1.75rem;
     width: 1.75rem;
+    cursor:pointer;
+}
+
+#openFilters{
+    display: flex;
+}
+
+#closeInfoPanel{
+    position: absolute;
+
+    right: 0;
+    top: 0;
     margin-top: 1.25em;
     margin-right: 26.75em;
-    cursor:pointer;
     transition: margin-right .25s;
 }
+
 
 #panelSymbol{    
     position: relative;
@@ -1172,16 +1138,25 @@ p{
     transition: width 1s, height .05s;
 }
 
-#resetButton {
+#editContainer{
+    height: 3rem;
+    width: 20rem;
     position: absolute;
-    left: 0;
+    display: flex;
+    margin-left: 1rem;
+    flex-direction: row;
+    column-gap: 1rem;
     top: 0;
-    margin-top: 14em;
-    margin-left: calc(2em + 30vw + 36px);
+    align-items: anchor-center;
+}
+
+#resetButton {
+    display: flex;
+    height: 1.5rem;
     background-color: #5D3DA8;
     color: ivory;
     cursor: pointer;
-    z-index: 15;
+    z-index: 6;
     border-radius: .5rem;
 }
 

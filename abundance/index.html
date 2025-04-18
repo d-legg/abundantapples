@@ -25,13 +25,13 @@
 <body>    
 
     <div id="mapContainer">
-        <div id="greyMask"></div>
+        <div id="greyMask" onclick="closeHelp()"></div>
         
         <!-- Popup how style="display: none;" to on load -->
-        <div id="howTo" >
+        <div id="howTo">
             <button id="exitButton" class="w3-button kanitMedium" onclick="closeHelp()">Close</button>
             <div id="title">
-                <p class="howToTitle kanitMedium">It's apple time!</p>
+                <p class="howToTitle kanitMedium">Abundant Apples</p>
             </div>
             <div id="contentContainer">
                 <div id="leftContent" class="howToSection">
@@ -136,39 +136,49 @@
         <button id="closeMobileOrchards" class="w3-button kanitMedium" style="display: none;" onclick="closeHelp()">Close</button>
         <div id="mobileOrchardGrouped" style="display: none;"></div>
 
-
-        <!-- Top left elements -->
         <div id="map">
         </div>
 
-        <div id="mapTitle">
+        <div id="mapTitle" style="display: none">
             <p class="mainTitle .kanit-medium ">Abundant Apples</p>
         </div>
 
-        <input id="resetButton" type="reset" value="Reset" onclick="resetButton()">
+        <!-- <div id="orchardCount" class="countContainer kanitMedium">
+            <div id="activeCount">00</div>
+            <div id="countSeperate">/</div>
+            <div id="totalCount">00</div>
+        </div> -->
+
+        <div id="editContainer">
+            <input id="resetButton" type="reset" value="Reset" onclick="resetButton()">
+            <div id="openFilters" class="smallCircle">
+                <img src="img/pencil.png" alt="Open editing bar">
+            </div>
+        </div>
+
 
         <img id="openTutorial" src="img/openHowTo.png" title="open help panel" onclick="openHelp()">
 
         <img id="homeButton" src="img/home2.png" title="Return to home view" onclick="returnHome()">
 
-        <div id="orchardContainer">
+        <div id="orchardContainer" style="display: none">
             <div id="filterTab">
-                <div id="washingtonButton" onclick="colorStateFilter('Washington');runLayerQuery()" class="stateFilter intButton">
+                <div id="washingtonButton" onclick="colorStateFilter('Washington');runLayerQuery()" class="stateFilter">
                     <img id="washDark" style="display: none;" src="img/washDark.png">
                     <img id="washImage" src="img/washOutline.png">
                 </div>
-                <div id="oregonButton" onclick="colorStateFilter('Oregon');runLayerQuery()" class="stateFilter intButton">
+                <div id="oregonButton" onclick="colorStateFilter('Oregon');runLayerQuery()" class="stateFilter">
                     <img id="oregonDark" style="display: none;" src="img/oregonDark.png">
                     <img id="oregonImage" src="img/oregonOutline.png">
                 </div>
-                <div id="breedFilter" class="intButton" onclick="openBreedSelector()">
+                <div id="breedFilter" class="" onclick="openBreedSelector()">
                     <img id="breedImage" src="img/appleTime.png">
                 </div>
-                <div id="exportDataButton" class="intButton" style="display: none;" onclick="exportData()">
+                <!-- <div id="exportDataButton" class="intButton" style="display: none;" onclick="exportData()">
                     <img id="exportImage" src="img/download.png">
-                </div>
+                </div> -->
                 <div id='expandSeperator'></div>
-                <!-- <i id="expandButton" onclick="changeOrchardContainerSize()" class='fas fa-angle-double-down' style='font-size:36px'></i> -->
+                <!-- <div id="orchardCount" class="stateFilter"></div> -->
                 <img id="openMenu" src="img/openOrchards.png" alt="Open orchard list!" onclick="changeOrchardContainerSize()">
             </div>
             <!-- putting new divs in here -->
@@ -177,7 +187,7 @@
 
         <!-- Top right elements -->
         <!-- <img id="clearPanel" src="img/clear.png" title="Clear info panel" onclick="clearPanel()" style="display: none;"> -->
-        <div id="closeInfoPanel" onclick="changeInfoPanel()">
+        <div id="closeInfoPanel" class="smallCircle" onclick="changeInfoPanel()">
            <div id="panelSymbol">
                 <div id="minus"></div>
                 <div id="add" style="display: none;"></div>

@@ -60,14 +60,20 @@ var map = new mapboxgl.Map({
   center: [-120.420, 45.668123], // Starting position [lng, lat]
   zoom: 5,
   minZoom: 5,
+  maxZoom: 11.9,
   maxBounds: bounds  
 });
 
 map.getCanvas().style.cursor = 'auto';
 map.dragRotate.disable()
 map.touchZoomRotate.disableRotation();
-map.addControl(new mapboxgl.NavigationControl({}), 'bottom-left');
-map.addControl(new mapboxgl.NavigationControl({visualizePitch: true}), 'top-left');
+
+// mobile zoom
+map.addControl(new mapboxgl.NavigationControl({visualizePitch: true}), 'top-right');
+
+
+map.addControl(new mapboxgl.NavigationControl({visualizePitch: true}), 'bottom-right');
+
 
 const mapTitle = document.getElementById("mapTitle")
 mapTitle.addEventListener("animationend", function() {
@@ -76,6 +82,7 @@ mapTitle.addEventListener("animationend", function() {
 
 
 map.on('click', 'landcover', () => {
+  console.log('landcover click')
   if ((panel.classList.contains('clicked')) || (currentDiv!=undefined && (currentDiv.classList.contains('clicked')))) {
     clearPanel()
     noHover(currentID)
@@ -106,28 +113,18 @@ map.on('click', 'water', () => {
 })
 // –––––––––––––––––––––––––––––––––––––––– END –––––––––––––––––––––––––––––––––––––––– 
 
+$("#openFilters").click(function() {
+  console.log('open editing')
+  if(orchardContainer.style.display == 'none'){
+    d3.select('#orchardContainer').style('display', 'flex')
+    d3.select('#openFilters').style('background-color', lightPurple)
+  } else {
+    d3.select('#orchardContainer').style('display', 'none')
+    d3.select('#openFilters').style('background-color', '#785BBC')
 
-// –––––––––––––––––––––––––––––––––––––––– loop through orchardsData –––––––––––––––––––––––––––––––––––––––– 
-// for (var orchardIDX in orchardsData.features){
-//   currentOrchard = orchardsData.features[orchardIDX]
-// //   // getting breedList
-//   try{
-//     var breeds = currentOrchard.properties.Breeds
-//     breeds.forEach((appleBreed) => {
-//         // console.log(appleBreed)
-//         if(!breedList.includes(appleBreed)){
-//           // console.log('new apple!')
-//           breedList.push(appleBreed)
-//         }
-//     })
-//     breedList.sort()
-//   }
-//   catch(error){
-//     console.log('no apple breeds')
-//   }
-
-// }
-// –––––––––––––––––––––––––––––––––––––––– END –––––––––––––––––––––––––––––––––––––––– 
+  }
+  
+});
 
 // mobile version
 if (window.innerWidth <= 800){
@@ -135,11 +132,6 @@ if (window.innerWidth <= 800){
   d3.select('#filterTab').classed('mobileFilterTab', true)
   d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
   d3.select('#listContent').classed('hideMobileListContent', true)
-}
-
-// medium containers
-if(window.innerWidth <= 1000 && window.innerWidth > 800){
-  d3.select('#infoPanel').classed('mediumInfoPanel', true)
 }
 
 
@@ -153,6 +145,9 @@ map.on('load', () => {
     'data': orchardsData
     
   })
+
+  $('#totalCount').html(orchardsData.features.length)
+
   
   map.addLayer({
     'id': 'orchardsLayer',
@@ -619,7 +614,7 @@ function updateDataCounts(data){
 function runLayerQuery(){
   console.log('runLayerQuery()')
   let filteredOrchards = filterData(orchardsData)
-  // console.log('filteredOrchards =',filteredOrchards)
+  console.log('filteredOrchards =',filteredOrchards.length)
   updateDataCounts(filteredOrchards)
   updateOrchards(filteredOrchards)
 
@@ -630,6 +625,9 @@ function runLayerQuery(){
     true,     
     false       
   ])
+
+  $('#activeCount').html(filteredOrchards.length)
+
 }
 
 function colorBorder(state){
@@ -742,10 +740,7 @@ function closeHelp(){
   d3.select('#greyMask').style('display', 'none')
   d3.select('#howTo').style('display', 'none')
   d3.select('#listContent').style('display', 'none')
-  // if(breedCount === 0){
-  //   // console.log('here', matchFilter)
-  //   // console.log('also', filterBreeds)
-  // }
+
   let titleFade = false
   if(window.innerWidth <= 800){
     if(titleFade === false){
