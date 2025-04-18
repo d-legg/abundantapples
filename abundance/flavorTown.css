@@ -1136,7 +1136,8 @@ p{
     flex-direction: row;
     column-gap: 1rem;
     /* top: 1rem; */
-    top: env(safe-area-inset-top, 1rem);
+    /* top: env(safe-area-inset-top, 1rem); */
+    top: calc(env(safe-area-inset-top, 0px) + 1rem);
     align-items: center;
 }
 
