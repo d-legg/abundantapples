@@ -347,18 +347,8 @@ html, head, body{
 
 /* MOBILE VERSION */
 @media (max-width: 800px){
-    #mapTitle{
-        display: block;
-        position: fixed !important;
-        margin: auto !important;
-        inset: 0px !important;
-        bottom: auto !important;
-        margin-top: 1em !important;
-        height: fit-content !important;
-        width: 90% !important;
-        border: .5em #321479 solid !important; 
-        background-color: #785BBC !important;
-        /* animation: fade 8s linear; */
+    #title{
+        margin-top: 1.5rem
     }
 
     #closeInfoPanel{
