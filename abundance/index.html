@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Abundant Apples</title>
     <link rel="stylesheet" href="flavorTown.css">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+    <!-- <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script> -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -25,10 +27,10 @@
 <body>    
 
     <div id="mapContainer">
-        <div id="greyMask" onclick="closeHelp()"></div>
+        <div id="greyMask" onclick="closeHelp()" style="display:none"></div>
         
         <!-- Popup how style="display: none;" to on load -->
-        <div id="howTo">
+        <div id="howTo" style="display:none">
             <button id="exitButton" class="w3-button kanitMedium" onclick="closeHelp()">Close</button>
             <div id="title">
                 <p class="howToTitle kanitMedium">Abundant Apples</p>
@@ -118,20 +120,6 @@
                 </div>
             </div>
         </div>
-<!-- 
-        <div id="exportDataContainer" class="flexContainer">
-            <div id="dataViewer" class="largePopup" style="display: none;">
-                <div id="closeContainer">
-                    <button id="closeData" class="w3-button closeButton" onclick="closeHelp()">Close</button>
-                </div>
-                <div id="commandsContainer">
-                    <button id="clearBreed" class="w3-button" onclick="clearBreeds()">Clear</button>
-                    <button id="applyBreed" class="w3-button" onclick="applyBreeds()">Apply</button>
-                </div>
-                <div id="dataContent">
-                </div>
-            </div>
-        </div> -->
 
         <button id="closeMobileOrchards" class="w3-button kanitMedium" style="display: none;" onclick="closeHelp()">Close</button>
         <div id="mobileOrchardGrouped" style="display: none;"></div>
@@ -184,17 +172,6 @@
             <!-- putting new divs in here -->
             <div id="orchardGrouped" class="orchardGrouped"></div>
         </div>
-
-        <!-- Top right elements -->
-        <!-- <img id="clearPanel" src="img/clear.png" title="Clear info panel" onclick="clearPanel()" style="display: none;"> -->
-        <div id="closeInfoPanel" class="smallCircle" onclick="changeInfoPanel()">
-           <div id="panelSymbol">
-                <div id="minus"></div>
-                <div id="add" style="display: none;"></div>
-           </div>
-        </div>
-        <div id="infoPanel"></div>
-    </div>
 
 
 </body>

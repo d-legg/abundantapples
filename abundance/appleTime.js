@@ -12,16 +12,19 @@ console.log(orchardsData)
 var lightPurple = "#9F87D6"
 var darkPurple = "#321479"
 
-var panel = document.getElementById('infoPanel')
-// var clearButton = document.getElementById('clearPanel')
 const appleLayerName = 'orchardsLayer'
 const mapboxSourceName = 'orchardsSource'
 
-// var baseZoom = 5
-// var baseCenter = [-120.324262, 45.468905]
 
-var baseZoom = 5
-var baseCenter = [-120.420, 45.668123]
+
+// var baseZoom = 5
+// var baseCenter = [-120.420, 45.668123]
+
+
+var baseZoom = 5.75
+var baseCenter = [-120.420, 45.448123]
+
+
 
 var currentID = 0
 var currentDiv 
@@ -30,7 +33,6 @@ var pointID
 const orchardContainer = document.getElementById('orchardContainer')
 
 var breedList = []
-
 var breedCount = 0
 var filterBreeds = []
 
@@ -40,9 +42,21 @@ var washingtonBorderLayers = ['washingtonBottom', 'washingtonMiddle', 'washingto
 var oregonBorderLayers = ['oregonBottom', 'oregonMiddle', 'oregonTop']
 
 var currentBreeds
+var isMobile = false
 
 
 // –––––––––––––––––––––––––––––––––––––––– END  ––––––––––––––––––––––––––––––––––––––––
+
+
+if (window.innerWidth <= 800){
+  isMobile = true
+  baseZoom = 5
+  baseCenter = [-120.420, 45.668123]
+  d3.select('#orchardContainer').classed('mobileOrchard', true)
+  d3.select('#filterTab').classed('mobileFilterTab', true)
+  d3.select('#listContent').classed('hideMobileListContent', true)
+}
+
 
 
 // –––––––––––––––––––––––––––––––––––––––– MAP HANDLERS –––––––––––––––––––––––––––––––––––––––– 
@@ -57,8 +71,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZGxlZ2c0OCIsImEiOiJjbHBpcjhucDkwMXp5MmxvdXZ4O
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/dlegg48/cm56a2w8200ls01sp05spgje9',
-  center: [-120.420, 45.668123], // Starting position [lng, lat]
-  zoom: 5,
+  center: baseCenter, // Starting position [lng, lat]
+  zoom: baseZoom,
   minZoom: 5,
   maxZoom: 11.9,
   maxBounds: bounds  
@@ -83,32 +97,19 @@ mapTitle.addEventListener("animationend", function() {
 
 map.on('click', 'landcover', () => {
   console.log('landcover click')
-  if ((panel.classList.contains('clicked')) || (currentDiv!=undefined && (currentDiv.classList.contains('clicked')))) {
-    clearPanel()
+  if (clickedPoint || (currentDiv!=undefined && (currentDiv.classList.contains('clicked')))) {
+    // clearPanel()
     noHover(currentID)
     clearOrchardContainer()
     d3.selectAll('.selectedOrchard').classed('selectedOrchard', false)
-    if (window.innerWidth <= 800){
-      d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
-      d3.select('#infoPanel').classed('showMobileInfoPanel', false)
-      d3.select('#closeMobileOrchards').style('display', 'none')
-      d3.select('#greyMask').style('display', 'none')
-    }
   }
 })
 map.on('click', 'water', () => {
-  if ((panel.classList.contains('clicked')) || (currentDiv!=undefined && (currentDiv.classList.contains('clicked')))) {
-    clearPanel()
+  if (clickedPoint || (currentDiv!=undefined && (currentDiv.classList.contains('clicked')))) {
+    // clearPanel()
     noHover(currentID)
     clearOrchardContainer()
     d3.selectAll('.selectedOrchard').classed('selectedOrchard', false)
-    if (window.innerWidth <= 800){
-      d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
-      d3.select('#infoPanel').classed('showMobileInfoPanel', false)
-      d3.select('#closeMobileOrchards').style('display', 'none')
-      d3.select('#greyMask').style('display', 'none')
-    }
-
   }
 })
 // –––––––––––––––––––––––––––––––––––––––– END –––––––––––––––––––––––––––––––––––––––– 
@@ -126,19 +127,17 @@ $("#openFilters").click(function() {
   
 });
 
-// mobile version
-if (window.innerWidth <= 800){
-  d3.select('#orchardContainer').classed('mobileOrchard', true)
-  d3.select('#filterTab').classed('mobileFilterTab', true)
-  d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
-  d3.select('#listContent').classed('hideMobileListContent', true)
-}
-
-
+var clickedPoint = false
 
 // –––––––––––––––––––––––––––––––––––––––– START MAP.LOAD ––––––––––––––––––––––––––––––––––––––––
 map.on('load', () => {
   // console.log(breedList)
+  if(isMobile){
+    map.setLayoutProperty('Pacific Ocean Label', 'text-offset', [1,0]);
+  } else {
+    // map.setLayoutProperty('Pacific Ocean Label', 'text-offset', [1,0]);
+  }
+  
 
   map.addSource('orchardsSource', {
     "type": 'geojson',
@@ -161,21 +160,10 @@ map.on('load', () => {
         ],
         'circle-stroke-width': 2,
         'circle-color': '#5d3da8',
-        'circle-stroke-color': '#49ffff',
-        // 'circle-color': '#ffbf00',
-        // 'circle-stroke-color': '#5d3da8',
-
-        
+        'circle-stroke-color': '#49ffff',        
     }
   });
   
-  // setting paint property of circles to be dependent on feature-state (if hovered or not)
-  // map.setPaintProperty(appleLayerName, 'circle-color', [
-  //   'case',
-  //   ['boolean', ['feature-state', 'hover'], false],
-  //   '#F7E922',
-  //   '#5D3DA8'
-  // ]);
 
   map.setPaintProperty(appleLayerName, 'circle-color', [
     'case',
@@ -183,72 +171,52 @@ map.on('load', () => {
     '#F7E922',
     '#785BBC'
   ]);
-
   map.moveLayer('Washington-Label')
   map.moveLayer('Oregon label')
 
-  // on hover of circle point
+
   map.on('mouseenter', appleLayerName, (e) => {
-    // e is the data point and its features -> e.features for geojson object
-    var id = e.features[0].properties.id
-    // console.log('id =' ,id)
-    // console.log('e =' , e)
+    console.log('mouseeneter')
     map.getCanvas().style.cursor = 'pointer';
 
-    if ( !panel.classList.contains('clicked')) {
-      // console.log('at hover cond')
-      // set feature state of circle to hovered
+    if(clickedPoint){
+      console.log('popup Open')
+    } else {
+      var id = e.features[0].properties.id
       currentID = id
-      yesHover(currentID)
-      setInfoPanel(e)
-    }
-  })
-
-  // leaving circle point on hover
-  map.on('mouseleave', appleLayerName, (e) => {
-    // e is the data point and its features -> e.features for geojson object    
-    map.getCanvas().style.cursor = 'auto';
-
-    if (!panel.classList.contains('clicked')) {
-      noHover(currentID)    
-      panel.innerHTML = ''
-    }
-  })
-
-  // loop through breedList
-  // for(var breed of breedList){
-  //   // console.log(breed)
-  //   var divContent = document.createElement('div')
-  //   // divContent.id = 
-  //   divContent.classList.add('breedItem')  
-  //   divContent.innerHTML = `
-  //     <label class="container">
-  //       <input type="checkbox">
-  //       <span class="checkBox"></span>
-  //       <p class=breedName>${breed}</p>
-  //     </label>
-  //   `
-
-  //   document.getElementById('breedContent').appendChild(divContent)
-
-  // }
   
-  runLayerQuery()
+      setPopupContent(e)
+      yesHover(currentID)
+  
+    }
+  })
 
-  // document.querySelectorAll('.breedItem input[type="checkbox"]').forEach(function(checkbox) {
-  //   checkbox.addEventListener('change', function() {
-  //       // console.log('clicked');
-  //       const label = checkbox.closest('label');
-  //       var breedName = label.querySelector('.breedName').textContent
-  //       if(this.checked){
-  //         // console.log('checked!')
-  //         addBreed(breedName)
-  //       } else if (!this.checked){
-  //         // console.log('unchecked')
-  //         deleteBreed(breedName)
-  //       }
-  //   });
-  // });
+  map.on('mouseleave', appleLayerName, (e) => {
+    map.getCanvas().style.cursor = 'auto';
+    // e is the data point and its features -> e.features for geojson object 
+    if(clickedPoint){
+      console.log('popup open')
+    } else{
+      popup.remove()
+      noHover(currentID)    
+    }
+  
+  })
+
+  map.on('click', appleLayerName, (e) => {
+    clickedPoint=true
+    // CLEAR OLD HIGHLIGHT FIRST
+    noHover(currentID)
+    var id = e.features[0].properties.id
+    currentID=id
+      
+    setPopupContent(e)
+    yesHover(currentID)
+  
+  })
+  
+
+  runLayerQuery()
 
   document.getElementById('breedContent').addEventListener('change', function(event) {
     const checkbox = event.target;
@@ -269,31 +237,6 @@ map.on('load', () => {
 // –––––––––––––––––––––––––––––––––––––––– END MAP.LOAD ––––––––––––––––––––––––––––––––––––––––
   
 
-// –––––––––––––––––––––––––––––––––––––––– Clicking a point ––––––––––––––––––––––––––––––––––––––––
-map.on('click', appleLayerName, (e) => {
-  // CLEAR OLD HIGHLIGHT FIRST
-  noHover(currentID)
-  var id = e.features[0].properties.id
-  panel.classList.add('clicked')
-  // clearButton.style.display='block'
-  
-  setInfoPanel(e)
-  currentID=id
-  yesHover(currentID)
-  if(window.innerWidth <= 800){
-    d3.select('#infoPanel').classed('hiddenMobileInfoPanel', false)
-    d3.select('#infoPanel').classed('showMobileInfoPanel', true)
-    d3.select('#closeMobileOrchards').style('display', 'block')
-    d3.select('#greyMask').style('display', 'block')
-  }
-})
-// –––––––––––––––––––––––––––––––––––––––– END ––––––––––––––––––––––––––––––––––––––––
-
-
-
-
-
-
 // ––––––––––––––––––––––––––––––––––––––––  Function Time –––––––––––––––––––––––––––––––––––––––– 
 // sets TRUE hover feature state of circle
 function yesHover(pointID){
@@ -312,71 +255,119 @@ function noHover(pointID){
   );
 }
 
-// sets the information in the top right info panel.
-function setInfoPanel(point, idx=0){
-  console.log('setInfoPanel()', point)
-  const city = point.features[idx].properties.City;
-  const state = point.features[idx].properties.State;
-  const orchardName = point.features[idx].properties.orchardName;
-  const orchardAddress = point.features[idx].properties.Address
-  const orchardGMaps = point.features[idx].properties.GMapsLink
-  const phone = point.features[idx].properties.PhoneNumber
-  const breeds = point.features[idx].properties.Breeds
-  // console.log(breeds)
-  var htmlBreeds = breeds.toString().replace('[', '').replace(']', '').replaceAll('"', '').replaceAll(',', ', ')
-  if(htmlBreeds === ''){
-    htmlBreeds = 'No breed data!'
+function showBreeds(){
+  if(window.innerWidth <= 800){
+    d3.select('#listContent').classed('hideMobileListContent', false)
+    d3.select('#listContent').classed('mobileListContent', true)
+    d3.select('#closeMobileOrchards').style('z-index', '9')
+    d3.select('#mobileOrchardGrouped').style('z-index', '8')
   }
-  currentBreeds = htmlBreeds
-
-  panel.innerHTML = `
-    <div class="panelContentContainer">
-      <h1 class=panelName>${orchardName}</h1>
-      <p class="panelText kanitMedium">
-        Address: <a class="infoAddress" href=${orchardGMaps} target="_blank">${orchardAddress}</a>
-      </p>
-      <p class="panelText kanitMedium">
-        Phone Number: ${phone}
-      </p>
-      <div class="htmlBreeds kanitMedium" onclick="showBreedList()">
-        Breeds: ${htmlBreeds}
-      </div>
-    </div>
-  `;
+  d3.select('#greyMask').style('display', 'block')
+  d3.select('#listContent').style('display', 'block')
+  d3.select('#breedList').html(currentOrchardBreeds)
 
 }
 
-// clears the information in the top right info panel, and the highlighted circle
-function clearPanel(){
+let currentOrchardName, currentOrchardAddress, currentOrchardGMaps, currentOrchardPhone, currentOrchardBreeds;
+let orchardInfo
+
+var popup = new mapboxgl.Popup({className: ''});
+popup.on('close', () => {
+  console.log('popup was closed');
+  clickedPoint=false
   noHover(currentID)
-  panel.classList.remove('clicked')
-  panel.innerHTML=""
-  // clearButton.style.display='none'
-  if(currentDiv){
-    currentDiv.classList.remove('clicked')
-    currentDiv.style.backgroundColor = "#785BBC"
-  }
+});
+
+function expandPopup(){
+  console.log('expandPopup()')
+  const expandedContent = `
+    <div class="panelContentContainer">
+      <h1 class="panelName">${currentOrchardName}</h1>
+      <p class="panelText kanitMedium">
+        Address: <a class="infoAddress" href=${currentOrchardGMaps} target="_blank">${currentOrchardAddress}</a>
+      </p>
+      <div class="panelText kanitMedium">
+        Phone: ${currentOrchardPhone}
+      </div>
+      <div class="containerBreeds panelText kanitMedium" onclick="showBreeds()">
+        Breeds: ${currentOrchardBreeds}
+      </div>
+      <div class='expandContainer' onclick="collapsePopup()">
+        <div class="panelText kanitMedium">Less info</div>
+        <img src="img/doubleUp.png">
+      </div>
+    </div>
+  `;
+  popup.setHTML(expandedContent).setMaxWidth("300px")
+  ;
+}
+
+function collapsePopup() {
+  popup.setHTML(orchardInfo);
+}
+
+// sets the information in the top right info panel.
+function setPopupContent(e, idx=0){
+  console.log('setPopupContent()', e)
+  const coordinates = e.features[idx].geometry.coordinates.slice();
+  const rawBreedData = e.features[idx].properties.Breeds;
+  currentOrchardName = e.features[idx].properties.orchardName;
+  currentOrchardAddress = e.features[idx].properties.Address
+  currentOrchardGMaps = e.features[idx].properties.GMapsLink
+  currentOrchardPhone = e.features[idx].properties.PhoneNumber
+  currentOrchardBreeds = rawBreedData.toString().replace('[', '').replace(']', '').replaceAll('"', '').replaceAll(',', ', ')
+
+  orchardInfo = `
+      <div class="panelContentContainer">
+        <h1 class=panelName>${currentOrchardName}</h1>
+        <p class="panelText kanitMedium">
+          Address: <a class="infoAddress" href=${currentOrchardGMaps} target="_blank">${currentOrchardAddress}</a>
+        </p>
+        <div class='expandContainer' onclick="expandPopup()">
+          <div class="panelText kanitMedium">More info</div>
+          <img src="img/doubleDown.png">
+        </div>
+      </div>
+    `;
+
+  popup
+      .setLngLat(coordinates)
+      .setHTML(orchardInfo)
+      .setMaxWidth("300px")
+      .addTo(map);
+
+}
+
+popup.on('close', () => {
+  console.log('popup was closed');
+  noHover(currentID)
+});
+
+
+// clears the information in the top right info panel, and the highlighted circle
+// function clearPanel(){
+//   noHover(currentID)
+//   clickedPoint=false
+//   // clearButton.style.display='none'
+//   if(currentDiv){
+//     currentDiv.classList.remove('clicked')
+//     currentDiv.style.backgroundColor = "#785BBC"
+//   }
+// }
+
+function findPropertiesById(featureCollection, id) {
+  const feature = featureCollection.features.find(f => f.id === id);
+  return feature ? feature.properties : null;
 }
 
 // clears panel and then highlights the circle that the sidebar selection is
 function containerClick(orchard){
   console.log('containerClick()', orchard)
-  // clear highlight of previous click
-  if(!(currentDiv==undefined)){
-    console.log('div undef')
-    if(currentDiv.style.backgroundColor=="rgb(159, 135, 214)"){
-      d3.selectAll('.selectedOrchard').classed('selectedOrchard', false)
-      // currentDiv.style.backgroundColor = "#785BBC"
-      currentDiv.classList.remove('clicked')
-      // console.log(pointID)
-      noHover(pointID)
-      clearPanel()
-    }
-  }
-  if(panel.classList.contains('clicked')){
-    console.log('NEW STUFF')
-    clearPanel()
-  }
+  clearOrchardContainer()
+
+  const breedsContent = orchard.querySelector('.containerBreeds').innerHTML;
+  console.log(breedsContent)
+  currentOrchardBreeds = breedsContent
 
   currentDiv = orchard
   var orchardName = orchard.id.slice(4,).replaceAll('_', ' ')
@@ -388,14 +379,15 @@ function containerClick(orchard){
   currentID=pointID
   currentDiv.classList.add('clicked')
 
+  // setPopupContent(orchardsData, idx=pointID)
+
   // if panel does not have clicked class onto it
-  if(!panel.classList.contains('clicked')){
+  if(!clickedPoint){
     console.log(pointID-1)
-    panel.classList.add('clicked')
+    clickedPoint=true
     // clearButton.style.display='block'
     currentDiv.style.backgroundColor = lightPurple
     yesHover(pointID)
-    setInfoPanel(orchardsData, (pointID))
   }
 
   d3.select(orchard).classed('selectedOrchard', true)
@@ -406,7 +398,7 @@ function containerClick(orchard){
 function clearOrchardContainer(){
   console.log('clearOrchardContainer')
   noHover(currentID)
-  panel.classList.remove('clicked')
+  clickedPoint=false
   if(currentDiv){
     currentDiv.style.backgroundColor = "#785BBC"
   }
@@ -458,11 +450,12 @@ function clearStateIcons(){
 // handles reset button functions
 function resetButton(){
   clearOrchardContainer()
-  clearPanel()
+  // clearPanel()
   clearBreeds()
   resetStateBorderColor()
   clearStateIcons()
   runLayerQuery()
+  popup.remove()
 }
 
 // {
@@ -536,7 +529,7 @@ function updateOrchards(data){
           <span>
           Phone Number: ${oPhone}<br>
           </span>
-          <span class="containerBreeds" onclick="showBreedList()">
+          <span class="containerBreeds" onclick="showBreeds()">
           Breeds: ${htmlBreeds}<br>
           </span>
           </p>
@@ -552,7 +545,7 @@ function updateOrchards(data){
           <span>
           Phone Number: ${oPhone}<br>
           </span>
-          <span class="containerBreeds" onclick="showBreedList()">
+          <span class="containerBreeds" onclick="showBreeds()">
           Breeds: ${htmlBreeds}<br>
           </span>
           </p>
@@ -717,24 +710,6 @@ function closeBreedList(){
   }
 }
 
-function showBreedList(){
-  // d3.select('#breedList').html('')
-  if(window.innerWidth <= 800){
-    d3.select('#listContent').classed('hideMobileListContent', false)
-    d3.select('#listContent').classed('mobileListContent', true)
-    d3.select('#infoPanel').style('z-index', '9')
-    d3.select('#closeMobileOrchards').style('z-index', '9')
-    d3.select('#mobileOrchardGrouped').style('z-index', '8')
-
-  }
-  // document.getElementById('breedList').innerHTML = ""
-  d3.select('#greyMask').style('display', 'block')
-  d3.select('#listContent').style('display', 'block')
-  // console.log('currentBreeds at showBreedList()', currentBreeds)
-  d3.select('#breedList').html(currentBreeds)
-
-}
-
 function closeHelp(){
   console.log('closeHelp()')
   d3.select('#greyMask').style('display', 'none')
@@ -749,13 +724,9 @@ function closeHelp(){
         d3.select('#mapTitle').classed('fadeTitle', true)
       }, 500)
     }
-  
     d3.select("#mapTitle").classed('fadeTitle', true)
     console.log('mobile info panel')
-    clearPanel()
-    d3.select('#infoPanel').classed('showMobileInfoPanel', false)
-    d3.select('#infoPanel').classed('hiddenMobileInfoPanel', true)
-    d3.select('#infoPanel').style('z-index', '10')
+    // clearPanel()
     d3.select('#closeMobileOrchards').style('z-index', '11')
   
   }
@@ -833,20 +804,5 @@ function returnHome(){
     center: baseCenter, 
     zoom: baseZoom
   })
-}
-
-function changeInfoPanel(){
-  console.log('closeInfoPanel()')
-  if($('#add').css('display') == 'none') {
-    $('#add').css('display', 'block')
-    d3.select('#infoPanel').classed('.collapseTransition', true)
-    d3.select('#infoPanel').classed('closedInfoPanel', true)
-    $('#closeInfoPanel').css('margin-right', '1.5rem')
-  } else {
-    $('#add').css('display', 'none')
-    d3.select('#infoPanel').classed('.collapseTransition', false)
-    d3.select('#infoPanel').classed('closedInfoPanel', false)
-    $('#closeInfoPanel').css('margin-right', '26.75em')
-  }
 }
 
