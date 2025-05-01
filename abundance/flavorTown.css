@@ -281,6 +281,9 @@ html, head, body{
 }
 
 .expandContainer{
+    position: absolute;
+    right: 0;
+    bottom: 0;
     display: flex;
     gap: .5rem;
     align-items: center;

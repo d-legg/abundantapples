@@ -273,16 +273,15 @@ let orchardInfo
 
 var popup = new mapboxgl.Popup({
     className: '',
-    // closeOnClick: false
 });
+
 popup.on('close', () => {
   console.log('popup was closed');
   clickedPoint=false
   noHover(currentID)
 });
 
-function expandPopup(e){
-  if (e) e.stopPropagation();
+function expandPopup(){
   console.log('expandPopup()')
   const expandedContent = `
     <div class="panelContentContainer">
@@ -296,21 +295,17 @@ function expandPopup(e){
       <div class="containerBreeds panelText kanitMedium" onclick="showBreeds()">
         Breeds: ${currentOrchardBreeds}
       </div>
-      <div class='expandContainer' onclick="collapsePopup(event)">
+      <div class='expandContainer' onclick="collapsePopup()">
         <div class="panelText kanitMedium">Less info</div>
         <img src="img/doubleUp.png">
       </div>
     </div>
   `;
-  setTimeout(() => {
-    popup.setHTML(expandedContent).setMaxWidth("300px");
-  }, 0);
-  // popup.setHTML(expandedContent).setMaxWidth("300px")
+  popup.setHTML(expandedContent).setMaxWidth("300px")
   ;
 }
 
-function collapsePopup(e) {
-  if (e) e.stopPropagation();
+function collapsePopup() {
   popup.setHTML(orchardInfo);
 }
 
@@ -331,7 +326,7 @@ function setPopupContent(e, idx=0){
         <p class="panelText kanitMedium">
           Address: <a class="infoAddress" href=${currentOrchardGMaps} target="_blank">${currentOrchardAddress}</a>
         </p>
-        <div class='expandContainer' onclick="expandPopup(event)">
+        <div class='expandContainer' onclick="expandPopup()">
           <div class="panelText kanitMedium">More info</div>
           <img src="img/doubleDown.png">
         </div>
