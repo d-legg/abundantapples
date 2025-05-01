@@ -302,7 +302,10 @@ function expandPopup(e){
       </div>
     </div>
   `;
-  popup.setHTML(expandedContent).setMaxWidth("300px")
+  setTimeout(() => {
+    popup.setHTML(expandedContent).setMaxWidth("300px");
+  }, 0);
+  // popup.setHTML(expandedContent).setMaxWidth("300px")
   ;
 }
 
