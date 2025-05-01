@@ -273,7 +273,7 @@ let orchardInfo
 
 var popup = new mapboxgl.Popup({
     className: '',
-    closeOnClick: false
+    // closeOnClick: false
 });
 popup.on('close', () => {
   console.log('popup was closed');
@@ -282,6 +282,10 @@ popup.on('close', () => {
 });
 
 function expandPopup(){
+  // if (e) {
+  //   console.log('e fired')
+  //   e.stopPropagation();
+  // }
   console.log('expandPopup()')
   const expandedContent = `
     <div class="panelContentContainer">
@@ -340,12 +344,6 @@ function setPopupContent(e, idx=0){
       .addTo(map);
 
 }
-
-popup.on('close', () => {
-  console.log('popup was closed');
-  noHover(currentID)
-});
-
 
 // clears the information in the top right info panel, and the highlighted circle
 // function clearPanel(){
