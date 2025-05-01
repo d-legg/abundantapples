@@ -271,7 +271,10 @@ function showBreeds(){
 let currentOrchardName, currentOrchardAddress, currentOrchardGMaps, currentOrchardPhone, currentOrchardBreeds;
 let orchardInfo
 
-var popup = new mapboxgl.Popup({className: ''});
+var popup = new mapboxgl.Popup({
+    className: '',
+    closeOnClick: false
+});
 popup.on('close', () => {
   console.log('popup was closed');
   clickedPoint=false
