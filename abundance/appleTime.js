@@ -284,27 +284,29 @@ popup.on('close', () => {
 
 function expandPopup(){
   console.log('expandPopup()')
-  // const expandedContent = `
-  //   <div class="panelContentContainer">
-  //     <h1 class="panelName">${currentOrchardName}</h1>
-  //     <p class="panelText kanitMedium">
-  //       Address: <a class="infoAddress" href=${currentOrchardGMaps} target="_blank">${currentOrchardAddress}</a>
-  //     </p>
-  //     <div class="panelText kanitMedium">
-  //       Phone: ${currentOrchardPhone}
-  //     </div>
-  //     <div class="containerBreeds panelText kanitMedium" onclick="showBreeds()">
-  //       Breeds: ${currentOrchardBreeds}
-  //     </div>
-  //     <div class='expandContainer' onclick="collapsePopup()">
-  //       <div class="panelText kanitMedium">Less info</div>
-  //       <img src="img/doubleUp.png">
-  //     </div>
-  //   </div>
-  // `;
-  // popup.setHTML(expandedContent)
-  document.getElementById('popupPhone').style.display = 'block'
-  document.getElementById('popupBreeds').style.display = 'block'
+  const expandedContent = `
+    <div class="panelContentContainer">
+      <h1 class="panelName">${currentOrchardName}</h1>
+      <p class="panelText kanitMedium">
+        Address: <a class="infoAddress" href=${currentOrchardGMaps} target="_blank">${currentOrchardAddress}</a>
+      </p>
+      <div class="panelText kanitMedium">
+        Phone: ${currentOrchardPhone}
+      </div>
+      <div class="containerBreeds panelText kanitMedium" onclick="showBreeds()">
+        Breeds: ${currentOrchardBreeds}
+      </div>
+      <div class='expandContainer' onclick="collapsePopup()">
+        <div class="panelText kanitMedium">Less info</div>
+        <img src="img/doubleUp.png">
+      </div>
+    </div>
+  `;
+  popup.setHTML(expandedContent)
+
+
+  // document.getElementById('popupPhone').style.display = 'block'
+  // document.getElementById('popupBreeds').style.display = 'block'
 
 }
 
