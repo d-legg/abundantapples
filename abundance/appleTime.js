@@ -281,11 +281,8 @@ popup.on('close', () => {
   noHover(currentID)
 });
 
-function expandPopup(){
-  // if (e) {
-  //   console.log('e fired')
-  //   e.stopPropagation();
-  // }
+function expandPopup(e){
+  if (e) e.stopPropagation();
   console.log('expandPopup()')
   const expandedContent = `
     <div class="panelContentContainer">
@@ -299,7 +296,7 @@ function expandPopup(){
       <div class="containerBreeds panelText kanitMedium" onclick="showBreeds()">
         Breeds: ${currentOrchardBreeds}
       </div>
-      <div class='expandContainer' onclick="collapsePopup()">
+      <div class='expandContainer' onclick="collapsePopup(event)">
         <div class="panelText kanitMedium">Less info</div>
         <img src="img/doubleUp.png">
       </div>
@@ -309,7 +306,8 @@ function expandPopup(){
   ;
 }
 
-function collapsePopup() {
+function collapsePopup(e) {
+  if (e) e.stopPropagation();
   popup.setHTML(orchardInfo);
 }
 
@@ -330,7 +328,7 @@ function setPopupContent(e, idx=0){
         <p class="panelText kanitMedium">
           Address: <a class="infoAddress" href=${currentOrchardGMaps} target="_blank">${currentOrchardAddress}</a>
         </p>
-        <div class='expandContainer' onclick="expandPopup()">
+        <div class='expandContainer' onclick="expandPopup(event)">
           <div class="panelText kanitMedium">More info</div>
           <img src="img/doubleDown.png">
         </div>
