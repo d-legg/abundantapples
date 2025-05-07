@@ -47,7 +47,7 @@ var isMobile = false
 
 // –––––––––––––––––––––––––––––––––––––––– END  ––––––––––––––––––––––––––––––––––––––––
 
-
+// mobile version!
 if (window.innerWidth <= 800){
   isMobile = true
   baseZoom = 5
@@ -134,8 +134,63 @@ map.on('load', () => {
   // console.log(breedList)
   if(isMobile){
     map.setLayoutProperty('Pacific Ocean Label', 'text-offset', [1,0]);
+    map.on('click', appleLayerName, (e) => {
+      clickedPoint=true
+      // CLEAR OLD HIGHLIGHT FIRST
+      noHover(currentID)
+      var id = e.features[0].properties.id
+      currentID=id
+        
+      setPopupContent(e)
+      yesHover(currentID)
+    
+    })
+  
+    
   } else {
     // map.setLayoutProperty('Pacific Ocean Label', 'text-offset', [1,0]);
+    map.on('mouseenter', appleLayerName, (e) => {
+      console.log('mouseeneter')
+      map.getCanvas().style.cursor = 'pointer';
+  
+      if(clickedPoint){
+        console.log('popup Open')
+      } else {
+        var id = e.features[0].properties.id
+        currentID = id
+    
+        setPopupContent(e)
+        yesHover(currentID)
+    
+      }
+    })
+  
+    map.on('mouseleave', appleLayerName, (e) => {
+      console.log('mouseleaving appleLayer')
+      map.getCanvas().style.cursor = 'auto';
+      // e is the data point and its features -> e.features for geojson object 
+      if(clickedPoint){
+        console.log('popup open')
+      } else{
+        console.log('remove popup')
+        popup.remove() // check this for removing on thing?
+        noHover(currentID)    
+      }
+    
+    })
+  
+    map.on('click', appleLayerName, (e) => {
+      clickedPoint=true
+      // CLEAR OLD HIGHLIGHT FIRST
+      noHover(currentID)
+      var id = e.features[0].properties.id
+      currentID=id
+        
+      setPopupContent(e)
+      yesHover(currentID)
+    
+    })
+  
   }
   
 
@@ -175,45 +230,47 @@ map.on('load', () => {
   map.moveLayer('Oregon label')
 
 
-  map.on('mouseenter', appleLayerName, (e) => {
-    console.log('mouseeneter')
-    map.getCanvas().style.cursor = 'pointer';
+  // map.on('mouseenter', appleLayerName, (e) => {
+  //   console.log('mouseeneter')
+  //   map.getCanvas().style.cursor = 'pointer';
 
-    if(clickedPoint){
-      console.log('popup Open')
-    } else {
-      var id = e.features[0].properties.id
-      currentID = id
+  //   if(clickedPoint){
+  //     console.log('popup Open')
+  //   } else {
+  //     var id = e.features[0].properties.id
+  //     currentID = id
   
-      setPopupContent(e)
-      yesHover(currentID)
+  //     setPopupContent(e)
+  //     yesHover(currentID)
   
-    }
-  })
+  //   }
+  // })
 
-  map.on('mouseleave', appleLayerName, (e) => {
-    map.getCanvas().style.cursor = 'auto';
-    // e is the data point and its features -> e.features for geojson object 
-    if(clickedPoint){
-      console.log('popup open')
-    } else{
-      popup.remove()
-      noHover(currentID)    
-    }
+  // map.on('mouseleave', appleLayerName, (e) => {
+  //   console.log('mouseleaving appleLayer')
+  //   map.getCanvas().style.cursor = 'auto';
+  //   // e is the data point and its features -> e.features for geojson object 
+  //   if(clickedPoint){
+  //     console.log('popup open')
+  //   } else{
+  //     console.log('remove popup')
+  //     popup.remove() // check this for removing on thing?
+  //     noHover(currentID)    
+  //   }
   
-  })
+  // })
 
-  map.on('click', appleLayerName, (e) => {
-    clickedPoint=true
-    // CLEAR OLD HIGHLIGHT FIRST
-    noHover(currentID)
-    var id = e.features[0].properties.id
-    currentID=id
+  // map.on('click', appleLayerName, (e) => {
+  //   clickedPoint=true
+  //   // CLEAR OLD HIGHLIGHT FIRST
+  //   noHover(currentID)
+  //   var id = e.features[0].properties.id
+  //   currentID=id
       
-    setPopupContent(e)
-    yesHover(currentID)
+  //   setPopupContent(e)
+  //   yesHover(currentID)
   
-  })
+  // })
   
 
   runLayerQuery()
