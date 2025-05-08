@@ -27,11 +27,13 @@
 <body>    
 
     <div id="mapContainer">
-        <div id="greyMask" onclick="closeHelp()"></div>
+        <div id="greyMask" onclick="closeHelp()" style="display: none;"></div>
         
         <!-- Popup how style="display: none;" to on load -->
-        <div id="howTo">
-            <button id="exitButton" class="w3-button kanitMedium" onclick="closeHelp()">Close</button>
+        <div id="howTo" style="display: none;">
+            <div id="closeHelpContainer" class="smallCircle" onclick="closeInfoPanel()">
+                <div class="minus"></div>
+            </div>
             <div id="title">
                 <p class="howToTitle kanitMedium">Abundant Apples</p>
             </div>
@@ -98,7 +100,11 @@
         <div id="breedListContainer">
             <div id="listContent" style="display: none;">
                 <div id="breedList"> </div>
-                <button id="closeList" class="w3-button kanitMedium" onclick="closeBreedList()">Close</button>
+                <!-- <button id="closeList" class="w3-button kanitMedium" onclick="closeBreedList()">Close</button> -->
+                <div id="closeBreedListContainer" class="smallCircle" onclick="closeBreedList()">
+                    <div class="minus"></div>
+                </div>
+    
             </div>
         </div>
 

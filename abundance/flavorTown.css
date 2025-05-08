@@ -204,8 +204,8 @@ html, head, body{
 #closeMobileOrchards{
     position: fixed;
     top: 0;
-    margin-right: .25em;
-    margin-top: .25em;
+    margin-right: .75rem;
+    margin-top: 1rem;
     background-color: #9F87D6;
     color: ivory;
     height: 2em;
@@ -289,15 +289,9 @@ html, head, body{
 
 .mobileListContent{
     z-index: 99 !important;
-    display: flex;
-    position: fixed;
-    border: 8px solid #321479;
-    background-color: #9F87D6;
     width: 80% !important;
     height: fit-content !important;
     max-height: 80% !important;
-    margin-top: 2em;
-    overflow: scroll;
 }
 
 .hideMobileListContent{
@@ -875,7 +869,7 @@ p{
 }
 
 
-#orchardGrouped::-webkit-scrollbar, #contentContainer::-webkit-scrollbar, #mobileOrchardGrouped::-webkit-scrollbar, #breedContent::-webkit-scrollbar {
+#orchardGrouped::-webkit-scrollbar, #contentContainer::-webkit-scrollbar, #mobileOrchardGrouped::-webkit-scrollbar, #breedContent::-webkit-scrollbar, #breedList::-webkit-scrollbar {
     width: 12px; /* Width of the scrollbar */
     height: 100%; /* Height of the scrollbar */
     background: #785BBC; /* Color of the track */
@@ -883,7 +877,7 @@ p{
 
 }
 
-#orchardGrouped::-webkit-scrollbar-thumb, #contentContainer::-webkit-scrollbar-thumb,#mobileOrchardGrouped::-webkit-scrollbar-thumb, #breedContent::-webkit-scrollbar-thumb {
+#orchardGrouped::-webkit-scrollbar-thumb, #contentContainer::-webkit-scrollbar-thumb,#mobileOrchardGrouped::-webkit-scrollbar-thumb, #breedContent::-webkit-scrollbar-thumb, #breedList::-webkit-scrollbar-thumb {
     background-color: #9F87D6; /* Color of the thumb */
     border-radius: 6px; /* Rounded corners */
     border: 3px solid #785BBC; /* Border around the thumb */
@@ -1027,6 +1021,34 @@ p{
     margin: auto;
 }
 
+#closeBreedListContainer{
+    position: absolute;
+    right: -1.3rem;
+    top: -1.25rem;
+}
+
+.minus{
+    position: absolute;
+    background-color: ivory;
+    width: 1.25rem;
+    height: .25rem;
+    border-radius: .5rem;
+    margin: auto;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+#closeHelpContainer{
+    position: absolute;
+    right: -1.25rem;
+    top: -1.25rem;
+    display: flex;
+    justify-content: center;
+}
+
 .smallCircle{
     border-radius: 50%;
     z-index: 2;
@@ -1048,16 +1070,6 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#minus{
-    position: absolute;
-    background-color: ivory;
-    width: 1.25rem;
-    height: .25rem;
-    border-radius: .5rem;
-    margin: auto;
-    display: flex;
 }
 
 #add{    
@@ -1137,7 +1149,7 @@ p{
     text-overflow: ellipsis;
 }
 
-.containerBreeds {
+.containerBreeds, .directoryBreeds {
     cursor: pointer;
     text-overflow: ellipsis;
     width: 100%;
@@ -1151,11 +1163,12 @@ p{
 }
 
 #breedList{
+    overflow: auto;
+    height: fit-content;
     color: ivory;
-    margin-top: 1.5em;
-    margin-left: 1em;
     font-size: 1.25em;
-    padding-bottom: 1em;
+    padding: 1rem;
+    max-height: 25rem;
 }
 
 #listContent{

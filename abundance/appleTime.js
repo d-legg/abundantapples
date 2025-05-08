@@ -82,18 +82,9 @@ map.getCanvas().style.cursor = 'auto';
 map.dragRotate.disable()
 map.touchZoomRotate.disableRotation();
 
-// mobile zoom
+// desktop + mobile zoom
 map.addControl(new mapboxgl.NavigationControl({visualizePitch: true}), 'top-right');
-
-
 map.addControl(new mapboxgl.NavigationControl({visualizePitch: true}), 'bottom-right');
-
-
-const mapTitle = document.getElementById("mapTitle")
-mapTitle.addEventListener("animationend", function() {
-  mapTitle.style.display = "none";
-});
-
 
 map.on('click', 'landcover', () => {
   console.log('landcover click')
@@ -312,16 +303,30 @@ function noHover(pointID){
   );
 }
 
-function showBreeds(){
-  if(window.innerWidth <= 800){
+function directoryBreedList(){
+  console.log('directoryBreedList()')
+  if(isMobile){
     d3.select('#listContent').classed('hideMobileListContent', false)
     d3.select('#listContent').classed('mobileListContent', true)
-    d3.select('#closeMobileOrchards').style('z-index', '9')
+    d3.select('#closeMobileOrchards').style('z-index', '8')
     d3.select('#mobileOrchardGrouped').style('z-index', '8')
   }
   d3.select('#greyMask').style('display', 'block')
+  d3.select('#greyMask').style('z-index', '9')
   d3.select('#listContent').style('display', 'block')
   d3.select('#breedList').html(currentOrchardBreeds)
+
+}
+
+function showBreeds(){
+  if(d3.select('.containerBreeds').style('overflow') == 'hidden'){
+    d3.selectAll('.containerBreeds').style('overflow', 'unset')
+    d3.selectAll('.containerBreeds').style('white-space', 'unset')
+  } else {
+    d3.selectAll('.containerBreeds').style('overflow', 'hidden')
+    d3.selectAll('.containerBreeds').style('white-space', 'nowrap')
+  
+  }
 
 }
 
@@ -413,17 +418,6 @@ function setPopupContent(e, idx=0){
 
 }
 
-// clears the information in the top right info panel, and the highlighted circle
-// function clearPanel(){
-//   noHover(currentID)
-//   clickedPoint=false
-//   // clearButton.style.display='none'
-//   if(currentDiv){
-//     currentDiv.classList.remove('clicked')
-//     currentDiv.style.backgroundColor = "#785BBC"
-//   }
-// }
-
 function findPropertiesById(featureCollection, id) {
   const feature = featureCollection.features.find(f => f.id === id);
   return feature ? feature.properties : null;
@@ -434,8 +428,8 @@ function containerClick(orchard){
   console.log('containerClick()', orchard)
   clearOrchardContainer()
 
-  const breedsContent = orchard.querySelector('.containerBreeds').innerHTML;
-  console.log(breedsContent)
+  const breedsContent = orchard.querySelector('.directoryBreeds').innerHTML;
+  // console.log(breedsContent)
   currentOrchardBreeds = breedsContent
 
   currentDiv = orchard
@@ -444,7 +438,7 @@ function containerClick(orchard){
   // new point logic here -> update pointId with pointID = function(orchard name)
   pointID = getOrchardIdx(orchardName)
 
-  console.log('POINT ID =', pointID)
+  // console.log('POINT ID =', pointID)
   currentID=pointID
   currentDiv.classList.add('clicked')
 
@@ -452,7 +446,7 @@ function containerClick(orchard){
 
   // if panel does not have clicked class onto it
   if(!clickedPoint){
-    console.log(pointID-1)
+    // console.log(pointID-1)
     clickedPoint=true
     // clearButton.style.display='block'
     currentDiv.style.backgroundColor = lightPurple
@@ -478,15 +472,16 @@ function clearOrchardContainer(){
 // expands div
 function changeOrchardContainerSize(){
   // mobile handler
-  if(window.innerWidth <= 800){
+  if(isMobile){
     console.log('mobile time!')
     d3.select('#mobileOrchardGrouped').style('display', 'block')
     d3.select('#mobileOrchardGrouped').style('z-index', '10')
-
     d3.select('#greyMask').style('display', 'block')
     d3.select('#closeMobileOrchards').style('display', 'block')
+    d3.select('#closeMobileOrchards').style('z-index', '11')
+
   } else  { // desktop handler
-    console.log('desktop handler height', orchardContainer.style.height)
+    // console.log('desktop handler height', orchardContainer.style.height)
       // this expands the div
       if(window.getComputedStyle(orchardContainer).height === '64px'){
         console.log('expand container desktop')
@@ -598,7 +593,7 @@ function updateOrchards(data){
           <span>
           Phone Number: ${oPhone}<br>
           </span>
-          <span class="containerBreeds" onclick="showBreeds()">
+          <span class="directoryBreeds" onclick="directoryBreedList()">
           Breeds: ${htmlBreeds}<br>
           </span>
           </p>
@@ -614,7 +609,7 @@ function updateOrchards(data){
           <span>
           Phone Number: ${oPhone}<br>
           </span>
-          <span class="containerBreeds" onclick="showBreeds()">
+          <span class="directoryBreeds" onclick="directoryBreedList()">
           Breeds: ${htmlBreeds}<br>
           </span>
           </p>
@@ -774,47 +769,41 @@ function resetStateBorderColor(){
 
 function closeBreedList(){
   d3.select('#listContent').style('display', 'none')
-  if(!window.innerWidth <= 800){
+  if(!isMobile){
+    console.log("NOT mobile")
     d3.select('#greyMask').style('display', 'none')
+  } else if (isMobile){
+    d3.select('#greyMask').style('z-index', '8')
+
   }
+}
+
+function closeInfoPanel(){
+  d3.select('#greyMask').style('display', 'none')
+  d3.select('#howTo').style('display', 'none')
+
 }
 
 function closeHelp(){
   console.log('closeHelp()')
   d3.select('#greyMask').style('display', 'none')
-  d3.select('#howTo').style('display', 'none')
-  d3.select('#listContent').style('display', 'none')
+  d3.select('#greyMask').style('z-index', '10')
 
-  let titleFade = false
-  if(window.innerWidth <= 800){
-    if(titleFade === false){
-      titleFade = true
-      setTimeout(function(){
-        d3.select('#mapTitle').classed('fadeTitle', true)
-      }, 500)
+  if (d3.select('#breedSelector').style('display') !== 'none') {
+    console.log('1');
+    d3.select('#breedSelector').style('display', 'none');
+  } else if (d3.select('#listContent').style('display') !== 'none') {
+    console.log('2');
+    d3.select('#listContent').style('display', 'none');
+    if(d3.select('#mobileOrchardGrouped').style('display') !== 'none'){
+      d3.select('#greyMask').style('display', 'block')
+      d3.select('#greyMask').style('z-index', '7')
     }
-    d3.select("#mapTitle").classed('fadeTitle', true)
-    console.log('mobile info panel')
-    // clearPanel()
-    d3.select('#closeMobileOrchards').style('z-index', '11')
-  
+  } else if (d3.select('#mobileOrchardGrouped').style('display') !== 'none') {
+    console.log('3');
+    d3.select('#mobileOrchardGrouped').style('display', 'none');
+    d3.select('#closeMobileOrchards').style('display', 'none');
   }
-
-  if(!d3.select('#breedSelector').style('display', 'none')){
-    d3.select('#breedSelector').style('display', 'none')
-  }
-
-  if(!d3.select('#dataViewer').style('display', 'none')){
-    d3.select('#dataViewer').style('display', 'none')
-  }
-
-  // if(!d3.select('#mobileOrchardGrouped').style('display', 'none')){
-  //   console.log('here')
-    d3.select('#mobileOrchardGrouped').style('display', 'none')
-    d3.select('#closeMobileOrchards').style('display', 'none')
-  // }
-
-
 
 }
 
