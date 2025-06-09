@@ -781,7 +781,6 @@ function closeBreedList(){
 function closeInfoPanel(){
   d3.select('#greyMask').style('display', 'none')
   d3.select('#howTo').style('display', 'none')
-
 }
 
 function closeHelp(){
@@ -803,6 +802,8 @@ function closeHelp(){
     console.log('3');
     d3.select('#mobileOrchardGrouped').style('display', 'none');
     d3.select('#closeMobileOrchards').style('display', 'none');
+  } else if (d3.select('#howTo').style('display') !== 'none'){
+    closeInfoPanel()
   }
 
 }
