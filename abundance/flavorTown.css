@@ -93,7 +93,17 @@ html, head, body{
     overflow: auto;
 }
 
+.centerText{
+    justify-content: center;
+    display: flex;
+}
+
 /* how to stuff  */
+#titleText{
+    color: ivory;
+    font-size: 3rem;
+}
+
 #title{
     display: flex;
     justify-content: center;
@@ -148,6 +158,49 @@ html, head, body{
     flex-direction: column;
     right: 0;
     row-gap: 1rem;
+}
+
+#splashTitle{
+    width: unset !important;
+}
+
+.infoContainer{
+    z-index: 1000;
+    display: flex;
+    flex-direction: column ;
+    position: fixed;
+    width: 50rem;
+    margin-top: 1rem;
+    height: fit-content;
+    overflow: auto;
+    background-color: #9F87D6;
+    border: .5rem #321479 solid;
+    border-radius: 1rem;
+}
+
+.infoContent{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    gap: .75rem;
+}
+
+.infoText{
+    color: ivory;
+    font-size: 1.5rem;
+}
+
+.iconText{
+    height: 30px;
+}
+
+.sourceText{
+    color:ivory;
+    font-size: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 
@@ -217,6 +270,9 @@ html, head, body{
 #resetHowTo{
     height: 1.5em;
 }
+
+/* end how to stuff  */
+
 
 .mobileOrchard{
     bottom: 0 !important;
@@ -320,6 +376,19 @@ html, head, body{
 @media (max-width: 800px){
     #title{
         margin-top: 1.5rem
+    }
+
+    .infoContainer{
+        width: 18rem;
+        max-height: 35rem;
+    }
+
+    #titleText{
+        font-size: 2rem;
+    }
+
+    .infoText{
+        font-size: 1.15rem;
     }
 
     #counterContainer {

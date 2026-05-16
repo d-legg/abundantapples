@@ -27,10 +27,10 @@
 <body>    
 
     <div id="mapContainer">
-        <div id="greyMask" onclick="closeHelp()"></div>
+        <div id="greyMask" style="display:none" onclick="closeHelp()"></div>
         
         <!-- Popup how style="display: none;" to on load -->
-        <div id="howTo">
+        <!-- <div id="howTo">
             <div id="closeHelpContainer" class="smallCircle" onclick="closeInfoPanel()">
                 <div class="minus"></div>
             </div>
@@ -94,6 +94,42 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div> -->
+
+        <!-- Here you can filter orchards by state and apple breeds that they grow, and view the displayed orchards in a list format. -->
+
+        <div style="display:none" id="infoParent" class="flexContainer">
+            <div class="infoContainer">
+                <!-- content in container here -->
+                <div id="splashTitle" class="infoContent centerText">
+                    <p id="titleText" class="kanitMedium">Abundant Apples</p>
+                </div>
+
+                <div class="infoContent">
+                    <p class="kanitMedium infoText">Welcome to Apple Time, discover orchards around the PNW.</p>
+                </div>
+
+                <div class="infoContent">
+                    <img class="iconText" src="img/pencil.png">
+                    <p class="kanitMedium infoText"> Open menu for filtering orchards by state and/or apple breeds, and view the displayed orchards in a list format.</p>
+                </div>
+
+                <div class="infoContent"> 
+                    <img class="iconText" src="img/home2.png">
+                    <p class="kanitMedium infoText">Return to the starting view.</p>
+                </div>
+
+                <!-- <div class="infoContent">
+                    <img class="iconText" src="img/openHowTo.png">
+                    <p class="kanitMedium infoText"> reopens this panel.</p>
+                </div> -->
+
+                <div id="howToSources">
+                    <p class="kanitMedium sourceText">Sources: <a style="color: ivory;" href="https://www.allthefarms.com/" target="_blank">Allthefarms</a>, <a style="color: ivory;" href="https://www.orangepippin.com/orchards/united-states/oregon" target="_blank">Orange Pippin</a>, <a style="color: ivory;" href="https://waapple.org/regions/" target="_blank">Washington Apple</a> </p>
+                </div>
+
+                <!-- end content in container  -->
             </div>
         </div>
 

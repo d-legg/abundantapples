@@ -780,7 +780,7 @@ function closeBreedList(){
 
 function closeInfoPanel(){
   d3.select('#greyMask').style('display', 'none')
-  d3.select('#howTo').style('display', 'none')
+  d3.select('#infoParent').style('display', 'none')
 }
 
 function closeHelp(){
@@ -802,7 +802,7 @@ function closeHelp(){
     console.log('3');
     d3.select('#mobileOrchardGrouped').style('display', 'none');
     d3.select('#closeMobileOrchards').style('display', 'none');
-  } else if (d3.select('#howTo').style('display') !== 'none'){
+  } else if (d3.select('#infoParent').style('display') !== 'none'){
     closeInfoPanel()
   }
 
@@ -810,7 +810,7 @@ function closeHelp(){
 
 function openHelp(){
   d3.select('#greyMask').style('display', 'block')
-  d3.select('#howTo').style('display', 'flex')
+  d3.select('#infoParent').style('display', 'flex')
 }
 
 function openBreedSelector(){
